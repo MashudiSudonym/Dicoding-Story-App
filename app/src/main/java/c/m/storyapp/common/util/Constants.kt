@@ -12,4 +12,7 @@ object Constants {
     const val EMAIL = "email"
     const val PASSWORD = "password"
     val TOKEN = stringPreferencesKey(name = "x-token")
+    const val AUTHORIZATION = "Authorization"
+    const val BEARER = "Bearer "
+    const val STORY_ID = "story id"
 }

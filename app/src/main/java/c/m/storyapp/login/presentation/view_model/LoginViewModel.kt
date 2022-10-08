@@ -6,19 +6,18 @@ import c.m.storyapp.authentication_check.domain.use_case.save_token_to_data_stor
 import c.m.storyapp.common.domain.use_case.field_validation_use_case.EmailFieldValidationUseCase
 import c.m.storyapp.common.domain.use_case.field_validation_use_case.PasswordFieldValidationUseCase
 import c.m.storyapp.common.util.Resource
-import c.m.storyapp.login.domain.use_case.login_use_case.LoginUseCase
+import c.m.storyapp.login.domain.use_case.user_login_use_case.UserLoginUseCase
 import c.m.storyapp.login.presentation.state.LoginUIState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class LoginViewModel @Inject constructor(
-    private val loginUseCase: LoginUseCase,
+    private val userLoginUseCase: UserLoginUseCase,
     private val saveTokenToDataStoreUseCase: SaveTokenToDataStoreUseCase,
     private val emailFieldValidationUseCase: EmailFieldValidationUseCase,
     private val passwordFieldValidationUseCase: PasswordFieldValidationUseCase,
@@ -48,13 +47,13 @@ class LoginViewModel @Inject constructor(
                 )
             }
         } else {
-            loggingIn()
+            userLoginProcess()
         }
     }
 
-    private fun loggingIn() {
+    private fun userLoginProcess() {
         viewModelScope.launch {
-            loginUseCase(_loginUIState.value.email,
+            userLoginUseCase(_loginUIState.value.email,
                 _loginUIState.value.password).collect { result ->
                 when (result) {
                     is Resource.Error -> {

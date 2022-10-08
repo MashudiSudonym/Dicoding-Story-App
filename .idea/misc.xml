@@ -7,10 +7,23 @@
         <entry key="..\:/Users/FashionForth/AndroidStudioProjects/StoryApp/app/src/main/res/layout-large-land/activity_login.xml" value="0.6361940298507462" />
         <entry key="..\:/Users/FashionForth/AndroidStudioProjects/StoryApp/app/src/main/res/layout-sw600dp/activity_login.xml" value="0.19652777777777777" />
         <entry key="..\:/Users/FashionForth/AndroidStudioProjects/StoryApp/app/src/main/res/layout-xlarge-land/activity_login.xml" value="0.2791666666666667" />
+        <entry key="..\:/Users/FashionForth/AndroidStudioProjects/StoryApp/app/src/main/res/layout/activity_list_story.xml" value="0.3625" />
         <entry key="..\:/Users/FashionForth/AndroidStudioProjects/StoryApp/app/src/main/res/layout/activity_login.xml" value="0.3625" />
         <entry key="..\:/Users/FashionForth/AndroidStudioProjects/StoryApp/app/src/main/res/layout/activity_register.xml" value="0.3625" />
+        <entry key="..\:/Users/FashionForth/AndroidStudioProjects/StoryApp/app/src/main/res/layout/item_story.xml" value="0.3614583333333333" />
       </map>
     </option>
+  </component>
+  <component name="EntryPointsManager">
+    <list size="7">
+      <item index="0" class="java.lang.String" itemvalue="dagger.Binds" />
+      <item index="1" class="java.lang.String" itemvalue="dagger.Binds" />
+      <item index="2" class="java.lang.String" itemvalue="dagger.Binds" />
+      <item index="3" class="java.lang.String" itemvalue="dagger.Binds" />
+      <item index="4" class="java.lang.String" itemvalue="dagger.Module" />
+      <item index="5" class="java.lang.String" itemvalue="dagger.Module" />
+      <item index="6" class="java.lang.String" itemvalue="dagger.Module" />
+    </list>
   </component>
   <component name="ExternalStorageConfigurationManager" enabled="true" />
   <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">

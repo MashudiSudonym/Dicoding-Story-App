@@ -1,12 +1,13 @@
-package c.m.storyapp.login.data.repository
+package c.m.storyapp.list_story.data.repository
 
 import c.m.storyapp.R
+import c.m.storyapp.common.util.Constants
 import c.m.storyapp.common.util.Resource
 import c.m.storyapp.common.util.UIText
-import c.m.storyapp.login.data.mapper.toLoginResponse
-import c.m.storyapp.login.data.remote.LoginAPI
-import c.m.storyapp.login.domain.model.LoginResponse
-import c.m.storyapp.login.domain.repository.LoginRepository
+import c.m.storyapp.list_story.data.mapper.toListStoryResponse
+import c.m.storyapp.list_story.data.remote.ListStoryAPI
+import c.m.storyapp.list_story.domain.model.ListStoryResponse
+import c.m.storyapp.list_story.domain.repository.ListStoryRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -17,27 +18,26 @@ import java.io.IOException
 import java.net.UnknownHostException
 import javax.inject.Inject
 
-class LoginRepositoryImpl @Inject constructor(
-    private val loginAPI: LoginAPI
-) : LoginRepository {
-    override suspend fun postLogin(email: String, password: String): Flow<Resource<LoginResponse>> {
+class ListStoryRepositoryImpl @Inject constructor(private val listStoryAPI: ListStoryAPI) :
+    ListStoryRepository {
+    override suspend fun getListStory(token: String): Flow<Resource<ListStoryResponse>> {
         return flow {
-            // Loading State
+            // Loading state
             emit(Resource.Loading(isLoading = true))
 
             try {
                 // Loading State
                 emit(Resource.Loading(isLoading = false))
 
-                val postLogin = loginAPI.postLogin(email, password)
+                val getListStory = listStoryAPI.getListStory("${Constants.BEARER}$token")
 
-                if (postLogin.error) {
+                if (getListStory.error) {
                     // Error State
-                    emit(Resource.Error(message = UIText.DynamicString(postLogin.message)))
+                    emit(Resource.Error(message = UIText.DynamicString(getListStory.message)))
                 }
 
                 // Success State
-                emit(Resource.Success(data = postLogin.toLoginResponse()))
+                emit(Resource.Success(data = getListStory.toListStoryResponse()))
             } catch (e: HttpException) {
                 // Loading State
                 emit(Resource.Loading(isLoading = false))
@@ -66,6 +66,6 @@ class LoginRepositoryImpl @Inject constructor(
                     Resource.Error(message = UIText.StringResource(R.string.error_unknown))
                 )
             }
-        }.flowOn(Dispatchers.IO)
+        }
     }
 }

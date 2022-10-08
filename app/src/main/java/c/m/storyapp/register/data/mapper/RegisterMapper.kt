@@ -11,9 +11,3 @@ fun RegisterResponseDTO.toRegisterResponse(): RegisterResponse {
     )
 }
 
-fun RegisterResponse.toRegisterResponseDTO(): RegisterResponseDTO {
-    return RegisterResponseDTO(
-        error = error,
-        message = message,
-    )
-}

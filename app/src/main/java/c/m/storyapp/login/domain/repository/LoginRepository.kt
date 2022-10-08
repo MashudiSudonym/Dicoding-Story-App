@@ -1,7 +1,6 @@
 package c.m.storyapp.login.domain.repository
 
 import c.m.storyapp.common.util.Resource
-import c.m.storyapp.common.util.SimpleResource
 import c.m.storyapp.login.domain.model.LoginResponse
 import kotlinx.coroutines.flow.Flow
 

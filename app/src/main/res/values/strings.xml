@@ -10,6 +10,8 @@
     <string name="error_token_failed_to_save">Token failed to save!</string>
     <string name="error_login_failed">Login failed!</string>
     <string name="error_not_authenticated">User not authenticated!</string>
+    <string name="error_no_token_found">No Token, Please Login!</string>
+    <string name="error_no_story_data">"No Story Data"</string>
     <string name="name">Name</string>
     <string name="email">Email</string>
     <string name="password">Password</string>

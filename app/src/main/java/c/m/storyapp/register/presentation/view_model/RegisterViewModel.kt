@@ -6,7 +6,7 @@ import c.m.storyapp.common.domain.use_case.field_validation_use_case.EmailFieldV
 import c.m.storyapp.common.domain.use_case.field_validation_use_case.NameFieldValidationUseCase
 import c.m.storyapp.common.domain.use_case.field_validation_use_case.PasswordFieldValidationUseCase
 import c.m.storyapp.common.util.Resource
-import c.m.storyapp.register.domain.use_case.register_use_case.RegisterUseCase
+import c.m.storyapp.register.domain.use_case.user_register_use_case.UserRegisterUseCase
 import c.m.storyapp.register.presentation.state.RegisterUIState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -17,7 +17,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class RegisterViewModel @Inject constructor(
-    private val registerUseCase: RegisterUseCase,
+    private val userRegisterUseCase: UserRegisterUseCase,
     private val nameFieldValidationUseCase: NameFieldValidationUseCase,
     private val emailFieldValidationUseCase: EmailFieldValidationUseCase,
     private val passwordFieldValidationUseCase: PasswordFieldValidationUseCase,
@@ -56,13 +56,13 @@ class RegisterViewModel @Inject constructor(
                 )
             }
         } else {
-            registrationProcess()
+            userRegistrationProcess()
         }
     }
 
-    private fun registrationProcess() {
+    private fun userRegistrationProcess() {
         viewModelScope.launch {
-            registerUseCase(
+            userRegisterUseCase(
                 _registerUIState.value.name,
                 _registerUIState.value.email,
                 _registerUIState.value.password,

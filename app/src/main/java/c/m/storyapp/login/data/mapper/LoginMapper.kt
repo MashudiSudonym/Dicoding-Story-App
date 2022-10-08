@@ -13,14 +13,6 @@ fun LoginResultDTO.toLoginResult(): LoginResult {
     )
 }
 
-fun LoginResult.toLoginResultDTO(): LoginResultDTO {
-    return LoginResultDTO(
-        userId = userId,
-        name = name,
-        token = token
-    )
-}
-
 fun LoginResponseDTO.toLoginResponse(): LoginResponse {
     return LoginResponse(
         error = error,
@@ -29,10 +21,3 @@ fun LoginResponseDTO.toLoginResponse(): LoginResponse {
     )
 }
 
-fun LoginResponse.toLoginResponseDTO(): LoginResponseDTO {
-    return LoginResponseDTO(
-        error = error,
-        message = message,
-        loginResult = loginResult.toLoginResultDTO()
-    )
-}
