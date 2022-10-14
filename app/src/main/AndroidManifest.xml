@@ -50,7 +50,6 @@
         <activity
             android:name=".login.presentation.screen.LoginActivity"
             android:exported="true"
-            android:label="@string/login"
             android:windowSoftInputMode="adjustResize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
