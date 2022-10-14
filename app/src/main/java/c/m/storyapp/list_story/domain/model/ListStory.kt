@@ -1,5 +1,9 @@
 package c.m.storyapp.list_story.domain.model
 
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+
+@Parcelize
 data class ListStory(
     val id: String,
     val name: String,
@@ -8,4 +12,4 @@ data class ListStory(
     val createdAt: String,
     val latitude: Double,
     val longitude: Double,
-)
+) : Parcelable

@@ -9,7 +9,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import c.m.storyapp.R
 import c.m.storyapp.add_story.presentation.screen.AddStoryActivity
+import c.m.storyapp.common.util.Constants
 import c.m.storyapp.databinding.ActivityListStoryBinding
+import c.m.storyapp.detail_story.presentation.screen.DetailStoryActivity
 import c.m.storyapp.list_story.domain.model.ListStory
 import c.m.storyapp.list_story.presentation.view_model.ListStoryViewModel
 import c.m.storyapp.login.presentation.screen.LoginActivity
@@ -76,7 +78,10 @@ class ListStoryActivity : AppCompatActivity() {
     }
 
     private fun openDetailActivity(listStory: ListStory) {
-
+        val intent = Intent(this, DetailStoryActivity::class.java).apply {
+            putExtra(Constants.STORY_ID, listStory)
+        }
+        startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
     }
 
     private fun openAddStoryActivity() {
@@ -85,8 +90,8 @@ class ListStoryActivity : AppCompatActivity() {
     }
 
     private fun openLoginActivity() {
+        finish()
         startActivity(Intent(this, LoginActivity::class.java),
             ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
-        finish()
     }
 }

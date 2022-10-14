@@ -34,6 +34,9 @@
         android:theme="@style/Theme.StoryApp"
         tools:targetApi="31">
         <activity
+            android:name=".detail_story.presentation.screen.DetailStoryActivity"
+            android:exported="false" />
+        <activity
             android:name=".common.presentation.custom_view.camera_view.CameraActivity"
             android:exported="false"
             android:label="@string/camera_view" />
@@ -46,10 +49,12 @@
             android:name=".register.presentation.screen.RegisterActivity"
             android:exported="false"
             android:label="@string/register"
+            android:noHistory = "true"
             android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".login.presentation.screen.LoginActivity"
             android:exported="true"
+            android:noHistory = "true"
             android:windowSoftInputMode="adjustResize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

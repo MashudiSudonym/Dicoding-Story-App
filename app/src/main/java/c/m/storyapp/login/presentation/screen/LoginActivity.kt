@@ -121,8 +121,8 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun openListStoryActivity() {
+        finish()
         startActivity(Intent(this@LoginActivity, ListStoryActivity::class.java),
             ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
-        finish()
     }
 }

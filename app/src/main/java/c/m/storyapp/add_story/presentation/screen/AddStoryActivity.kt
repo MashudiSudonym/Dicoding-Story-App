@@ -164,9 +164,9 @@ class AddStoryActivity : AppCompatActivity() {
     }
 
     private fun openListStoryActivity() {
+        finish()
         startActivity(Intent(this, ListStoryActivity::class.java),
             ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
-        finish()
     }
 
     private fun noPhotoError(view: CoordinatorLayout) {
