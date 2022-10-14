@@ -8,6 +8,7 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import c.m.storyapp.R
+import c.m.storyapp.add_story.presentation.screen.AddStoryActivity
 import c.m.storyapp.databinding.ActivityListStoryBinding
 import c.m.storyapp.list_story.domain.model.ListStory
 import c.m.storyapp.list_story.presentation.view_model.ListStoryViewModel
@@ -79,7 +80,8 @@ class ListStoryActivity : AppCompatActivity() {
     }
 
     private fun openAddStoryActivity() {
-
+        startActivity(Intent(this, AddStoryActivity::class.java),
+            ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
     }
 
     private fun openLoginActivity() {

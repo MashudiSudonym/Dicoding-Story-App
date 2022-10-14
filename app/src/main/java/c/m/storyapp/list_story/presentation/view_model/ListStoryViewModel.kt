@@ -102,7 +102,7 @@ class ListStoryViewModel @Inject constructor(
                                                 isLoading = false,
                                                 isError = true,
                                                 isSuccess = false,
-                                                errorMessage = tokenResult.message,
+                                                errorMessage = result.message,
                                             )
                                         }
                                     }

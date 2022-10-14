@@ -34,6 +34,15 @@
         android:theme="@style/Theme.StoryApp"
         tools:targetApi="31">
         <activity
+            android:name=".common.presentation.custom_view.camera_view.CameraActivity"
+            android:exported="false"
+            android:label="@string/camera_view" />
+        <activity
+            android:name=".add_story.presentation.screen.AddStoryActivity"
+            android:exported="false"
+            android:label="@string/add_story"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
             android:name=".register.presentation.screen.RegisterActivity"
             android:exported="false"
             android:label="@string/register"
