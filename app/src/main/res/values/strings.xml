@@ -10,7 +10,6 @@
     <string name="error_validation_photo_is_blank">Photo is required!</string>
     <string name="error_internet_problem">Could not reach server, check your internet connection.</string>
     <string name="error_token_failed_to_save">Token failed to save!</string>
-    <string name="error_login_failed">Login failed!</string>
     <string name="error_not_authenticated">User not authenticated!</string>
     <string name="error_no_token_found">No Token, Please Login!</string>
     <string name="error_no_story_data">"No Story Data"</string>

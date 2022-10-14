@@ -4,6 +4,8 @@ import android.app.ActivityOptions
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import android.window.OnBackInvokedDispatcher
+import androidx.activity.OnBackPressedCallback
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
@@ -18,12 +20,20 @@ import kotlinx.coroutines.launch
 class RegisterActivity : AppCompatActivity() {
     private val registerViewModel: RegisterViewModel by viewModels()
     private lateinit var activityRegisterBinding: ActivityRegisterBinding
+    private val onBackPressedCallback: OnBackPressedCallback =
+        object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                openLoginActivity()
+            }
+        }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         activityRegisterBinding = ActivityRegisterBinding.inflate(layoutInflater)
         val view = activityRegisterBinding.root
         setContentView(view)
+
+        onBackPressedDispatcher.addCallback(onBackPressedCallback)
 
         activityRegisterBinding.btnSubmitRegister.setOnClickListener {
             registerViewModel.submitRegisterData(
