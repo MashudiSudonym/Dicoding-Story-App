@@ -30,6 +30,8 @@ class ListStoryActivity : AppCompatActivity() {
 
         activityListStoryBinding.fabAddStory.setOnClickListener { openAddStoryActivity() }
 
+        activityListStoryBinding.btnLogout.setOnClickListener { listStoryViewModel.logout() }
+
         listStoryAdapter = ListStoryAdapter { listStory ->
             openDetailActivity(listStory)
         }
@@ -62,6 +64,11 @@ class ListStoryActivity : AppCompatActivity() {
                     listStoryAdapter.submitList(listStoryUIState.listStory)
                     activityListStoryBinding.rvListStory.adapter = listStoryAdapter
                     activityListStoryBinding.rvListStory.setHasFixedSize(true)
+
+                    // If user logout status success
+                    if (listStoryUIState.isLogout) {
+                        openLoginActivity()
+                    }
                 }
             }
         }

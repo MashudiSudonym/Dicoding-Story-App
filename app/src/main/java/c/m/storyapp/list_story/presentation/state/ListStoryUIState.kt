@@ -9,4 +9,5 @@ data class ListStoryUIState(
     val isSuccess: Boolean = false,
     val errorMessage: UIText? = null,
     val listStory: List<ListStory> = listOf(),
+    val isLogout: Boolean = false,
 )

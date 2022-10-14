@@ -15,4 +15,5 @@ object Constants {
     const val AUTHORIZATION = "Authorization"
     const val BEARER = "Bearer "
     const val STORY_ID = "story id"
+    const val BLANK_STRING = ""
 }

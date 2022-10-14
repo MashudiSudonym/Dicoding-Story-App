@@ -3,6 +3,7 @@ package c.m.storyapp.list_story.presentation.view_model
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import c.m.storyapp.authentication_check.domain.use_case.get_token_from_data_store_use_case.GetTokenFromDataStoreUseCase
+import c.m.storyapp.authentication_check.domain.use_case.logout_use_case.LogoutUseCase
 import c.m.storyapp.common.util.Resource
 import c.m.storyapp.list_story.domain.use_case.show_list_story_use_case.ShowListStoryUseCase
 import c.m.storyapp.list_story.presentation.state.ListStoryUIState
@@ -12,17 +13,59 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import javax.inject.Inject
+import kotlin.math.log
 
 @HiltViewModel
 class ListStoryViewModel @Inject constructor(
     private val getTokenFromDataStoreUseCase: GetTokenFromDataStoreUseCase,
     private val getListStoryUseCase: ShowListStoryUseCase,
+    private val logoutUseCase: LogoutUseCase,
 ) : ViewModel() {
     private val _listStoryUIState = MutableStateFlow(ListStoryUIState())
     val listStoryUIState: StateFlow<ListStoryUIState> = _listStoryUIState
 
     init {
         getListStory()
+    }
+
+    fun logout() {
+        viewModelScope.launch {
+            logoutUseCase().collect { result ->
+                when (result) {
+                    is Resource.Error -> {
+                        _listStoryUIState.update {
+                            it.copy(
+                                isLoading = false,
+                                isError = true,
+                                isSuccess = false,
+                                errorMessage = result.message,
+                            )
+                        }
+                    }
+                    is Resource.Loading -> {
+                        _listStoryUIState.update {
+                            it.copy(
+                                isLoading = true,
+                                isError = false,
+                                isSuccess = false,
+                                errorMessage = null,
+                            )
+                        }
+                    }
+                    is Resource.Success -> {
+                        _listStoryUIState.update {
+                            it.copy(
+                                isLoading = false,
+                                isError = false,
+                                isSuccess = true,
+                                errorMessage = null,
+                                isLogout = true
+                            )
+                        }
+                    }
+                }
+            }
+        }
     }
 
     private fun getListStory() {
