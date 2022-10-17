@@ -73,14 +73,13 @@
                 app:layout_constraintTop_toBottomOf="@id/til_email_field"
                 app:passwordToggleEnabled="true">
 
-                <com.google.android.material.textfield.TextInputEditText
+                <c.m.storyapp.common.presentation.custom_view.CustomPasswordEditText
                     android:id="@+id/edt_password_field"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@color/white"
                     android:hint="@string/password"
-                    android:inputType="textPassword"
-                    android:textColorHint="#757575" />
+                    android:inputType="textPassword" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
