@@ -28,4 +28,6 @@ object Constants {
     const val SUFFIX_PHOTO_FILE_FORMAT = ".jpg"
     const val TEXT_PLAIN = "text/plain"
     const val IMAGE_JPEG = "image/jpeg"
+    const val IMAGE = "image"
+    const val TITLE = "title"
 }

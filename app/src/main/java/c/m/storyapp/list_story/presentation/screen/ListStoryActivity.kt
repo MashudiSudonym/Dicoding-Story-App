@@ -35,9 +35,7 @@ class ListStoryActivity : AppCompatActivity() {
 
         activityListStoryBinding.btnLogout.setOnClickListener { listStoryViewModel.logout() }
 
-        listStoryAdapter = ListStoryAdapter { listStory ->
-            openDetailActivity(listStory)
-        }
+        listStoryAdapter = ListStoryAdapter()
 
         lifecycleScope.launch {
             listStoryViewModel.listStoryUIState.collect { listStoryUIState ->
@@ -77,20 +75,15 @@ class ListStoryActivity : AppCompatActivity() {
         }
     }
 
-    private fun openDetailActivity(listStory: ListStory) {
-        val intent = Intent(this, DetailStoryActivity::class.java).apply {
-            putExtra(Constants.STORY_ID, listStory)
-        }
-        startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
-    }
-
     private fun openAddStoryActivity() {
         startActivity(Intent(this, AddStoryActivity::class.java),
             ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
     }
 
     private fun openLoginActivity() {
-        startActivity(Intent(this, LoginActivity::class.java),
+        startActivity(Intent(this, LoginActivity::class.java).apply {
+            flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+        },
             ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
         finish()
     }
