@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import c.m.storyapp.R
 import c.m.storyapp.common.util.Constants
+import c.m.storyapp.common.util.setLocalDateFormat
 import c.m.storyapp.databinding.ActivityDetailStoryBinding
 import c.m.storyapp.list_story.domain.model.ListStory
 import coil.load
@@ -29,6 +30,8 @@ class DetailStoryActivity : AppCompatActivity() {
             placeholder(R.drawable.ic_baseline_image_24)
             error(R.drawable.ic_baseline_broken_image_24)
         }
-        activityDetailStoryBinding.tvDescription.text = intentData?.name ?: ""
+        activityDetailStoryBinding.tvDescription.text = intentData?.description ?: ""
+        activityDetailStoryBinding.tvCreatedAt.text =
+            "${resources.getString(R.string.created_at)}${setLocalDateFormat(intentData?.createdAt ?: "-")}"
     }
 }
