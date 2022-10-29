@@ -36,7 +36,7 @@ class ListStoryRepositoryImplTest {
     private lateinit var mockWebServer: MockWebServer
     private lateinit var client: OkHttpClient
     private lateinit var apiService: ListStoryAPI
-    private lateinit var dummyListStory: ListStoryResponseDTO
+    private lateinit var dummyListStoryResponseDTO: ListStoryResponseDTO
 
     @Before
     fun setUp() {
@@ -58,7 +58,7 @@ class ListStoryRepositoryImplTest {
 
         listStoryRepository = ListStoryRepositoryImpl(apiService)
 
-        dummyListStory = ListStoryDataDummy.generateListStoryFakeDataResponseDTO()
+        dummyListStoryResponseDTO = ListStoryDataDummy.generateListStoryFakeDataResponseDTO()
     }
 
     @After
@@ -69,7 +69,7 @@ class ListStoryRepositoryImplTest {
     @Test
     fun `when getListStory Should Not Null`() = runTest {
         val expectedResponse =
-            MockResponse().setResponseCode(200).setBody(Gson().toJson(dummyListStory))
+            MockResponse().setResponseCode(200).setBody(Gson().toJson(dummyListStoryResponseDTO))
 
         mockWebServer.enqueue(expectedResponse)
 
@@ -96,7 +96,7 @@ class ListStoryRepositoryImplTest {
     @Test
     fun `when getListStory Should Http Exception Http Code 500`() = runTest {
         val expectedResponse = MockResponse().setResponseCode(500)
-            .setBody(Gson().toJson(dummyListStory))
+            .setBody(Gson().toJson(dummyListStoryResponseDTO))
 
         mockWebServer.enqueue(expectedResponse)
 
@@ -108,7 +108,7 @@ class ListStoryRepositoryImplTest {
     @Test
     fun `when getListStory Should Http Exception Http Code 401`() = runTest {
         val expectedResponse = MockResponse().setResponseCode(401)
-            .setBody(Gson().toJson(dummyListStory))
+            .setBody(Gson().toJson(dummyListStoryResponseDTO))
 
         mockWebServer.enqueue(expectedResponse)
 

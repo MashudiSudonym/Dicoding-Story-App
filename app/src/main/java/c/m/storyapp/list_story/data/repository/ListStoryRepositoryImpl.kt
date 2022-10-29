@@ -8,8 +8,10 @@ import c.m.storyapp.list_story.data.mapper.toListStoryResponse
 import c.m.storyapp.list_story.data.remote.ListStoryAPI
 import c.m.storyapp.list_story.domain.model.ListStoryResponse
 import c.m.storyapp.list_story.domain.repository.ListStoryRepository
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.flowOn
 import retrofit2.HttpException
 import timber.log.Timber
 import java.io.IOException
@@ -64,6 +66,6 @@ class ListStoryRepositoryImpl @Inject constructor(private val listStoryAPI: List
                     Resource.Error(message = UIText.StringResource(R.string.error_unknown))
                 )
             }
-        }
+        }.flowOn(Dispatchers.IO)
     }
 }
