@@ -106,8 +106,9 @@ class ListStoryRepositoryImplTest {
     }
 
     @Test
-    fun `when getListStory Should IO Exception Error`() = runTest {
-        val expectedResponse = MockResponse().setSocketPolicy(SocketPolicy.DISCONNECT_DURING_RESPONSE_BODY)
+    fun `when getListStory Should Http Exception Http Code 401`() = runTest {
+        val expectedResponse = MockResponse().setResponseCode(401)
+            .setBody(Gson().toJson(dummyListStory))
 
         mockWebServer.enqueue(expectedResponse)
 
@@ -116,9 +117,11 @@ class ListStoryRepositoryImplTest {
         assertNotNull(actualResponse)
     }
 
+
+
     @Test
-    fun `when getListStory Should Unknown Host Exception Error`() = runTest {
-        val expectedResponse = MockResponse().setSocketPolicy(SocketPolicy.SHUTDOWN_SERVER_AFTER_RESPONSE)
+    fun `when getListStory Should IO Exception Error`() = runTest {
+        val expectedResponse = MockResponse().setSocketPolicy(SocketPolicy.DISCONNECT_DURING_RESPONSE_BODY)
 
         mockWebServer.enqueue(expectedResponse)
 
