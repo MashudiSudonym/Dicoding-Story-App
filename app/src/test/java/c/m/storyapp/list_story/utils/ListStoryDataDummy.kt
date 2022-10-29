@@ -26,12 +26,11 @@ object ListStoryDataDummy {
 
     fun generateListStoryFakeDataResponseDTO(): ListStoryResponseDTO {
         val fakeListStoryDTO = generateListStoryFakeDataDTO()
-        val fakeListStoryReponseDTO = ListStoryResponseDTO(
+
+        return ListStoryResponseDTO(
             error = false,
             message = "Stories fetched successfully",
             listStory = fakeListStoryDTO
         )
-
-        return fakeListStoryReponseDTO
     }
 }
