@@ -161,7 +161,7 @@ class LoginRepositoryImplTest {
     }
 
     @Test
-    fun `when getListStory Should IO Exception Error`() = runTest {
+    fun `when postLogin Should IO Exception Error`() = runTest {
         val expectedResponse =
             MockResponse().setSocketPolicy(SocketPolicy.DISCONNECT_DURING_RESPONSE_BODY)
 
