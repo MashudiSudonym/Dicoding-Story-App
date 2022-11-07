@@ -26,17 +26,22 @@
         android:name=".StoryApp"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
+        android:enableOnBackInvokedCallback="true"
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
-        android:enableOnBackInvokedCallback="true"
-        android:usesCleartextTraffic="true"
         android:supportsRtl="true"
         android:theme="@style/Theme.StoryApp"
+        android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".location_story.LocationStoryActivity"
+            android:label="@string/location_stories"
+            android:exported="false" />
+        <activity
             android:name=".detail_story.presentation.screen.DetailStoryActivity"
+            android:label="@string/detail"
             android:exported="false" />
         <activity
             android:name=".common.presentation.custom_view.camera_view.CameraActivity"
@@ -51,12 +56,12 @@
             android:name=".register.presentation.screen.RegisterActivity"
             android:exported="false"
             android:label="@string/register"
-            android:noHistory = "true"
+            android:noHistory="true"
             android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".login.presentation.screen.LoginActivity"
             android:exported="true"
-            android:noHistory = "true"
+            android:noHistory="true"
             android:windowSoftInputMode="adjustResize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

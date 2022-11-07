@@ -31,4 +31,6 @@
     <string name="open_camera">Open Camera</string>
     <string name="open_gallery">Open Gallery</string>
     <string name="created_at">Created at : </string>
+    <string name="location_stories">Location Stories</string>
+    <string name="detail">Detail Story</string>
 </resources>
