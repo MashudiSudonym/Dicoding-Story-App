@@ -9,6 +9,7 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class LocationStoryActivity : AppCompatActivity() {
     private lateinit var activityLocationStoryBinding: ActivityLocationStoryBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         activityLocationStoryBinding = ActivityLocationStoryBinding.inflate(layoutInflater)
