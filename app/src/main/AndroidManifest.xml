@@ -40,7 +40,7 @@
             android:value="AIzaSyAIoLlq-ZGlQVlTn0ox8EtHi1F_FA1olos" />
 
         <activity
-            android:name=".location_story.LocationStoryActivity"
+            android:name=".location_story.presentation.screen.LocationStoryActivity"
             android:exported="false"
             android:label="@string/location_stories" />
         <activity

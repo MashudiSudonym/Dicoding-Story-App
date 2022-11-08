@@ -9,12 +9,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import c.m.storyapp.R
 import c.m.storyapp.add_story.presentation.screen.AddStoryActivity
-import c.m.storyapp.common.util.Constants
 import c.m.storyapp.databinding.ActivityListStoryBinding
-import c.m.storyapp.detail_story.presentation.screen.DetailStoryActivity
-import c.m.storyapp.list_story.domain.model.ListStory
 import c.m.storyapp.list_story.presentation.view_model.ListStoryViewModel
-import c.m.storyapp.location_story.LocationStoryActivity
+import c.m.storyapp.location_story.presentation.screen.LocationStoryActivity
 import c.m.storyapp.login.presentation.screen.LoginActivity
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
@@ -49,6 +46,8 @@ class ListStoryActivity : AppCompatActivity() {
                 }
 
                 if (listStoryUIState.isError) {
+                    activityListStoryBinding.tvNoData.visibility = View.VISIBLE
+
                     Snackbar.make(view,
                         listStoryUIState.errorMessage?.asString(this@ListStoryActivity)
                             .toString(),

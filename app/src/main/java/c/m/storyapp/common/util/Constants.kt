@@ -8,6 +8,7 @@ object Constants {
     const val REGISTER_API = "register"
     const val LOGIN_API = "login"
     const val STORIES_API = "stories"
+    const val PARAM_LOCATION = "stories?location=1"
     const val NAME = "name"
     const val EMAIL = "email"
     const val PASSWORD = "password"
