@@ -14,8 +14,6 @@ object ListStoryDataDummy {
                 description = "key $i",
                 photoUrl = "https://story-api.dicoding.dev/images/stories/photos-1666969385959_OAqj0s4-.jpg",
                 createdAt = "2022-10-28T15:03:05.963Z",
-                latitude = i.toDouble(),
-                longitude = i.toDouble(),
             )
 
             fakeListStoryDTO.add(fakeStoryItem)

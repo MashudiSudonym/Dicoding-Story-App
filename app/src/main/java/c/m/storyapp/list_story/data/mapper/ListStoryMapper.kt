@@ -20,7 +20,5 @@ fun ListStoryDTO.toListStory(): ListStory {
         description = description,
         photoUrl = photoUrl,
         createdAt = createdAt,
-        latitude = latitude,
-        longitude = longitude,
     )
 }

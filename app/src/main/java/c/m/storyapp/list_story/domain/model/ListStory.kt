@@ -10,6 +10,4 @@ data class ListStory(
     val description: String,
     val photoUrl: String,
     val createdAt: String,
-    val latitude: Double,
-    val longitude: Double,
 ) : Parcelable

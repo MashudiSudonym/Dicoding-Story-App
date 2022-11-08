@@ -12,9 +12,5 @@ data class ListStoryDTO(
     @SerializedName("photoUrl")
     val photoUrl: String,
     @SerializedName("createdAt")
-    val createdAt: String,
-    @SerializedName("lat")
-    val latitude: Double,
-    @SerializedName("lon")
-    val longitude: Double,
+    val createdAt: String
 )
