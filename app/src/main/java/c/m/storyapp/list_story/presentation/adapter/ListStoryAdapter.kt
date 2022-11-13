@@ -1,25 +1,23 @@
-package c.m.storyapp.list_story.presentation.screen
+package c.m.storyapp.list_story.presentation.adapter
 
 import android.app.Activity
-import android.app.ActivityOptions
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.app.ActivityOptionsCompat
-import androidx.core.content.ContextCompat.startActivity
 import androidx.core.util.Pair
+import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import c.m.storyapp.R
 import c.m.storyapp.common.util.Constants
 import c.m.storyapp.databinding.ItemStoryBinding
 import c.m.storyapp.detail_story.presentation.screen.DetailStoryActivity
-import c.m.storyapp.list_story.domain.model.ListStory
+import c.m.storyapp.list_story.domain.model.Story
 import coil.load
 
 class ListStoryAdapter :
-    ListAdapter<ListStory, ListStoryAdapter.ListStoryViewHolder>(DiffCallback) {
+    PagingDataAdapter<Story, ListStoryAdapter.ListStoryViewHolder>(DiffCallback) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListStoryViewHolder {
         val view = ItemStoryBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -28,7 +26,10 @@ class ListStoryAdapter :
 
     override fun onBindViewHolder(holder: ListStoryViewHolder, position: Int) {
         val contents = getItem(position)
-        holder.bind(contents)
+
+        if (contents != null) {
+            holder.bind(contents)
+        }
     }
 
     class ListStoryViewHolder(itemView: ItemStoryBinding) :
@@ -37,19 +38,19 @@ class ListStoryAdapter :
         private val imageStoryLayout = itemView.imgStory
         private val descriptionStoryLayout = itemView.tvDescription
         private val itemStoryLayout = itemView.itemStoryLayout
-        private var thisListStory: ListStory? = null
+        private var thisStory: Story? = null
 
-        fun bind(listStory: ListStory) {
-            thisListStory = listStory
-            titleStoryLayout.text = listStory.name
-            descriptionStoryLayout.text = listStory.description
-            imageStoryLayout.load(listStory.photoUrl) {
+        fun bind(story: Story) {
+            thisStory = story
+            titleStoryLayout.text = story.name
+            descriptionStoryLayout.text = story.description
+            imageStoryLayout.load(story.photoUrl) {
                 placeholder(R.drawable.ic_baseline_image_24)
                 error(R.drawable.ic_baseline_broken_image_24)
             }
             itemStoryLayout.setOnClickListener {
                 val intent = Intent(itemView.context, DetailStoryActivity::class.java).apply {
-                    putExtra(Constants.STORY_ID, listStory)
+                    putExtra(Constants.STORY_ID, story)
                 }
                 itemView.context.startActivity(intent,
                     ActivityOptionsCompat.makeSceneTransitionAnimation(
@@ -62,12 +63,12 @@ class ListStoryAdapter :
         }
     }
 
-    companion object DiffCallback : DiffUtil.ItemCallback<ListStory>() {
-        override fun areItemsTheSame(oldItem: ListStory, newItem: ListStory): Boolean {
+    companion object DiffCallback : DiffUtil.ItemCallback<Story>() {
+        override fun areItemsTheSame(oldItem: Story, newItem: Story): Boolean {
             return oldItem == newItem
         }
 
-        override fun areContentsTheSame(oldItem: ListStory, newItem: ListStory): Boolean {
+        override fun areContentsTheSame(oldItem: Story, newItem: Story): Boolean {
             return oldItem.id == newItem.id
         }
     }

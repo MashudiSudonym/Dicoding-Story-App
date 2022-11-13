@@ -1,13 +1,13 @@
 package c.m.storyapp.detail_story.presentation.screen
 
 import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import c.m.storyapp.R
 import c.m.storyapp.common.util.Constants
 import c.m.storyapp.common.util.setLocalDateFormat
 import c.m.storyapp.databinding.ActivityDetailStoryBinding
-import c.m.storyapp.list_story.domain.model.ListStory
+import c.m.storyapp.list_story.domain.model.Story
 import coil.load
 
 class DetailStoryActivity : AppCompatActivity() {
@@ -20,7 +20,7 @@ class DetailStoryActivity : AppCompatActivity() {
         setContentView(view)
 
         @Suppress("DEPRECATION") val intentData = if (Build.VERSION.SDK_INT >= 33) {
-            intent.getParcelableExtra(Constants.STORY_ID, ListStory::class.java)
+            intent.getParcelableExtra(Constants.STORY_ID, Story::class.java)
         } else {
             intent.getParcelableExtra(Constants.STORY_ID)
         }

@@ -7,9 +7,10 @@ import android.view.View
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
-import c.m.storyapp.R
 import c.m.storyapp.add_story.presentation.screen.AddStoryActivity
 import c.m.storyapp.databinding.ActivityListStoryBinding
+import c.m.storyapp.list_story.presentation.adapter.ListStoryAdapter
+import c.m.storyapp.list_story.presentation.adapter.ListStoryLoadingStateAdapter
 import c.m.storyapp.list_story.presentation.view_model.ListStoryViewModel
 import c.m.storyapp.location_story.presentation.screen.LocationStoryActivity
 import c.m.storyapp.login.presentation.screen.LoginActivity
@@ -29,13 +30,13 @@ class ListStoryActivity : AppCompatActivity() {
         val view = activityListStoryBinding.root
         setContentView(view)
 
+        listStoryAdapter = ListStoryAdapter()
+
         activityListStoryBinding.fabMaps.setOnClickListener { openLocationStoryActivity() }
 
         activityListStoryBinding.fabAddStory.setOnClickListener { openAddStoryActivity() }
 
         activityListStoryBinding.btnLogout.setOnClickListener { listStoryViewModel.logout() }
-
-        listStoryAdapter = ListStoryAdapter()
 
         lifecycleScope.launch {
             listStoryViewModel.listStoryUIState.collect { listStoryUIState ->
@@ -56,16 +57,15 @@ class ListStoryActivity : AppCompatActivity() {
                 }
 
                 if (listStoryUIState.isSuccess) {
-                    if (listStoryUIState.listStory.isEmpty()) {
-                        activityListStoryBinding.tvNoData.visibility = View.VISIBLE
-                        Snackbar.make(view,
-                            R.string.error_no_story_data,
-                            Snackbar.LENGTH_LONG).show()
-                    }
-
+                    // initialize recyclerview with adapters
+                    listStoryAdapter.submitData(listStoryUIState.story)
                     activityListStoryBinding.tvNoData.visibility = View.GONE
-                    listStoryAdapter.submitList(listStoryUIState.listStory)
-                    activityListStoryBinding.rvListStory.adapter = listStoryAdapter
+                    activityListStoryBinding.rvListStory.adapter =
+                        listStoryAdapter.withLoadStateFooter(
+                            footer = ListStoryLoadingStateAdapter {
+                                listStoryAdapter.retry()
+                            }
+                        )
                     activityListStoryBinding.rvListStory.setHasFixedSize(true)
 
                     // If user logout status success

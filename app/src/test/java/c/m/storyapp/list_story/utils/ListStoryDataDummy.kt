@@ -1,14 +1,14 @@
 package c.m.storyapp.list_story.utils
 
-import c.m.storyapp.list_story.data.remote.dto.ListStoryDTO
 import c.m.storyapp.list_story.data.remote.dto.ListStoryResponseDTO
+import c.m.storyapp.list_story.data.remote.dto.StoryDTO
 
 object ListStoryDataDummy {
-    private fun generateListStoryFakeDataDTO(): List<ListStoryDTO> {
-        val fakeListStoryDTO = ArrayList<ListStoryDTO>()
+    private fun generateListStoryFakeDataDTO(): List<StoryDTO> {
+        val fakeStoryDTO = ArrayList<StoryDTO>()
 
         for (i in 1..10) {
-            val fakeStoryItem = ListStoryDTO(
+            val fakeStoryItem = StoryDTO(
                 id = "$i",
                 name = "name item $i",
                 description = "key $i",
@@ -16,10 +16,10 @@ object ListStoryDataDummy {
                 createdAt = "2022-10-28T15:03:05.963Z",
             )
 
-            fakeListStoryDTO.add(fakeStoryItem)
+            fakeStoryDTO.add(fakeStoryItem)
         }
 
-        return fakeListStoryDTO
+        return fakeStoryDTO
     }
 
     fun generateListStoryFakeDataResponseDTO(): ListStoryResponseDTO {

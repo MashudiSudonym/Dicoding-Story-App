@@ -12,6 +12,10 @@ object Constants {
     const val NAME = "name"
     const val EMAIL = "email"
     const val PASSWORD = "password"
+    const val PAGE = "page"
+    const val SIZE = "size"
+    const val INITIAL_PAGE_INDEX = 1
+    const val INITIAL_SIZE = 5
     val TOKEN = stringPreferencesKey(name = "x-token")
     const val AUTHORIZATION = "Authorization"
     const val BEARER = "Bearer "
@@ -25,7 +29,7 @@ object Constants {
     const val PICTURE = "picture"
     const val IS_BACK_CAMERA = "isBackCamera"
     const val INTENT_TYPE = "image/*"
-    const val CHOOSE_A_PICTURE =  "Choose a Picture"
+    const val CHOOSE_A_PICTURE = "Choose a Picture"
     const val SUFFIX_PHOTO_FILE_FORMAT = ".jpg"
     const val TEXT_PLAIN = "text/plain"
     const val IMAGE_JPEG = "image/jpeg"

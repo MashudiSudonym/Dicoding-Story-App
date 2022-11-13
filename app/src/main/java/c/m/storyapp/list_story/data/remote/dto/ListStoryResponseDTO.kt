@@ -8,5 +8,5 @@ data class ListStoryResponseDTO(
     @SerializedName("message")
     val message: String,
     @SerializedName("listStory")
-    val listStory: List<ListStoryDTO>
+    val listStory: List<StoryDTO>?,
 )

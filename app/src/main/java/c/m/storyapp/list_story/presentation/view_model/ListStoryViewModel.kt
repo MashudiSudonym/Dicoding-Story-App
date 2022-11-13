@@ -10,6 +10,7 @@ import c.m.storyapp.list_story.presentation.state.ListStoryUIState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -116,14 +117,16 @@ class ListStoryViewModel @Inject constructor(
                                         }
                                     }
                                     is Resource.Success -> {
-                                        _listStoryUIState.update {
-                                            it.copy(
-                                                isLoading = false,
-                                                isError = false,
-                                                isSuccess = true,
-                                                errorMessage = null,
-                                                listStory = result.data?.listStory ?: listOf()
-                                            )
+                                        result.data?.collectLatest { pagingData ->
+                                            _listStoryUIState.update {
+                                                it.copy(
+                                                    isLoading = false,
+                                                    isError = false,
+                                                    isSuccess = true,
+                                                    errorMessage = null,
+                                                    story = pagingData
+                                                )
+                                            }
                                         }
                                     }
                                 }

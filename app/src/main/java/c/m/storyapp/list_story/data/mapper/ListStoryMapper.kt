@@ -1,20 +1,20 @@
 package c.m.storyapp.list_story.data.mapper
 
-import c.m.storyapp.list_story.data.remote.dto.ListStoryDTO
 import c.m.storyapp.list_story.data.remote.dto.ListStoryResponseDTO
-import c.m.storyapp.list_story.domain.model.ListStory
+import c.m.storyapp.list_story.data.remote.dto.StoryDTO
 import c.m.storyapp.list_story.domain.model.ListStoryResponse
+import c.m.storyapp.list_story.domain.model.Story
 
 fun ListStoryResponseDTO.toListStoryResponse(): ListStoryResponse {
     return ListStoryResponse(
         error = error,
         message = message,
-        listStory = listStory.map { it.toListStory() }
+        listStory = listStory?.map { it.toStory() }
     )
 }
 
-fun ListStoryDTO.toListStory(): ListStory {
-    return ListStory(
+fun StoryDTO.toStory(): Story {
+    return Story(
         id = id,
         name = name,
         description = description,

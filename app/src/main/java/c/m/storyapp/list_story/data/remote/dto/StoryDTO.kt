@@ -2,7 +2,7 @@ package c.m.storyapp.list_story.data.remote.dto
 
 import com.google.gson.annotations.SerializedName
 
-data class ListStoryDTO(
+data class StoryDTO(
     @SerializedName("id")
     val id: String,
     @SerializedName("name")
@@ -12,5 +12,5 @@ data class ListStoryDTO(
     @SerializedName("photoUrl")
     val photoUrl: String,
     @SerializedName("createdAt")
-    val createdAt: String
+    val createdAt: String,
 )

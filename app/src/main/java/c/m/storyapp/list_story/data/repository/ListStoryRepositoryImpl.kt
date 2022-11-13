@@ -1,12 +1,15 @@
 package c.m.storyapp.list_story.data.repository
 
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
+import androidx.paging.PagingData
 import c.m.storyapp.R
 import c.m.storyapp.common.util.Constants
 import c.m.storyapp.common.util.Resource
 import c.m.storyapp.common.util.UIText
-import c.m.storyapp.list_story.data.mapper.toListStoryResponse
+import c.m.storyapp.list_story.data.paging.ListStoryPagingSource
 import c.m.storyapp.list_story.data.remote.ListStoryAPI
-import c.m.storyapp.list_story.domain.model.ListStoryResponse
+import c.m.storyapp.list_story.domain.model.Story
 import c.m.storyapp.list_story.domain.repository.ListStoryRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
@@ -20,24 +23,26 @@ import javax.inject.Inject
 
 class ListStoryRepositoryImpl @Inject constructor(private val listStoryAPI: ListStoryAPI) :
     ListStoryRepository {
-    override suspend fun getListStory(token: String): Flow<Resource<ListStoryResponse>> {
+    override suspend fun getListStory(token: String): Flow<Resource<Flow<PagingData<Story>>>> {
         return flow {
-            // Loading state
-            emit(Resource.Loading(isLoading = true))
+            // Loading State
+            emit(Resource.Loading(true))
 
             try {
                 // Loading State
                 emit(Resource.Loading(isLoading = false))
 
-                val getListStory = listStoryAPI.getListStory("${Constants.BEARER}$token")
-
-                if (getListStory.error) {
-                    // Error State
-                    emit(Resource.Error(message = UIText.DynamicString(getListStory.message)))
-                }
+                // Get Data
+                val pagingData = Pager(
+                    config = PagingConfig(pageSize = Constants.INITIAL_SIZE),
+                    pagingSourceFactory = {
+                        ListStoryPagingSource(listStoryAPI = listStoryAPI, token = token)
+                    }
+                ).flow.flowOn(Dispatchers.IO)
 
                 // Success State
-                emit(Resource.Success(data = getListStory.toListStoryResponse()))
+                emit(Resource.Success(pagingData))
+
             } catch (e: HttpException) {
                 // Loading State
                 emit(Resource.Loading(isLoading = false))
