@@ -32,12 +32,12 @@ class ListStoryAdapter(diffCallback: DiffUtil.ItemCallback<Story>) :
         }
     }
 
-    class ListStoryViewHolder(itemView: ItemStoryBinding) :
-        RecyclerView.ViewHolder(itemView.root) {
-        private val titleStoryLayout = itemView.tvTitle
-        private val imageStoryLayout = itemView.imgStory
-        private val descriptionStoryLayout = itemView.tvDescription
-        private val itemStoryLayout = itemView.itemStoryLayout
+    class ListStoryViewHolder(itemStoryBinding: ItemStoryBinding) :
+        RecyclerView.ViewHolder(itemStoryBinding.root) {
+        private val titleStoryLayout = itemStoryBinding.tvTitle
+        private val imageStoryLayout = itemStoryBinding.imgStory
+        private val descriptionStoryLayout = itemStoryBinding.tvDescription
+        private val itemStoryLayout = itemStoryBinding.itemStoryLayout
         private var thisStory: Story? = null
 
         fun bind(story: Story) {

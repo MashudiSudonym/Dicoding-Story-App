@@ -13,7 +13,6 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
-import timber.log.Timber
 import javax.inject.Inject
 
 @HiltViewModel
@@ -94,9 +93,6 @@ class ListStoryViewModel @Inject constructor(
                         }
                     }
                     is Resource.Success -> {
-
-                        Timber.w("${tokenResult.data?.token}")
-
                         viewModelScope.launch {
                             getListStoryUseCase(tokenResult.data?.token
                                 ?: "").collectLatest { result ->

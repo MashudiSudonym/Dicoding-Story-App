@@ -65,7 +65,10 @@ class ListStoryActivity : AppCompatActivity() {
                     activityListStoryBinding.rvListStory.layoutManager =
                         LinearLayoutManager(this@ListStoryActivity)
                     activityListStoryBinding.rvListStory.adapter =
-                        listStoryAdapter.withLoadStateFooter(
+                        listStoryAdapter.withLoadStateHeaderAndFooter(
+                            header = ListStoryLoadingStateAdapter {
+                                listStoryAdapter.retry()
+                            },
                             footer = ListStoryLoadingStateAdapter {
                                 listStoryAdapter.retry()
                             }
