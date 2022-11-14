@@ -16,8 +16,8 @@ import c.m.storyapp.detail_story.presentation.screen.DetailStoryActivity
 import c.m.storyapp.list_story.domain.model.Story
 import coil.load
 
-class ListStoryAdapter :
-    PagingDataAdapter<Story, ListStoryAdapter.ListStoryViewHolder>(DiffCallback) {
+class ListStoryAdapter(diffCallback: DiffUtil.ItemCallback<Story>) :
+    PagingDataAdapter<Story, ListStoryAdapter.ListStoryViewHolder>(diffCallback) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListStoryViewHolder {
         val view = ItemStoryBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -60,16 +60,6 @@ class ListStoryAdapter :
                         Pair(descriptionStoryLayout, Constants.DESCRIPTION),
                     ).toBundle())
             }
-        }
-    }
-
-    companion object DiffCallback : DiffUtil.ItemCallback<Story>() {
-        override fun areItemsTheSame(oldItem: Story, newItem: Story): Boolean {
-            return oldItem == newItem
-        }
-
-        override fun areContentsTheSame(oldItem: Story, newItem: Story): Boolean {
-            return oldItem.id == newItem.id
         }
     }
 }

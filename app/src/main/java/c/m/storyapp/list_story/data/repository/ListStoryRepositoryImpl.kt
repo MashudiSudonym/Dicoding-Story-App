@@ -38,7 +38,7 @@ class ListStoryRepositoryImpl @Inject constructor(private val listStoryAPI: List
                     pagingSourceFactory = {
                         ListStoryPagingSource(listStoryAPI = listStoryAPI, token = token)
                     }
-                ).flow.flowOn(Dispatchers.IO)
+                ).flow
 
                 // Success State
                 emit(Resource.Success(pagingData))

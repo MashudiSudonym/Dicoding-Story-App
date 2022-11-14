@@ -7,15 +7,18 @@ import android.view.View
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.LinearLayoutManager
 import c.m.storyapp.add_story.presentation.screen.AddStoryActivity
 import c.m.storyapp.databinding.ActivityListStoryBinding
 import c.m.storyapp.list_story.presentation.adapter.ListStoryAdapter
 import c.m.storyapp.list_story.presentation.adapter.ListStoryLoadingStateAdapter
+import c.m.storyapp.list_story.presentation.utils.StoryComparator
 import c.m.storyapp.list_story.presentation.view_model.ListStoryViewModel
 import c.m.storyapp.location_story.presentation.screen.LocationStoryActivity
 import c.m.storyapp.login.presentation.screen.LoginActivity
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
@@ -30,7 +33,7 @@ class ListStoryActivity : AppCompatActivity() {
         val view = activityListStoryBinding.root
         setContentView(view)
 
-        listStoryAdapter = ListStoryAdapter()
+        listStoryAdapter = ListStoryAdapter(StoryComparator)
 
         activityListStoryBinding.fabMaps.setOnClickListener { openLocationStoryActivity() }
 
@@ -39,7 +42,7 @@ class ListStoryActivity : AppCompatActivity() {
         activityListStoryBinding.btnLogout.setOnClickListener { listStoryViewModel.logout() }
 
         lifecycleScope.launch {
-            listStoryViewModel.listStoryUIState.collect { listStoryUIState ->
+            listStoryViewModel.listStoryUIState.collectLatest { listStoryUIState ->
                 if (listStoryUIState.isLoading) {
                     activityListStoryBinding.loadingIndicator.visibility = View.VISIBLE
                 } else {
@@ -58,16 +61,17 @@ class ListStoryActivity : AppCompatActivity() {
 
                 if (listStoryUIState.isSuccess) {
                     // initialize recyclerview with adapters
-                    listStoryAdapter.submitData(listStoryUIState.story)
-                    activityListStoryBinding.tvNoData.visibility = View.GONE
+                    activityListStoryBinding.rvListStory.setHasFixedSize(true)
+                    activityListStoryBinding.rvListStory.layoutManager =
+                        LinearLayoutManager(this@ListStoryActivity)
                     activityListStoryBinding.rvListStory.adapter =
                         listStoryAdapter.withLoadStateFooter(
                             footer = ListStoryLoadingStateAdapter {
                                 listStoryAdapter.retry()
                             }
                         )
-                    activityListStoryBinding.rvListStory.setHasFixedSize(true)
 
+                    listStoryAdapter.submitData(listStoryUIState.story)
                     // If user logout status success
                     if (listStoryUIState.isLogout) {
                         openLoginActivity()

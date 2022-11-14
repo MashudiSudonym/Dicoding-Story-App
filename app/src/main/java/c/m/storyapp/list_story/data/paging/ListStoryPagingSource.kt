@@ -17,13 +17,14 @@ class ListStoryPagingSource @Inject constructor(
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Story> {
         return try {
             val position = params.key ?: Constants.INITIAL_PAGE_INDEX
-            val response = listStoryAPI.getListStory(token, position, params.loadSize)
-                .toListStoryResponse().listStory
+            val response =
+                listStoryAPI.getListStory("${Constants.BEARER}$token", position, params.loadSize)
+                    .toListStoryResponse()
 
             LoadResult.Page(
-                data = response.orEmpty(),
+                data = response.listStory.orEmpty(),
                 prevKey = if (position == 1) null else position - 1,
-                nextKey = if (response.isNullOrEmpty()) null else position + 1,
+                nextKey = if (response.listStory.isNullOrEmpty()) null else position + 1,
             )
         } catch (e: Exception) {
             LoadResult.Error(e)
