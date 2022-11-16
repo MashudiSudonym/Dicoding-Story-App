@@ -35,4 +35,5 @@
     <string name="detail">Detail Story</string>
     <string name="timeout">Timeout</string>
     <string name="retry">Retry</string>
+    <string name="title_activity_main">MainActivity</string>
 </resources>

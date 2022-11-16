@@ -35,52 +35,21 @@
         android:theme="@style/Theme.StoryApp"
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
-        <meta-data
-            android:name="com.google.android.geo.API_KEY"
-            android:value="@string/google_maps_key" />
-
         <activity
-            android:name=".location_story.presentation.screen.LocationStoryActivity"
-            android:exported="false"
-            android:label="@string/location_stories" />
-        <activity
-            android:name=".detail_story.presentation.screen.DetailStoryActivity"
-            android:exported="false"
-            android:label="@string/detail" />
-        <activity
-            android:name=".common.presentation.custom_view.camera_view.CameraActivity"
-            android:exported="false"
-            android:label="@string/camera_view" />
-        <activity
-            android:name=".add_story.presentation.screen.AddStoryActivity"
-            android:exported="false"
-            android:label="@string/add_story"
-            android:windowSoftInputMode="adjustResize" />
-        <activity
-            android:name=".register.presentation.screen.RegisterActivity"
-            android:exported="false"
-            android:label="@string/register"
-            android:noHistory="true"
-            android:windowSoftInputMode="adjustResize" />
-        <activity
-            android:name=".login.presentation.screen.LoginActivity"
+            android:name=".common.presentation.MainActivity"
             android:exported="true"
-            android:noHistory="true"
-            android:windowSoftInputMode="adjustResize">
+            android:label="@string/title_activity_main"
+            android:theme="@style/Theme.StoryApp">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
         </activity>
-        <activity
-            android:name=".list_story.presentation.screen.ListStoryActivity"
-            android:exported="false"
-            android:label="@string/list_story" />
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/google_maps_key" />
 
         <provider
             android:name="androidx.core.content.FileProvider"
