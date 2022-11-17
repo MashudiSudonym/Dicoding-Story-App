@@ -5,13 +5,15 @@ import androidx.lifecycle.viewModelScope
 import c.m.storyapp.authentication_check.domain.use_case.save_token_to_data_store_use_case.SaveTokenToDataStoreUseCase
 import c.m.storyapp.common.domain.use_case.field_validation_use_case.EmailFieldValidationUseCase
 import c.m.storyapp.common.domain.use_case.field_validation_use_case.PasswordFieldValidationUseCase
+import c.m.storyapp.common.presentation.event.FormValidationEvent
 import c.m.storyapp.common.util.Resource
 import c.m.storyapp.login.domain.use_case.user_login_use_case.UserLoginUseCase
+import c.m.storyapp.login.presentation.event.InputLoginDataEvent
+import c.m.storyapp.login.presentation.event.LoginUIStatusEvent
 import c.m.storyapp.login.presentation.state.LoginUIState
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -23,14 +25,37 @@ class LoginViewModel @Inject constructor(
     private val passwordFieldValidationUseCase: PasswordFieldValidationUseCase,
 ) : ViewModel() {
     private val _loginUIState = MutableStateFlow(LoginUIState())
-    val loginUIState: StateFlow<LoginUIState> = _loginUIState
+    val loginUIState: StateFlow<LoginUIState> = _loginUIState.asStateFlow()
 
-    fun submitLoginData(email: String, password: String) {
+    private val inputLoginEventChannel = Channel<FormValidationEvent>()
+    val inputLoginEvents = inputLoginEventChannel.receiveAsFlow()
+
+    private val loginUIStatusEventChannel = Channel<LoginUIStatusEvent>()
+    val loginUIStatusEvent = loginUIStatusEventChannel.receiveAsFlow()
+
+    fun onInputFieldEvent(event: InputLoginDataEvent) {
+        when (event) {
+            is InputLoginDataEvent.EmailFieldChange -> _loginUIState.update {
+                it.copy(email = event.email)
+            }
+            is InputLoginDataEvent.PasswordFieldChange -> _loginUIState.update {
+                it.copy(password = event.password)
+            }
+            InputLoginDataEvent.SendLoginFieldData -> userLoginProcess()
+            InputLoginDataEvent.Submit -> submitLoginData()
+        }
+    }
+
+    private fun submitLoginData() {
         _loginUIState.update { it.copy(isLoading = true) }
-        _loginUIState.update { it.copy(isLoading = false, email = email, emailFieldError = null) }
         _loginUIState.update {
             it.copy(isLoading = false,
-                password = password,
+                email = _loginUIState.value.email,
+                emailFieldError = null)
+        }
+        _loginUIState.update {
+            it.copy(isLoading = false,
+                password = _loginUIState.value.password,
                 passwordFieldError = null)
         }
 
@@ -46,8 +71,20 @@ class LoginViewModel @Inject constructor(
                     passwordFieldError = passwordResult.errorMessage,
                 )
             }
-        } else {
-            userLoginProcess()
+
+            return
+        }
+
+        // isLoading for UI State
+        _loginUIState.update {
+            it.copy(
+                isLoading = true
+            )
+        }
+
+        // event submit login data success
+        viewModelScope.launch {
+            inputLoginEventChannel.send(FormValidationEvent.Success)
         }
     }
 
@@ -62,6 +99,7 @@ class LoginViewModel @Inject constructor(
                                 errorMessage = result.message,
                                 isError = true)
                         }
+                        loginUIStatusEventChannel.send(LoginUIStatusEvent.Error)
                     }
                     is Resource.Loading -> {
                         _loginUIState.update { it.copy(isLoading = true, isError = false) }
@@ -85,6 +123,7 @@ class LoginViewModel @Inject constructor(
                                 errorMessage = result.message,
                                 isError = true)
                         }
+                        loginUIStatusEventChannel.send(LoginUIStatusEvent.Error)
                     }
                     is Resource.Loading -> {
                         _loginUIState.update { it.copy(isLoading = true, isError = false) }
