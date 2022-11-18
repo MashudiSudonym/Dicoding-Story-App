@@ -7,7 +7,16 @@ object ListStoryUIStateDataDummy {
         return ListStoryUIState(
             isLoading = false,
             isError = false,
-            isSuccess = true
+            isSuccess = true,
+        )
+    }
+
+    fun generateLostStoryUIStateLogoutSuccessStateDataDummy(): ListStoryUIState {
+        return ListStoryUIState(
+            isLoading = false,
+            isError = false,
+            isSuccess = true,
+            isLogout = true
         )
     }
 }

@@ -50,6 +50,8 @@ class ListStoryViewModelTest {
             ListStoryUIStateDataDummy.generateListStoryUIStateSuccessStateDataDummy().isSuccess
         val currentResult = listStoryViewModel.listStoryUIState.value.isSuccess
 
+        println(currentResult)
+
         assertEquals(expectedResult, currentResult)
     }
 
@@ -58,8 +60,8 @@ class ListStoryViewModelTest {
         listStoryViewModel.logout()
 
         val expectedResult =
-            ListStoryUIStateDataDummy.generateListStoryUIStateSuccessStateDataDummy().isSuccess
-        val currentResult = listStoryViewModel.listStoryUIState.value.isSuccess
+            ListStoryUIStateDataDummy.generateLostStoryUIStateLogoutSuccessStateDataDummy().isLogout
+        val currentResult = listStoryViewModel.listStoryUIState.value.isLogout
 
         assertEquals(expectedResult, currentResult)
     }

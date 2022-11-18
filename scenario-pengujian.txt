@@ -24,4 +24,4 @@ hasil yang diharapkan : jika user memiliki data maka nilai 'isSuccess' di data c
 
 Pengujian ListStoryViewModel -> function 'logout'
 skenario : menjalankan function logout
-hasil yang diharapkan : jika user memiliki data maka nilai 'isSuccess' di data class 'ListStoryUIState' akan bernilai 'true'
+hasil yang diharapkan : jika user sukses logout maka nilai 'isLogout' di data class 'ListStoryUIState' akan bernilai 'true'
