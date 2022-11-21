@@ -47,53 +47,52 @@ class LoginViewModel @Inject constructor(
                 )
             }
         } else {
-            userLoginProcess()
-        }
-    }
-
-    private fun userLoginProcess() {
-        viewModelScope.launch {
-            userLoginUseCase(_loginUIState.value.email,
-                _loginUIState.value.password).collect { result ->
-                when (result) {
-                    is Resource.Error -> {
-                        _loginUIState.update {
-                            it.copy(isLoading = false,
-                                errorMessage = result.message,
-                                isError = true)
+            // user login process
+            viewModelScope.launch {
+                userLoginUseCase(_loginUIState.value.email,
+                    _loginUIState.value.password).collect { result ->
+                    when (result) {
+                        is Resource.Error -> {
+                            _loginUIState.update {
+                                it.copy(isLoading = false,
+                                    errorMessage = result.message,
+                                    isError = true)
+                            }
                         }
-                    }
-                    is Resource.Loading -> {
-                        _loginUIState.update { it.copy(isLoading = true, isError = false) }
-                    }
-                    is Resource.Success -> {
-                        _loginUIState.update { it.copy(isLoading = false, isError = false) }
-                        savingTokenAuthentication(result.data?.loginResult?.token ?: "")
-                    }
-                }
-            }
-        }
-    }
-
-    private fun savingTokenAuthentication(token: String) {
-        viewModelScope.launch {
-            saveTokenToDataStoreUseCase(token).collect { result ->
-                when (result) {
-                    is Resource.Error -> {
-                        _loginUIState.update {
-                            it.copy(isLoading = false,
-                                errorMessage = result.message,
-                                isError = true)
+                        is Resource.Loading -> {
+                            _loginUIState.update { it.copy(isLoading = true, isError = false) }
                         }
-                    }
-                    is Resource.Loading -> {
-                        _loginUIState.update { it.copy(isLoading = true, isError = false) }
-                    }
-                    is Resource.Success -> {
-                        _loginUIState.update {
-                            it.copy(isLoading = false,
-                                isSuccess = true,
-                                isError = false)
+                        is Resource.Success -> {
+                            _loginUIState.update { it.copy(isLoading = false, isError = false) }
+
+                            // Saving token authentication
+                            viewModelScope.launch {
+                                saveTokenToDataStoreUseCase(result.data?.loginResult?.token
+                                    ?: "").collect { result ->
+                                    when (result) {
+                                        is Resource.Error -> {
+                                            _loginUIState.update {
+                                                it.copy(isLoading = false,
+                                                    errorMessage = result.message,
+                                                    isError = true)
+                                            }
+                                        }
+                                        is Resource.Loading -> {
+                                            _loginUIState.update {
+                                                it.copy(isLoading = true,
+                                                    isError = false)
+                                            }
+                                        }
+                                        is Resource.Success -> {
+                                            _loginUIState.update {
+                                                it.copy(isLoading = false,
+                                                    isSuccess = true,
+                                                    isError = false)
+                                            }
+                                        }
+                                    }
+                                }
+                            }
                         }
                     }
                 }

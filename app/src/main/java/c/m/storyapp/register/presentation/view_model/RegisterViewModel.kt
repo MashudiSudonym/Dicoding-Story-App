@@ -56,33 +56,30 @@ class RegisterViewModel @Inject constructor(
                 )
             }
         } else {
-            userRegistrationProcess()
-        }
-    }
-
-    private fun userRegistrationProcess() {
-        viewModelScope.launch {
-            userRegisterUseCase(
-                _registerUIState.value.name,
-                _registerUIState.value.email,
-                _registerUIState.value.password,
-            ).collect { result ->
-                when (result) {
-                    is Resource.Error -> {
-                        _registerUIState.update {
-                            it.copy(isLoading = false,
-                                errorMessage = result.message,
-                                isError = true)
+            // User registration process
+            viewModelScope.launch {
+                userRegisterUseCase(
+                    _registerUIState.value.name,
+                    _registerUIState.value.email,
+                    _registerUIState.value.password,
+                ).collect { result ->
+                    when (result) {
+                        is Resource.Error -> {
+                            _registerUIState.update {
+                                it.copy(isLoading = false,
+                                    errorMessage = result.message,
+                                    isError = true)
+                            }
                         }
-                    }
-                    is Resource.Loading -> {
-                        _registerUIState.update { it.copy(isLoading = true, isError = false) }
-                    }
-                    is Resource.Success -> {
-                        _registerUIState.update {
-                            it.copy(isLoading = false,
-                                isError = false,
-                                isSuccess = true)
+                        is Resource.Loading -> {
+                            _registerUIState.update { it.copy(isLoading = true, isError = false) }
+                        }
+                        is Resource.Success -> {
+                            _registerUIState.update {
+                                it.copy(isLoading = false,
+                                    isError = false,
+                                    isSuccess = true)
+                            }
                         }
                     }
                 }
