@@ -106,8 +106,8 @@ class AddStoryActivity : AppCompatActivity() {
                 Constants.REQUEST_CODE_PERMISSIONS)
         }
 
-        activityAddStoryBinding.btnOpenCamera.setOnClickListener { startCamera() }
-        activityAddStoryBinding.btnOpenGallery.setOnClickListener { startGallery() }
+        activityAddStoryBinding.btnOpenCamera.setOnClickListener { startCamera(view) }
+        activityAddStoryBinding.btnOpenGallery.setOnClickListener { startGallery(view) }
         activityAddStoryBinding.btnAddStory.setOnClickListener {
             if (getFile != null) {
                 val file = reduceFileImage(getFile as File)
@@ -173,17 +173,25 @@ class AddStoryActivity : AppCompatActivity() {
         Snackbar.make(view, R.string.please_take_a_photo, Snackbar.LENGTH_LONG).show()
     }
 
-    private fun startCamera() {
-        launcherIntentCamera.launch(Intent(this, CameraActivity::class.java))
+    private fun startCamera(view: CoordinatorLayout) {
+        try {
+            launcherIntentCamera.launch(Intent(this, CameraActivity::class.java))
+        } catch (e: Exception) {
+            Snackbar.make(view, e.localizedMessage ?: "Error unknown", Snackbar.LENGTH_SHORT).show()
+        }
     }
 
-    private fun startGallery() {
+    private fun startGallery(view: CoordinatorLayout) {
         val intent = Intent().apply {
             action = ACTION_GET_CONTENT
             type = Constants.INTENT_TYPE
         }
         val chooser = Intent.createChooser(intent, Constants.CHOOSE_A_PICTURE)
 
-        launcherIntentGallery.launch(chooser)
+        try {
+            launcherIntentGallery.launch(chooser)
+        } catch (e: Exception) {
+            Snackbar.make(view, e.localizedMessage ?: "Error unknown", Snackbar.LENGTH_SHORT).show()
+        }
     }
 }
