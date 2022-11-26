@@ -55,9 +55,9 @@ class AddStoryViewModelTest {
 
     @Test
     fun `post story success`() = runTest {
-        val mockFile: File = mock { on { absolutePath } doReturn "/random" }
+        val fakePhotoFile: File = mock { on { absolutePath } doReturn "/random" }
 
-        addStoryViewModel.postStory(mockFile, "description")
+        addStoryViewModel.postStory(fakePhotoFile, "description")
 
         val expectedResult =
             AddStoryUIStateDataDummy.generateAddStoryUIStateSuccessStateDataDummy().isSuccess
