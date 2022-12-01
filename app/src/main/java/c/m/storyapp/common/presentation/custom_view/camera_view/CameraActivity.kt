@@ -44,7 +44,13 @@ class CameraActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        hideSystemUI()
+        try {
+            hideSystemUI()
+        } catch (e: Exception) {
+            Snackbar.make(activityCameraBinding.root,
+                R.string.error_failed_open_camera,
+                Snackbar.LENGTH_SHORT).show()
+        }
         startCamera()
     }
 
