@@ -1,27 +1,19 @@
-Pengujian pada LoginViewModel -> function 'submitLoginData'
-skenario : menjalankan fungsi submitLoginData() dengan parameter input email dan password
-hasil yang diharapkan: ketika user memberikan email dan password yang sesuai pada function 'submitLoginData' nilai dari variable data "isSuccess" pada data class "LoginUIState" adalah 'true'
+LoginViewModelTest
+    - Ketika login submit data berhasil : loginViewModel.loginUIState.value.isSuccess bernilai true
 
-Pengujian pada RegisterViewModel -> function 'submitRegisterData'
-skenario : menjalankan fungsi submitRegisterData() dengan parameter input name, email dan password
-hasil yang diharapkan: ketika user memberikan name, email dan password yang sesuai pada function 'submitRegisterData' nilai dari variable data "isSuccess" pada data class "RegisterUIState" adalah 'true'
+RegisterViewModelTets
+    - Ketika registrasi submit data berhasil : registerViewModel.registerUIState.value.isSuccess bernilai true
 
-Pengujian pada AddStoryViewModel -> function 'postStory'
-skenario : menjalankan fungsi postStory() dengan parameter photo dan description
-hasil yang diharapkan: ketika user memberikan data photo dan deskripsi yang sesuai pada function 'postStory' nilai dari variable data "isSuccess" pada data class "AddStoryUIState" adalah 'true'
+AuthenticationCheckViewModelTest
+    - Ketika user sudah memiliki authentikasi : authenticationCheckViewModel.authenticationCheckUIState.value.isAuthenticated bernilai true
 
-Pengujian AuthenticationCheckViewModel -> function 'isAuthenticated'
-skenario : menjalankan function isAuthenticated
-hasil yang diharapkan: jika user memiliki akses maka nilai variable 'isAuthenticated' pada data class 'AuthenticationCheckUIState' adalah 'true'
+AddStoryViewModelTest
+    - Ketika proses unggah story berhasil : addStoryViewModel.addStoryUIState.value.isSuccess bernilai true
 
-Pengujian LocationStoryViewModel -> function'getLocationStory'
-skenario : menjalankan function getLocationStory
-hasil yang diharapkan : jika user memiliki data maka nilai 'isSuccess' di data class 'LocationStoryUIState' akan bernilai 'true'
+ListStoryViewModelTest
+    - Ketika sukses mengambil data : listStoryViewModel.listStoryUIState.value.isSuccess bernilai true
+    - Ketika prosess logout berhasil : listStoryViewModel.listStoryUIState.value.isLogout bernilai true
 
-Pengujian ListStoryViewModel -> function 'getListStory'
-skenario : menjalankan function getListStory
-hasil yang diharapkan : jika user memiliki data maka nilai 'isSuccess' di data class 'ListStoryUIState' akan bernilai 'true'
-
-Pengujian ListStoryViewModel -> function 'logout'
-skenario : menjalankan function logout
-hasil yang diharapkan : jika user sukses logout maka nilai 'isLogout' di data class 'ListStoryUIState' akan bernilai 'true'
+LocationStoryViewModelTest
+    - Ketika sukses mengambil data : locationStoryViewModel.locationStoryUIState.value.isSuccess bernilai true
+    - Ketika mendapatkan data : locationStoryViewModel.locationStoryUIState.value.locationStory bernilai sama dengan variabel expectedResult

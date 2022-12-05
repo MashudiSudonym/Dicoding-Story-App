@@ -50,8 +50,6 @@ class ListStoryViewModelTest {
             ListStoryUIStateDataDummy.generateListStoryUIStateSuccessStateDataDummy().isSuccess
         val currentResult = listStoryViewModel.listStoryUIState.value.isSuccess
 
-        println(currentResult)
-
         assertEquals(expectedResult, currentResult)
     }
 

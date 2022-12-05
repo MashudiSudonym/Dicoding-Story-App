@@ -50,4 +50,15 @@ class LocationStoryViewModelTest {
 
         assertEquals(expectedResult, currentResult)
     }
+
+    @Test
+    fun `get location story have a contents data`() = runTest {
+        locationStoryViewModel
+
+        val expectedResult =
+            LocationStoryUIStateDataDummy.generateLocationStoryUIStateSuccessStateFakeData().locationStory
+        val currentResult = locationStoryViewModel.locationStoryUIState.value.locationStory
+
+        assertEquals(expectedResult, currentResult)
+    }
 }
