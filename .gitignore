@@ -44,5 +44,5 @@ app.*.map.json
 /android/app/release
 
 # Generator file build runner
-*.g.dart
-*.freezed.dart
+/lib/**/*.g.dart
+/lib/**/*.freezed.dart
