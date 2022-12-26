@@ -5,4 +5,6 @@ part 'resource.freezed.dart';
 @freezed
 abstract class Resource<T> with _$Resource<T> {
   const factory Resource.loading(bool isLoading) = Loading<T>;
+  const factory Resource.error(String message, T? data) = Error<T>;
+  const factory Resource.success(T? data) = Success<T>;
 }
