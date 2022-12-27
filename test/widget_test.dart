@@ -5,21 +5,18 @@
 // gestures. You can also use WidgetTester to find child widgets in the widget
 // tree, read text, and verify that the values of widget properties are correct.
 
-import 'package:chopper/chopper.dart';
 import 'package:story_app/common/di/injection.dart';
-import 'package:story_app/common/di/todo_list_service.dart';
-import 'package:story_app/common/util/constants.dart';
 
 void main() async {
   await configureDependencies();
 
-  final chopper = getIt<ChopperClient>();
-
-  final response = await TodoListService.create(chopper).getTodoList();
-
-  Constants.logger.d(response.error);
-
-  final response2 = getIt<Response>();
-
-  Constants.logger.d(response2.error);
+  // final chopper = getIt<ChopperClient>();
+  //
+  // final response = await TodoListService.create(chopper).getTodoList();
+  //
+  // Constants.logger.d(response.error);
+  //
+  // final response2 = getIt<Response>();
+  //
+  // Constants.logger.d(response2.error);
 }
