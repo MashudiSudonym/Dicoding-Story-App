@@ -16,9 +16,9 @@ dependencies:
   equatable: ^2.0.5
   freezed_annotation: ^2.2.0
   get_it: ^7.2.0
-  json_annotation: ^4.7.0
   chopper: ^6.0.0
   injectable: ^2.1.0
+  json_annotation: ^4.7.0
 
 dev_dependencies:
   flutter_test:
