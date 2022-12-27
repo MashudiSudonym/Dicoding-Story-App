@@ -5,26 +5,21 @@
 // gestures. You can also use WidgetTester to find child widgets in the widget
 // tree, read text, and verify that the values of widget properties are correct.
 
-import 'package:flutter/material.dart';
-import 'package:flutter_test/flutter_test.dart';
+import 'package:chopper/chopper.dart';
+import 'package:story_app/common/di/injection.dart';
+import 'package:story_app/common/di/todo_list_service.dart';
+import 'package:story_app/common/util/constants.dart';
 
-import 'package:story_app/main.dart';
+void main() async {
+  await configureDependencies();
 
-void main() {
-  testWidgets('Counter increments smoke test', (WidgetTester tester) async {
-    // Build our app and trigger a frame.
-    await tester.pumpWidget(const MyApp());
+  final chopper = getIt<ChopperClient>();
 
-    // Verify that our counter starts at 0.
-    expect(find.text('0'), findsOneWidget);
-    expect(find.text('1'), findsNothing);
+  final response = await TodoListService.create(chopper).getTodoList();
 
-    // Tap the '+' icon and trigger a frame.
-    await tester.tap(find.byIcon(Icons.add));
-    await tester.pump();
+  Constants.logger.d(response.error);
 
-    // Verify that our counter has incremented.
-    expect(find.text('0'), findsNothing);
-    expect(find.text('1'), findsOneWidget);
-  });
+  final response2 = getIt<Response>();
+
+  Constants.logger.d(response2.error);
 }

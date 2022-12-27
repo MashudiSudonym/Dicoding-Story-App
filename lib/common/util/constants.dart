@@ -1,7 +1,8 @@
+import 'package:get_it/get_it.dart';
 import 'package:logger/logger.dart';
 
 class Constants {
-  final logger = Logger();
+  static final logger = Logger();
   static const baseUrlApi = 'https://story-api.dicoding.dev/v1';
   static const registerApi = 'register';
   static const loginApi = 'login';
