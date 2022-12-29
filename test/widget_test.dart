@@ -8,7 +8,7 @@
 import 'package:story_app/common/di/injection.dart';
 import 'package:story_app/common/util/constants.dart';
 import 'package:story_app/common/util/extention.dart';
-import 'package:story_app/login/data/remote/dto/login_error_response_dto.dart';
+import 'package:story_app/login/data/mapper/login_mapper.dart';
 import 'package:story_app/login/data/remote/dto/login_response_dto.dart';
 import 'package:story_app/login/data/remote/login_service_api.dart';
 
@@ -19,18 +19,18 @@ void main() async {
   final loginServiceApi = getIt<LoginServiceApi>();
 
   final response =
-      await loginServiceApi.postLogin('masrobot69@gmail.com', '123tes');
+      await loginServiceApi.postLogin('masrobot6969@gmail.com', '123tes');
 
   Constants.logger.d(response.base.statusCode);
 
   if (response.body != null) {
     final loginResponseSuccess = LoginResponseDTO.fromJson(response.body);
 
-    Constants.logger.d(loginResponseSuccess);
+    Constants.logger.d(loginResponseSuccess.toLoginResponse);
   } else {
     final loginResponseError =
-        LoginErrorResponseDTO.fromJson(response.error as Map<String, Object?>);
+        LoginResponseDTO.fromJson(response.error as Map<String, Object?>);
 
-    Constants.logger.e(loginResponseError);
+    Constants.logger.e(loginResponseError.toLoginResponse());
   }
 }
