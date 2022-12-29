@@ -8,6 +8,12 @@ abstract class NetworkModule {
   String get baseUrl => Constants.baseUrlApi;
 
   @lazySingleton
-  ChopperClient chopperClient(@Named('BaseUrl') String url) =>
-      ChopperClient(baseUrl: Uri.parse(url));
+  ChopperClient chopperClient(@Named('BaseUrl') String url) => ChopperClient(
+        baseUrl: Uri.parse(url),
+        interceptors: [
+          HttpLoggingInterceptor(),
+        ],
+        converter: const JsonConverter(),
+        errorConverter: const JsonConverter(),
+      );
 }

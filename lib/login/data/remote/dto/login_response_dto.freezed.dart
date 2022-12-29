@@ -22,15 +22,12 @@ LoginResponseDTO _$LoginResponseDTOFromJson(Map<String, dynamic> json) {
 mixin _$LoginResponseDTO {
   @JsonKey(name: 'error')
   bool get error => throw _privateConstructorUsedError;
-
   @JsonKey(name: 'message')
   String get message => throw _privateConstructorUsedError;
-
   @JsonKey(name: 'loginResult')
-  LoginResultDTO get loginResultDTO => throw _privateConstructorUsedError;
+  LoginResultDTO? get loginResultDTO => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
   @JsonKey(ignore: true)
   $LoginResponseDTOCopyWith<LoginResponseDTO> get copyWith =>
       throw _privateConstructorUsedError;
@@ -41,14 +38,13 @@ abstract class $LoginResponseDTOCopyWith<$Res> {
   factory $LoginResponseDTOCopyWith(
           LoginResponseDTO value, $Res Function(LoginResponseDTO) then) =
       _$LoginResponseDTOCopyWithImpl<$Res, LoginResponseDTO>;
-
   @useResult
   $Res call(
       {@JsonKey(name: 'error') bool error,
       @JsonKey(name: 'message') String message,
-      @JsonKey(name: 'loginResult') LoginResultDTO loginResultDTO});
+      @JsonKey(name: 'loginResult') LoginResultDTO? loginResultDTO});
 
-  $LoginResultDTOCopyWith<$Res> get loginResultDTO;
+  $LoginResultDTOCopyWith<$Res>? get loginResultDTO;
 }
 
 /// @nodoc
@@ -58,7 +54,6 @@ class _$LoginResponseDTOCopyWithImpl<$Res, $Val extends LoginResponseDTO>
 
   // ignore: unused_field
   final $Val _value;
-
   // ignore: unused_field
   final $Res Function($Val) _then;
 
@@ -67,7 +62,7 @@ class _$LoginResponseDTOCopyWithImpl<$Res, $Val extends LoginResponseDTO>
   $Res call({
     Object? error = null,
     Object? message = null,
-    Object? loginResultDTO = null,
+    Object? loginResultDTO = freezed,
   }) {
     return _then(_value.copyWith(
       error: null == error
@@ -78,17 +73,21 @@ class _$LoginResponseDTOCopyWithImpl<$Res, $Val extends LoginResponseDTO>
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
               as String,
-      loginResultDTO: null == loginResultDTO
+      loginResultDTO: freezed == loginResultDTO
           ? _value.loginResultDTO
           : loginResultDTO // ignore: cast_nullable_to_non_nullable
-              as LoginResultDTO,
+              as LoginResultDTO?,
     ) as $Val);
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $LoginResultDTOCopyWith<$Res> get loginResultDTO {
-    return $LoginResultDTOCopyWith<$Res>(_value.loginResultDTO, (value) {
+  $LoginResultDTOCopyWith<$Res>? get loginResultDTO {
+    if (_value.loginResultDTO == null) {
+      return null;
+    }
+
+    return $LoginResultDTOCopyWith<$Res>(_value.loginResultDTO!, (value) {
       return _then(_value.copyWith(loginResultDTO: value) as $Val);
     });
   }
@@ -100,16 +99,15 @@ abstract class _$$_LoginResponseDTOCopyWith<$Res>
   factory _$$_LoginResponseDTOCopyWith(
           _$_LoginResponseDTO value, $Res Function(_$_LoginResponseDTO) then) =
       __$$_LoginResponseDTOCopyWithImpl<$Res>;
-
   @override
   @useResult
   $Res call(
       {@JsonKey(name: 'error') bool error,
       @JsonKey(name: 'message') String message,
-      @JsonKey(name: 'loginResult') LoginResultDTO loginResultDTO});
+      @JsonKey(name: 'loginResult') LoginResultDTO? loginResultDTO});
 
   @override
-  $LoginResultDTOCopyWith<$Res> get loginResultDTO;
+  $LoginResultDTOCopyWith<$Res>? get loginResultDTO;
 }
 
 /// @nodoc
@@ -125,7 +123,7 @@ class __$$_LoginResponseDTOCopyWithImpl<$Res>
   $Res call({
     Object? error = null,
     Object? message = null,
-    Object? loginResultDTO = null,
+    Object? loginResultDTO = freezed,
   }) {
     return _then(_$_LoginResponseDTO(
       error: null == error
@@ -136,10 +134,10 @@ class __$$_LoginResponseDTOCopyWithImpl<$Res>
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
               as String,
-      loginResultDTO: null == loginResultDTO
+      loginResultDTO: freezed == loginResultDTO
           ? _value.loginResultDTO
           : loginResultDTO // ignore: cast_nullable_to_non_nullable
-              as LoginResultDTO,
+              as LoginResultDTO?,
     ));
   }
 }
@@ -150,7 +148,7 @@ class _$_LoginResponseDTO implements _LoginResponseDTO {
   const _$_LoginResponseDTO(
       {@JsonKey(name: 'error') required this.error,
       @JsonKey(name: 'message') required this.message,
-      @JsonKey(name: 'loginResult') required this.loginResultDTO});
+      @JsonKey(name: 'loginResult') this.loginResultDTO});
 
   factory _$_LoginResponseDTO.fromJson(Map<String, dynamic> json) =>
       _$$_LoginResponseDTOFromJson(json);
@@ -163,7 +161,7 @@ class _$_LoginResponseDTO implements _LoginResponseDTO {
   final String message;
   @override
   @JsonKey(name: 'loginResult')
-  final LoginResultDTO loginResultDTO;
+  final LoginResultDTO? loginResultDTO;
 
   @override
   String toString() {
@@ -201,12 +199,10 @@ class _$_LoginResponseDTO implements _LoginResponseDTO {
 
 abstract class _LoginResponseDTO implements LoginResponseDTO {
   const factory _LoginResponseDTO(
-      {@JsonKey(name: 'error')
-          required final bool error,
-      @JsonKey(name: 'message')
-          required final String message,
-      @JsonKey(name: 'loginResult')
-          required final LoginResultDTO loginResultDTO}) = _$_LoginResponseDTO;
+          {@JsonKey(name: 'error') required final bool error,
+          @JsonKey(name: 'message') required final String message,
+          @JsonKey(name: 'loginResult') final LoginResultDTO? loginResultDTO}) =
+      _$_LoginResponseDTO;
 
   factory _LoginResponseDTO.fromJson(Map<String, dynamic> json) =
       _$_LoginResponseDTO.fromJson;
@@ -214,15 +210,12 @@ abstract class _LoginResponseDTO implements LoginResponseDTO {
   @override
   @JsonKey(name: 'error')
   bool get error;
-
   @override
   @JsonKey(name: 'message')
   String get message;
-
   @override
   @JsonKey(name: 'loginResult')
-  LoginResultDTO get loginResultDTO;
-
+  LoginResultDTO? get loginResultDTO;
   @override
   @JsonKey(ignore: true)
   _$$_LoginResponseDTOCopyWith<_$_LoginResponseDTO> get copyWith =>

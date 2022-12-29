@@ -22,15 +22,12 @@ LoginResultDTO _$LoginResultDTOFromJson(Map<String, dynamic> json) {
 mixin _$LoginResultDTO {
   @JsonKey(name: 'userId')
   String get userId => throw _privateConstructorUsedError;
-
   @JsonKey(name: 'name')
   String get name => throw _privateConstructorUsedError;
-
   @JsonKey(name: 'token')
   String get token => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
   @JsonKey(ignore: true)
   $LoginResultDTOCopyWith<LoginResultDTO> get copyWith =>
       throw _privateConstructorUsedError;
@@ -41,7 +38,6 @@ abstract class $LoginResultDTOCopyWith<$Res> {
   factory $LoginResultDTOCopyWith(
           LoginResultDTO value, $Res Function(LoginResultDTO) then) =
       _$LoginResultDTOCopyWithImpl<$Res, LoginResultDTO>;
-
   @useResult
   $Res call(
       {@JsonKey(name: 'userId') String userId,
@@ -56,7 +52,6 @@ class _$LoginResultDTOCopyWithImpl<$Res, $Val extends LoginResultDTO>
 
   // ignore: unused_field
   final $Val _value;
-
   // ignore: unused_field
   final $Res Function($Val) _then;
 
@@ -90,7 +85,6 @@ abstract class _$$_LoginResultDTOCopyWith<$Res>
   factory _$$_LoginResultDTOCopyWith(
           _$_LoginResultDTO value, $Res Function(_$_LoginResultDTO) then) =
       __$$_LoginResultDTOCopyWithImpl<$Res>;
-
   @override
   @useResult
   $Res call(
@@ -197,15 +191,12 @@ abstract class _LoginResultDTO implements LoginResultDTO {
   @override
   @JsonKey(name: 'userId')
   String get userId;
-
   @override
   @JsonKey(name: 'name')
   String get name;
-
   @override
   @JsonKey(name: 'token')
   String get token;
-
   @override
   @JsonKey(ignore: true)
   _$$_LoginResultDTOCopyWith<_$_LoginResultDTO> get copyWith =>

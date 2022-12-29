@@ -10,8 +10,10 @@ _$_LoginResponseDTO _$$_LoginResponseDTOFromJson(Map<String, dynamic> json) =>
     _$_LoginResponseDTO(
       error: json['error'] as bool,
       message: json['message'] as String,
-      loginResultDTO:
-          LoginResultDTO.fromJson(json['loginResult'] as Map<String, dynamic>),
+      loginResultDTO: json['loginResult'] == null
+          ? null
+          : LoginResultDTO.fromJson(
+              json['loginResult'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$_LoginResponseDTOToJson(_$_LoginResponseDTO instance) =>

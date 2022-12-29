@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:story_app/common/di/injection.dart';
+import 'package:story_app/common/util/extention.dart';
 
 void main() async {
   await configureDependencies();
+  setupLogging();
   runApp(const MyApp());
 }
 
