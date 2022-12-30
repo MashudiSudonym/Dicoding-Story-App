@@ -22,15 +22,12 @@ LoginResponse _$LoginResponseFromJson(Map<String, dynamic> json) {
 mixin _$LoginResponse {
   @JsonKey(name: 'error')
   bool get error => throw _privateConstructorUsedError;
-
   @JsonKey(name: 'message')
   String get message => throw _privateConstructorUsedError;
-
   @JsonKey(name: 'loginResult')
   LoginResult? get loginResult => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
   @JsonKey(ignore: true)
   $LoginResponseCopyWith<LoginResponse> get copyWith =>
       throw _privateConstructorUsedError;
@@ -41,7 +38,6 @@ abstract class $LoginResponseCopyWith<$Res> {
   factory $LoginResponseCopyWith(
           LoginResponse value, $Res Function(LoginResponse) then) =
       _$LoginResponseCopyWithImpl<$Res, LoginResponse>;
-
   @useResult
   $Res call(
       {@JsonKey(name: 'error') bool error,
@@ -58,7 +54,6 @@ class _$LoginResponseCopyWithImpl<$Res, $Val extends LoginResponse>
 
   // ignore: unused_field
   final $Val _value;
-
   // ignore: unused_field
   final $Res Function($Val) _then;
 
@@ -104,7 +99,6 @@ abstract class _$$_LoginResponseCopyWith<$Res>
   factory _$$_LoginResponseCopyWith(
           _$_LoginResponse value, $Res Function(_$_LoginResponse) then) =
       __$$_LoginResponseCopyWithImpl<$Res>;
-
   @override
   @useResult
   $Res call(
@@ -216,15 +210,12 @@ abstract class _LoginResponse implements LoginResponse {
   @override
   @JsonKey(name: 'error')
   bool get error;
-
   @override
   @JsonKey(name: 'message')
   String get message;
-
   @override
   @JsonKey(name: 'loginResult')
   LoginResult? get loginResult;
-
   @override
   @JsonKey(ignore: true)
   _$$_LoginResponseCopyWith<_$_LoginResponse> get copyWith =>

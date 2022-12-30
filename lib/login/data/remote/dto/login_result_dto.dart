@@ -1,7 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'login_result_dto.freezed.dart';
-
 part 'login_result_dto.g.dart';
 
 @freezed
@@ -12,6 +11,6 @@ class LoginResultDTO with _$LoginResultDTO {
     @JsonKey(name: 'token') required String token,
   }) = _LoginResultDTO;
 
-  factory LoginResultDTO.fromJson(Map<String, Object?> json) =>
+  factory LoginResultDTO.fromJson(Map<String, dynamic> json) =>
       _$LoginResultDTOFromJson(json);
 }

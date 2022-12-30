@@ -16,54 +16,16 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$Resource<T> {
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(bool isLoading) loading,
-    required TResult Function(String message, T? data) error,
-    required TResult Function(T? data) success,
-  }) =>
-      throw _privateConstructorUsedError;
+  bool get success => throw _privateConstructorUsedError;
 
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(bool isLoading)? loading,
-    TResult? Function(String message, T? data)? error,
-    TResult? Function(T? data)? success,
-  }) =>
-      throw _privateConstructorUsedError;
+  AppError? get error => throw _privateConstructorUsedError;
 
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(bool isLoading)? loading,
-    TResult Function(String message, T? data)? error,
-    TResult Function(T? data)? success,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
+  String? get msg => throw _privateConstructorUsedError;
 
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(Loading<T> value) loading,
-    required TResult Function(Error<T> value) error,
-    required TResult Function(Success<T> value) success,
-  }) =>
-      throw _privateConstructorUsedError;
+  T? get value => throw _privateConstructorUsedError;
 
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(Loading<T> value)? loading,
-    TResult? Function(Error<T> value)? error,
-    TResult? Function(Success<T> value)? success,
-  }) =>
-      throw _privateConstructorUsedError;
-
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(Loading<T> value)? loading,
-    TResult Function(Error<T> value)? error,
-    TResult Function(Success<T> value)? success,
-    required TResult orElse(),
-  }) =>
+  @JsonKey(ignore: true)
+  $ResourceCopyWith<T, Resource<T>> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -72,6 +34,9 @@ abstract class $ResourceCopyWith<T, $Res> {
   factory $ResourceCopyWith(
           Resource<T> value, $Res Function(Resource<T>) then) =
       _$ResourceCopyWithImpl<T, $Res, Resource<T>>;
+
+  @useResult
+  $Res call({bool success, AppError? error, String? msg, T? value});
 }
 
 /// @nodoc
@@ -81,183 +46,82 @@ class _$ResourceCopyWithImpl<T, $Res, $Val extends Resource<T>>
 
   // ignore: unused_field
   final $Val _value;
-
   // ignore: unused_field
   final $Res Function($Val) _then;
-}
-
-/// @nodoc
-abstract class _$$LoadingCopyWith<T, $Res> {
-  factory _$$LoadingCopyWith(
-          _$Loading<T> value, $Res Function(_$Loading<T>) then) =
-      __$$LoadingCopyWithImpl<T, $Res>;
-
-  @useResult
-  $Res call({bool isLoading});
-}
-
-/// @nodoc
-class __$$LoadingCopyWithImpl<T, $Res>
-    extends _$ResourceCopyWithImpl<T, $Res, _$Loading<T>>
-    implements _$$LoadingCopyWith<T, $Res> {
-  __$$LoadingCopyWithImpl(
-      _$Loading<T> _value, $Res Function(_$Loading<T>) _then)
-      : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? isLoading = null,
+    Object? success = null,
+    Object? error = freezed,
+    Object? msg = freezed,
+    Object? value = freezed,
   }) {
-    return _then(_$Loading<T>(
-      null == isLoading
-          ? _value.isLoading
-          : isLoading // ignore: cast_nullable_to_non_nullable
+    return _then(_value.copyWith(
+      success: null == success
+          ? _value.success
+          : success // ignore: cast_nullable_to_non_nullable
               as bool,
-    ));
+      error: freezed == error
+          ? _value.error
+          : error // ignore: cast_nullable_to_non_nullable
+              as AppError?,
+      msg: freezed == msg
+          ? _value.msg
+          : msg // ignore: cast_nullable_to_non_nullable
+              as String?,
+      value: freezed == value
+          ? _value.value
+          : value // ignore: cast_nullable_to_non_nullable
+              as T?,
+    ) as $Val);
   }
 }
 
 /// @nodoc
-
-class _$Loading<T> implements Loading<T> {
-  const _$Loading(this.isLoading);
-
-  @override
-  final bool isLoading;
-
-  @override
-  String toString() {
-    return 'Resource<$T>.loading(isLoading: $isLoading)';
-  }
+abstract class _$$_ResourceCopyWith<T, $Res>
+    implements $ResourceCopyWith<T, $Res> {
+  factory _$$_ResourceCopyWith(
+          _$_Resource<T> value, $Res Function(_$_Resource<T>) then) =
+      __$$_ResourceCopyWithImpl<T, $Res>;
 
   @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$Loading<T> &&
-            (identical(other.isLoading, isLoading) ||
-                other.isLoading == isLoading));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, isLoading);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$LoadingCopyWith<T, _$Loading<T>> get copyWith =>
-      __$$LoadingCopyWithImpl<T, _$Loading<T>>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(bool isLoading) loading,
-    required TResult Function(String message, T? data) error,
-    required TResult Function(T? data) success,
-  }) {
-    return loading(isLoading);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(bool isLoading)? loading,
-    TResult? Function(String message, T? data)? error,
-    TResult? Function(T? data)? success,
-  }) {
-    return loading?.call(isLoading);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(bool isLoading)? loading,
-    TResult Function(String message, T? data)? error,
-    TResult Function(T? data)? success,
-    required TResult orElse(),
-  }) {
-    if (loading != null) {
-      return loading(isLoading);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(Loading<T> value) loading,
-    required TResult Function(Error<T> value) error,
-    required TResult Function(Success<T> value) success,
-  }) {
-    return loading(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(Loading<T> value)? loading,
-    TResult? Function(Error<T> value)? error,
-    TResult? Function(Success<T> value)? success,
-  }) {
-    return loading?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(Loading<T> value)? loading,
-    TResult Function(Error<T> value)? error,
-    TResult Function(Success<T> value)? success,
-    required TResult orElse(),
-  }) {
-    if (loading != null) {
-      return loading(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class Loading<T> implements Resource<T> {
-  const factory Loading(final bool isLoading) = _$Loading<T>;
-
-  bool get isLoading;
-
-  @JsonKey(ignore: true)
-  _$$LoadingCopyWith<T, _$Loading<T>> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$ErrorCopyWith<T, $Res> {
-  factory _$$ErrorCopyWith(_$Error<T> value, $Res Function(_$Error<T>) then) =
-      __$$ErrorCopyWithImpl<T, $Res>;
-
   @useResult
-  $Res call({String message, T? data});
+  $Res call({bool success, AppError? error, String? msg, T? value});
 }
 
 /// @nodoc
-class __$$ErrorCopyWithImpl<T, $Res>
-    extends _$ResourceCopyWithImpl<T, $Res, _$Error<T>>
-    implements _$$ErrorCopyWith<T, $Res> {
-  __$$ErrorCopyWithImpl(_$Error<T> _value, $Res Function(_$Error<T>) _then)
+class __$$_ResourceCopyWithImpl<T, $Res>
+    extends _$ResourceCopyWithImpl<T, $Res, _$_Resource<T>>
+    implements _$$_ResourceCopyWith<T, $Res> {
+  __$$_ResourceCopyWithImpl(
+      _$_Resource<T> _value, $Res Function(_$_Resource<T>) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? message = null,
-    Object? data = freezed,
+    Object? success = null,
+    Object? error = freezed,
+    Object? msg = freezed,
+    Object? value = freezed,
   }) {
-    return _then(_$Error<T>(
-      null == message
-          ? _value.message
-          : message // ignore: cast_nullable_to_non_nullable
-              as String,
-      freezed == data
-          ? _value.data
-          : data // ignore: cast_nullable_to_non_nullable
+    return _then(_$_Resource<T>(
+      success: null == success
+          ? _value.success
+          : success // ignore: cast_nullable_to_non_nullable
+              as bool,
+      error: freezed == error
+          ? _value.error
+          : error // ignore: cast_nullable_to_non_nullable
+              as AppError?,
+      msg: freezed == msg
+          ? _value.msg
+          : msg // ignore: cast_nullable_to_non_nullable
+              as String?,
+      value: freezed == value
+          ? _value.value
+          : value // ignore: cast_nullable_to_non_nullable
               as T?,
     ));
   }
@@ -265,257 +129,66 @@ class __$$ErrorCopyWithImpl<T, $Res>
 
 /// @nodoc
 
-class _$Error<T> implements Error<T> {
-  const _$Error(this.message, this.data);
+class _$_Resource<T> implements _Resource<T> {
+  const _$_Resource({required this.success, this.error, this.msg, this.value});
 
   @override
-  final String message;
+  final bool success;
   @override
-  final T? data;
+  final AppError? error;
+  @override
+  final String? msg;
+  @override
+  final T? value;
 
   @override
   String toString() {
-    return 'Resource<$T>.error(message: $message, data: $data)';
+    return 'Resource<$T>(success: $success, error: $error, msg: $msg, value: $value)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$Error<T> &&
-            (identical(other.message, message) || other.message == message) &&
-            const DeepCollectionEquality().equals(other.data, data));
+            other is _$_Resource<T> &&
+            (identical(other.success, success) || other.success == success) &&
+            (identical(other.error, error) || other.error == error) &&
+            (identical(other.msg, msg) || other.msg == msg) &&
+            const DeepCollectionEquality().equals(other.value, value));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, message, const DeepCollectionEquality().hash(data));
+  int get hashCode => Object.hash(runtimeType, success, error, msg,
+      const DeepCollectionEquality().hash(value));
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$ErrorCopyWith<T, _$Error<T>> get copyWith =>
-      __$$ErrorCopyWithImpl<T, _$Error<T>>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(bool isLoading) loading,
-    required TResult Function(String message, T? data) error,
-    required TResult Function(T? data) success,
-  }) {
-    return error(message, data);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(bool isLoading)? loading,
-    TResult? Function(String message, T? data)? error,
-    TResult? Function(T? data)? success,
-  }) {
-    return error?.call(message, data);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(bool isLoading)? loading,
-    TResult Function(String message, T? data)? error,
-    TResult Function(T? data)? success,
-    required TResult orElse(),
-  }) {
-    if (error != null) {
-      return error(message, data);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(Loading<T> value) loading,
-    required TResult Function(Error<T> value) error,
-    required TResult Function(Success<T> value) success,
-  }) {
-    return error(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(Loading<T> value)? loading,
-    TResult? Function(Error<T> value)? error,
-    TResult? Function(Success<T> value)? success,
-  }) {
-    return error?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(Loading<T> value)? loading,
-    TResult Function(Error<T> value)? error,
-    TResult Function(Success<T> value)? success,
-    required TResult orElse(),
-  }) {
-    if (error != null) {
-      return error(this);
-    }
-    return orElse();
-  }
+  _$$_ResourceCopyWith<T, _$_Resource<T>> get copyWith =>
+      __$$_ResourceCopyWithImpl<T, _$_Resource<T>>(this, _$identity);
 }
 
-abstract class Error<T> implements Resource<T> {
-  const factory Error(final String message, final T? data) = _$Error<T>;
+abstract class _Resource<T> implements Resource<T> {
+  const factory _Resource(
+      {required final bool success,
+      final AppError? error,
+      final String? msg,
+      final T? value}) = _$_Resource<T>;
 
-  String get message;
+  @override
+  bool get success;
 
-  T? get data;
+  @override
+  AppError? get error;
 
+  @override
+  String? get msg;
+
+  @override
+  T? get value;
+
+  @override
   @JsonKey(ignore: true)
-  _$$ErrorCopyWith<T, _$Error<T>> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$SuccessCopyWith<T, $Res> {
-  factory _$$SuccessCopyWith(
-          _$Success<T> value, $Res Function(_$Success<T>) then) =
-      __$$SuccessCopyWithImpl<T, $Res>;
-
-  @useResult
-  $Res call({T? data});
-}
-
-/// @nodoc
-class __$$SuccessCopyWithImpl<T, $Res>
-    extends _$ResourceCopyWithImpl<T, $Res, _$Success<T>>
-    implements _$$SuccessCopyWith<T, $Res> {
-  __$$SuccessCopyWithImpl(
-      _$Success<T> _value, $Res Function(_$Success<T>) _then)
-      : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? data = freezed,
-  }) {
-    return _then(_$Success<T>(
-      freezed == data
-          ? _value.data
-          : data // ignore: cast_nullable_to_non_nullable
-              as T?,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$Success<T> implements Success<T> {
-  const _$Success(this.data);
-
-  @override
-  final T? data;
-
-  @override
-  String toString() {
-    return 'Resource<$T>.success(data: $data)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$Success<T> &&
-            const DeepCollectionEquality().equals(other.data, data));
-  }
-
-  @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(data));
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$SuccessCopyWith<T, _$Success<T>> get copyWith =>
-      __$$SuccessCopyWithImpl<T, _$Success<T>>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(bool isLoading) loading,
-    required TResult Function(String message, T? data) error,
-    required TResult Function(T? data) success,
-  }) {
-    return success(data);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(bool isLoading)? loading,
-    TResult? Function(String message, T? data)? error,
-    TResult? Function(T? data)? success,
-  }) {
-    return success?.call(data);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(bool isLoading)? loading,
-    TResult Function(String message, T? data)? error,
-    TResult Function(T? data)? success,
-    required TResult orElse(),
-  }) {
-    if (success != null) {
-      return success(data);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(Loading<T> value) loading,
-    required TResult Function(Error<T> value) error,
-    required TResult Function(Success<T> value) success,
-  }) {
-    return success(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(Loading<T> value)? loading,
-    TResult? Function(Error<T> value)? error,
-    TResult? Function(Success<T> value)? success,
-  }) {
-    return success?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(Loading<T> value)? loading,
-    TResult Function(Error<T> value)? error,
-    TResult Function(Success<T> value)? success,
-    required TResult orElse(),
-  }) {
-    if (success != null) {
-      return success(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class Success<T> implements Resource<T> {
-  const factory Success(final T? data) = _$Success<T>;
-
-  T? get data;
-
-  @JsonKey(ignore: true)
-  _$$SuccessCopyWith<T, _$Success<T>> get copyWith =>
+  _$$_ResourceCopyWith<T, _$_Resource<T>> get copyWith =>
       throw _privateConstructorUsedError;
 }

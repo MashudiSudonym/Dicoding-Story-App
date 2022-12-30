@@ -22,15 +22,12 @@ LoginResult _$LoginResultFromJson(Map<String, dynamic> json) {
 mixin _$LoginResult {
   @JsonKey(name: 'userId')
   String get userId => throw _privateConstructorUsedError;
-
   @JsonKey(name: 'name')
   String get name => throw _privateConstructorUsedError;
-
   @JsonKey(name: 'token')
   String get token => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
   @JsonKey(ignore: true)
   $LoginResultCopyWith<LoginResult> get copyWith =>
       throw _privateConstructorUsedError;
@@ -41,7 +38,6 @@ abstract class $LoginResultCopyWith<$Res> {
   factory $LoginResultCopyWith(
           LoginResult value, $Res Function(LoginResult) then) =
       _$LoginResultCopyWithImpl<$Res, LoginResult>;
-
   @useResult
   $Res call(
       {@JsonKey(name: 'userId') String userId,
@@ -56,7 +52,6 @@ class _$LoginResultCopyWithImpl<$Res, $Val extends LoginResult>
 
   // ignore: unused_field
   final $Val _value;
-
   // ignore: unused_field
   final $Res Function($Val) _then;
 
@@ -90,7 +85,6 @@ abstract class _$$_LoginResultCopyWith<$Res>
   factory _$$_LoginResultCopyWith(
           _$_LoginResult value, $Res Function(_$_LoginResult) then) =
       __$$_LoginResultCopyWithImpl<$Res>;
-
   @override
   @useResult
   $Res call(
@@ -197,15 +191,12 @@ abstract class _LoginResult implements LoginResult {
   @override
   @JsonKey(name: 'userId')
   String get userId;
-
   @override
   @JsonKey(name: 'name')
   String get name;
-
   @override
   @JsonKey(name: 'token')
   String get token;
-
   @override
   @JsonKey(ignore: true)
   _$$_LoginResultCopyWith<_$_LoginResult> get copyWith =>

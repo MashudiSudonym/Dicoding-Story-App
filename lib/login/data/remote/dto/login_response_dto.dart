@@ -12,6 +12,6 @@ class LoginResponseDTO with _$LoginResponseDTO {
     @JsonKey(name: 'loginResult') LoginResultDTO? loginResultDTO,
   }) = _LoginResponseDTO;
 
-  factory LoginResponseDTO.fromJson(Map<String, Object?> json) =>
+  factory LoginResponseDTO.fromJson(Map<String, dynamic> json) =>
       _$LoginResponseDTOFromJson(json);
 }

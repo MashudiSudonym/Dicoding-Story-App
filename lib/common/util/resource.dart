@@ -1,10 +1,14 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:story_app/common/util/app_error.dart';
 
 part 'resource.freezed.dart';
 
 @freezed
-class Resource<T> with _$Resource<T> {
-  const factory Resource.loading(bool isLoading) = Loading<T>;
-  const factory Resource.error(String message, T? data) = Error<T>;
-  const factory Resource.success(T? data) = Success<T>;
+abstract class Resource<T> with _$Resource<T> {
+  const factory Resource({
+    required bool success,
+    AppError? error,
+    String? msg,
+    T? value,
+  }) = _Resource<T>;
 }
