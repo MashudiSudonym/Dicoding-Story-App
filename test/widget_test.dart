@@ -8,14 +8,13 @@
 import 'package:story_app/common/di/injection.dart';
 import 'package:story_app/common/util/constants.dart';
 import 'package:story_app/common/util/extention.dart';
-import 'package:story_app/login/data/remote/login_service_api.dart';
-import 'package:story_app/login/data/repository/login_repository_impl.dart';
+import 'package:story_app/login/domain/repository/login_repository.dart';
 
 void main() async {
   await configureDependencies();
   setupLogging();
 
-  final loginServiceApi = getIt<LoginServiceApi>();
+  //final loginServiceApi = getIt<LoginServiceApi>();
   //
   // final response =
   //     await loginServiceApi.postLogin('masrobot6969@gmail.com', '123tes');
@@ -34,13 +33,16 @@ void main() async {
   //   Constants.logger.e(loginResponseError.toLoginResponse());
   // }
 
-  LoginRepositoryImpl(loginServiceApi)
-      .postLogin('masrobot6969@gmail.com', '123tes')
-      .then((value) {
-    if (value.success) {
-      Constants.logger.d(value.value);
-    }
-  });
+  final loginRepository = getIt<LoginRepository>();
+  final postLogin =
+      await loginRepository.postLogin('masrobot6969@gmail.com', '123tes');
+
+  if (postLogin.success) {
+    Constants.logger.d(postLogin.value?.loginResult?.token);
+  } else {
+    Constants.logger.d(postLogin.msg);
+    Constants.logger.d(postLogin.error);
+  }
 
   Constants.logger.d('tes');
 }

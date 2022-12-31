@@ -17,11 +17,8 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$Resource<T> {
   bool get success => throw _privateConstructorUsedError;
-
   AppError? get error => throw _privateConstructorUsedError;
-
   String? get msg => throw _privateConstructorUsedError;
-
   T? get value => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -34,7 +31,6 @@ abstract class $ResourceCopyWith<T, $Res> {
   factory $ResourceCopyWith(
           Resource<T> value, $Res Function(Resource<T>) then) =
       _$ResourceCopyWithImpl<T, $Res, Resource<T>>;
-
   @useResult
   $Res call({bool success, AppError? error, String? msg, T? value});
 }
@@ -84,7 +80,6 @@ abstract class _$$_ResourceCopyWith<T, $Res>
   factory _$$_ResourceCopyWith(
           _$_Resource<T> value, $Res Function(_$_Resource<T>) then) =
       __$$_ResourceCopyWithImpl<T, $Res>;
-
   @override
   @useResult
   $Res call({bool success, AppError? error, String? msg, T? value});
@@ -130,9 +125,10 @@ class __$$_ResourceCopyWithImpl<T, $Res>
 /// @nodoc
 
 class _$_Resource<T> implements _Resource<T> {
-  const _$_Resource({required this.success, this.error, this.msg, this.value});
+  const _$_Resource({this.success = false, this.error, this.msg, this.value});
 
   @override
+  @JsonKey()
   final bool success;
   @override
   final AppError? error;
@@ -170,23 +166,19 @@ class _$_Resource<T> implements _Resource<T> {
 
 abstract class _Resource<T> implements Resource<T> {
   const factory _Resource(
-      {required final bool success,
+      {final bool success,
       final AppError? error,
       final String? msg,
       final T? value}) = _$_Resource<T>;
 
   @override
   bool get success;
-
   @override
   AppError? get error;
-
   @override
   String? get msg;
-
   @override
   T? get value;
-
   @override
   @JsonKey(ignore: true)
   _$$_ResourceCopyWith<T, _$_Resource<T>> get copyWith =>
