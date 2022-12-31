@@ -13,7 +13,7 @@ import 'package:story_app/login/domain/repository/login_repository.dart';
 class LoginRepositoryImpl implements LoginRepository {
   final LoginServiceApi _loginServiceApi;
 
-  const LoginRepositoryImpl(this._loginServiceApi);
+  LoginRepositoryImpl(this._loginServiceApi);
 
   @override
   Future<Resource<LoginResponse>> postLogin(

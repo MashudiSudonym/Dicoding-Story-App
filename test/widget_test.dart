@@ -8,7 +8,7 @@
 import 'package:story_app/common/di/injection.dart';
 import 'package:story_app/common/util/constants.dart';
 import 'package:story_app/common/util/extention.dart';
-import 'package:story_app/login/domain/repository/login_repository.dart';
+import 'package:story_app/login/domain/use_case/user_login_use_case.dart';
 
 void main() async {
   await configureDependencies();
@@ -33,15 +33,26 @@ void main() async {
   //   Constants.logger.e(loginResponseError.toLoginResponse());
   // }
 
-  final loginRepository = getIt<LoginRepository>();
-  final postLogin =
-      await loginRepository.postLogin('masrobot6969@gmail.com', '123tes');
+  // final loginRepository = getIt<LoginRepository>();
+  // final postLogin =
+  //     await loginRepository.postLogin('masrobot6969@gmail.com', '123tes');
+  //
+  // if (postLogin.success) {
+  //   Constants.logger.d(postLogin.value?.loginResult?.token);
+  // } else {
+  //   Constants.logger.d(postLogin.msg);
+  //   Constants.logger.d(postLogin.error);
+  // }
 
-  if (postLogin.success) {
-    Constants.logger.d(postLogin.value?.loginResult?.token);
+  final userLoginUseCase = getIt<UserLoginUseCase>();
+
+  final result = await userLoginUseCase('masrobot6969@gmail.com', '123tes');
+
+  if (result.success) {
+    Constants.logger.d(result.value?.loginResult?.token);
   } else {
-    Constants.logger.d(postLogin.msg);
-    Constants.logger.d(postLogin.error);
+    Constants.logger.d(result.msg);
+    Constants.logger.d(result.error);
   }
 
   Constants.logger.d('tes');
