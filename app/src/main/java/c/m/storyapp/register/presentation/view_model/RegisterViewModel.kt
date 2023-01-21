@@ -2,10 +2,10 @@ package c.m.storyapp.register.presentation.view_model
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import c.m.storyapp.common.domain.use_case.field_validation_use_case.EmailFieldValidationUseCase
-import c.m.storyapp.common.domain.use_case.field_validation_use_case.NameFieldValidationUseCase
-import c.m.storyapp.common.domain.use_case.field_validation_use_case.PasswordFieldValidationUseCase
 import c.m.storyapp.common.util.Resource
+import c.m.storyapp.form_validation.domain.use_case.field_validation_use_case.EmailFieldValidationUseCase
+import c.m.storyapp.form_validation.domain.use_case.field_validation_use_case.NameFieldValidationUseCase
+import c.m.storyapp.form_validation.domain.use_case.field_validation_use_case.PasswordFieldValidationUseCase
 import c.m.storyapp.register.domain.use_case.user_register_use_case.UserRegisterUseCase
 import c.m.storyapp.register.presentation.state.RegisterUIState
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -29,19 +29,23 @@ class RegisterViewModel @Inject constructor(
         _registerUIState.update { it.copy(isLoading = true) }
         _registerUIState.update { it.copy(isLoading = false, name = name, nameFieldError = null) }
         _registerUIState.update {
-            it.copy(isLoading = false,
+            it.copy(
+                isLoading = false,
                 email = email,
-                emailFieldError = null)
+                emailFieldError = null
+            )
         }
         _registerUIState.update {
-            it.copy(isLoading = false,
+            it.copy(
+                isLoading = false,
                 password = password,
-                passwordFieldError = null)
+                passwordFieldError = null
+            )
         }
 
-        val nameResult = nameFieldValidationUseCase.execute(_registerUIState.value.name)
-        val emailResult = emailFieldValidationUseCase.execute(_registerUIState.value.email)
-        val passwordResult = passwordFieldValidationUseCase.execute(_registerUIState.value.password)
+        val nameResult = nameFieldValidationUseCase(_registerUIState.value.name)
+        val emailResult = emailFieldValidationUseCase(_registerUIState.value.email)
+        val passwordResult = passwordFieldValidationUseCase(_registerUIState.value.password)
         val hasError = listOf(nameResult, emailResult, passwordResult).any {
             !it.successful
         }

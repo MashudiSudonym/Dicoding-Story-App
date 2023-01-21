@@ -1,4 +1,4 @@
-package c.m.storyapp.common.domain.model
+package c.m.storyapp.form_validation.domain.model
 
 import c.m.storyapp.common.util.UIText
 

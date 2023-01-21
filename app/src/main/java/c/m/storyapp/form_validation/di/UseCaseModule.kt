@@ -1,7 +1,7 @@
-package c.m.storyapp.common.di
+package c.m.storyapp.form_validation.di
 
-import c.m.storyapp.common.domain.use_case.field_validation_use_case.*
-import c.m.storyapp.common.domain.use_case.field_validation_use_case_impl.*
+import c.m.storyapp.form_validation.domain.use_case.field_validation_use_case.*
+import c.m.storyapp.form_validation.domain.use_case.field_validation_use_case_impl.*
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn

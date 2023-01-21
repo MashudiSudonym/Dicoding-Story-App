@@ -3,10 +3,10 @@ package c.m.storyapp.login.presentation.view_model
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import c.m.storyapp.authentication_check.domain.use_case.save_token_to_data_store_use_case.SaveTokenToDataStoreUseCase
-import c.m.storyapp.common.domain.use_case.field_validation_use_case.EmailFieldValidationUseCase
-import c.m.storyapp.common.domain.use_case.field_validation_use_case.PasswordFieldValidationUseCase
-import c.m.storyapp.common.presentation.event.FormValidationEvent
 import c.m.storyapp.common.util.Resource
+import c.m.storyapp.form_validation.domain.use_case.field_validation_use_case.EmailFieldValidationUseCase
+import c.m.storyapp.form_validation.domain.use_case.field_validation_use_case.PasswordFieldValidationUseCase
+import c.m.storyapp.form_validation.presentation.event.FormValidationEvent
 import c.m.storyapp.login.domain.use_case.user_login_use_case.UserLoginUseCase
 import c.m.storyapp.login.presentation.event.InputLoginDataEvent
 import c.m.storyapp.login.presentation.event.LoginUIStatusEvent
@@ -49,18 +49,22 @@ class LoginViewModel @Inject constructor(
     private fun submitLoginData() {
         _loginUIState.update { it.copy(isLoading = true) }
         _loginUIState.update {
-            it.copy(isLoading = false,
+            it.copy(
+                isLoading = false,
                 email = _loginUIState.value.email,
-                emailFieldError = null)
+                emailFieldError = null
+            )
         }
         _loginUIState.update {
-            it.copy(isLoading = false,
+            it.copy(
+                isLoading = false,
                 password = _loginUIState.value.password,
-                passwordFieldError = null)
+                passwordFieldError = null
+            )
         }
 
-        val emailResult = emailFieldValidationUseCase.execute(_loginUIState.value.email)
-        val passwordResult = passwordFieldValidationUseCase.execute(_loginUIState.value.password)
+        val emailResult = emailFieldValidationUseCase(_loginUIState.value.email)
+        val passwordResult = passwordFieldValidationUseCase(_loginUIState.value.password)
         val hasError = listOf(emailResult, passwordResult).any { !it.successful }
 
         if (hasError) {

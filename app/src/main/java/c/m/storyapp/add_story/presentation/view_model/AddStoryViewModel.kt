@@ -5,9 +5,9 @@ import androidx.lifecycle.viewModelScope
 import c.m.storyapp.add_story.domain.use_case.add_story_use_case.AddStoryUseCase
 import c.m.storyapp.add_story.presentation.state.AddStoryUIState
 import c.m.storyapp.authentication_check.domain.use_case.get_token_from_data_store_use_case.GetTokenFromDataStoreUseCase
-import c.m.storyapp.common.domain.use_case.field_validation_use_case.DescriptionFieldValidationUseCase
-import c.m.storyapp.common.domain.use_case.field_validation_use_case.PhotoFieldValidationUseCase
 import c.m.storyapp.common.util.Resource
+import c.m.storyapp.form_validation.domain.use_case.field_validation_use_case.DescriptionFieldValidationUseCase
+import c.m.storyapp.form_validation.domain.use_case.field_validation_use_case.PhotoFieldValidationUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -30,17 +30,19 @@ class AddStoryViewModel @Inject constructor(
     fun postStory(photo: File, description: String) {
         _addStoryUIState.update { it.copy(isLoading = true) }
         _addStoryUIState.update {
-            it.copy(isLoading = false,
+            it.copy(
+                isLoading = false,
                 description = description,
-                descriptionFieldError = null)
+                descriptionFieldError = null
+            )
         }
         _addStoryUIState.update {
             it.copy(isLoading = false, photo = photo, photoFieldError = null)
         }
 
-        val photoResult = photoFieldValidationUseCase.execute(_addStoryUIState.value.photo as File)
+        val photoResult = photoFieldValidationUseCase(_addStoryUIState.value.photo as File)
         val descriptionResult =
-            descriptionFieldValidationUseCase.execute(_addStoryUIState.value.description)
+            descriptionFieldValidationUseCase(_addStoryUIState.value.description)
         val hasError = listOf(photoResult, descriptionResult).any { !it.successful }
 
         if (hasError) {

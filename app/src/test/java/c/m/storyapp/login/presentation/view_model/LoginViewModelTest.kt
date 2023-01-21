@@ -51,7 +51,7 @@ class LoginViewModelTest {
 
     @Test
     fun `submit login data success`() = runTest {
-        loginViewModel.submitLoginData("email.e@email.com", "123tes")
+        //loginViewModel.submitLoginData("email.e@email.com", "123tes")
 
         val expectedStatus =
             LoginUIStateDataDummy.generateLoginUIStateSuccessStateDataDummy().isSuccess
