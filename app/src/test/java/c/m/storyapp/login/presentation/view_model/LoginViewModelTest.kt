@@ -72,6 +72,21 @@ class LoginViewModelTest {
     }
 
     @Test
+    fun `user login failed wrong email pattern scenario`() = runTest {
+        loginViewModel.onInputFieldEvent(event = InputLoginDataEvent.EmailFieldChange("e.@"))
+        loginViewModel.onInputFieldEvent(event = InputLoginDataEvent.PasswordFieldChange("123tes"))
+        loginViewModel.onInputFieldEvent(event = InputLoginDataEvent.CheckUserLoginData)
+        loginViewModel.onInputFieldEvent(event = InputLoginDataEvent.SubmitUserLoginData)
+
+        val expectedStatus =
+            LoginUIStateDataDummy.generateLoginUIStateFailedFieldValidationLoginStateDataDummy()
+        val currentStatus = loginViewModel.loginUIState.value
+
+        assertEquals(expectedStatus.isError, currentStatus.isError)
+        assertNotNull(currentStatus.emailFieldError)
+    }
+
+    @Test
     fun `user login failed password is blank scenario`() = runTest {
         loginViewModel.onInputFieldEvent(event = InputLoginDataEvent.EmailFieldChange("email.e@email.com"))
         loginViewModel.onInputFieldEvent(event = InputLoginDataEvent.PasswordFieldChange(""))
