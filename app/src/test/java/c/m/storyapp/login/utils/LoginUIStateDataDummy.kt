@@ -25,4 +25,20 @@ object LoginUIStateDataDummy {
             isError = true,
         )
     }
+
+    fun generateLoginUIStateFailedFieldValidationLoginStateDataDummy(): LoginUIState {
+        return LoginUIState(
+            isLoading = false,
+            isSuccess = false,
+            isError = true,
+        )
+    }
+
+    fun generateLoginUIStateSuccessFieldValidationLoginStateDataDummy(): LoginUIState {
+        return LoginUIState(
+            isLoading = false,
+            isSuccess = true,
+            isError = false,
+        )
+    }
 }

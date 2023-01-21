@@ -13,10 +13,10 @@ import c.m.storyapp.login.utils.LoginUIStateDataDummy
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runTest
 import org.junit.Assert.assertEquals
+import org.junit.Assert.assertNotNull
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
-import timber.log.Timber
 
 @ExperimentalCoroutinesApi
 class LoginViewModelTest {
@@ -53,6 +53,39 @@ class LoginViewModelTest {
         )
     }
 
+    /**
+     * The function name should describe the test scenario used.
+     */
+    @Test
+    fun `user login failed email is blank scenario`() = runTest {
+        loginViewModel.onInputFieldEvent(event = InputLoginDataEvent.EmailFieldChange(""))
+        loginViewModel.onInputFieldEvent(event = InputLoginDataEvent.PasswordFieldChange("123tes"))
+        loginViewModel.onInputFieldEvent(event = InputLoginDataEvent.CheckUserLoginData)
+        loginViewModel.onInputFieldEvent(event = InputLoginDataEvent.SubmitUserLoginData)
+
+        val expectedStatus =
+            LoginUIStateDataDummy.generateLoginUIStateFailedFieldValidationLoginStateDataDummy()
+        val currentStatus = loginViewModel.loginUIState.value
+
+        assertEquals(expectedStatus.isError, currentStatus.isError)
+        assertNotNull(currentStatus.emailFieldError)
+    }
+
+    @Test
+    fun `user login failed password is blank scenario`() = runTest {
+        loginViewModel.onInputFieldEvent(event = InputLoginDataEvent.EmailFieldChange("email.e@email.com"))
+        loginViewModel.onInputFieldEvent(event = InputLoginDataEvent.PasswordFieldChange(""))
+        loginViewModel.onInputFieldEvent(event = InputLoginDataEvent.CheckUserLoginData)
+        loginViewModel.onInputFieldEvent(event = InputLoginDataEvent.SubmitUserLoginData)
+
+        val expectedStatus =
+            LoginUIStateDataDummy.generateLoginUIStateFailedFieldValidationLoginStateDataDummy()
+        val currentStatus = loginViewModel.loginUIState.value
+
+        assertEquals(expectedStatus.isError, currentStatus.isError)
+        assertNotNull(currentStatus.passwordFieldError)
+    }
+
     @Test
     fun `user login success scenario`() = runTest {
         loginViewModel.onInputFieldEvent(event = InputLoginDataEvent.EmailFieldChange("email.e@email.com"))
@@ -63,8 +96,6 @@ class LoginViewModelTest {
         val expectedStatus =
             LoginUIStateDataDummy.generateLoginUIStateSuccessLoginStateDataDummy().isSuccess
         val currentStatus = loginViewModel.loginUIState.value.isSuccess
-
-        Timber.w("log tes login ${loginViewModel.loginUIState}")
 
         assertEquals(expectedStatus, currentStatus)
     }
@@ -77,9 +108,10 @@ class LoginViewModelTest {
         loginViewModel.onInputFieldEvent(event = InputLoginDataEvent.SubmitUserLoginData)
 
         val expectedStatus =
-            LoginUIStateDataDummy.generateLoginUIStateFailedLoginStateDataDummy().isError
-        val currentStatus = loginViewModel.loginUIState.value.isError
+            LoginUIStateDataDummy.generateLoginUIStateFailedLoginStateDataDummy()
+        val currentStatus = loginViewModel.loginUIState.value
 
-        assertEquals(expectedStatus, currentStatus)
+        assertEquals(expectedStatus.isError, currentStatus.isError)
+        assertNotNull(currentStatus.errorMessage)
     }
 }
