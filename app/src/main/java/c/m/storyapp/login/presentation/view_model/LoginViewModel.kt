@@ -2,8 +2,10 @@ package c.m.storyapp.login.presentation.view_model
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import c.m.storyapp.R
 import c.m.storyapp.authentication_check.domain.use_case.save_token_to_data_store_use_case.SaveTokenToDataStoreUseCase
 import c.m.storyapp.common.util.Resource
+import c.m.storyapp.common.util.UIText
 import c.m.storyapp.form_validation.domain.use_case.field_validation_use_case.EmailFieldValidationUseCase
 import c.m.storyapp.form_validation.domain.use_case.field_validation_use_case.PasswordFieldValidationUseCase
 import c.m.storyapp.form_validation.presentation.event.FormValidationEvent
@@ -71,8 +73,11 @@ class LoginViewModel @Inject constructor(
             _loginUIState.update {
                 it.copy(
                     isLoading = false,
+                    errorMessage = UIText.StringResource(R.string.error_validation_login),
+                    isError = true,
+                    isSuccess = false,
                     emailFieldError = emailResult.errorMessage,
-                    passwordFieldError = passwordResult.errorMessage,
+                    passwordFieldError = passwordResult.errorMessage
                 )
             }
 
@@ -104,16 +109,29 @@ class LoginViewModel @Inject constructor(
                             it.copy(
                                 isLoading = false,
                                 errorMessage = result.message,
-                                isError = true
+                                isError = true,
+                                isSuccess = false,
                             )
                         }
                         loginUIStatusEventChannel.send(LoginUIStatusEvent.Error)
                     }
                     is Resource.Loading -> {
-                        _loginUIState.update { it.copy(isLoading = true, isError = false) }
+                        _loginUIState.update {
+                            it.copy(
+                                isLoading = true,
+                                isError = false,
+                                isSuccess = false,
+                            )
+                        }
                     }
                     is Resource.Success -> {
-                        _loginUIState.update { it.copy(isLoading = false, isError = false) }
+                        _loginUIState.update {
+                            it.copy(
+                                isLoading = false,
+                                isError = false,
+                                isSuccess = true,
+                            )
+                        }
                         savingTokenAuthentication(result.data?.loginResult?.token ?: "")
                     }
                 }
@@ -127,9 +145,11 @@ class LoginViewModel @Inject constructor(
                 when (result) {
                     is Resource.Error -> {
                         _loginUIState.update {
-                            it.copy(isLoading = false,
+                            it.copy(
+                                isLoading = false,
                                 errorMessage = result.message,
-                                isError = true)
+                                isError = true
+                            )
                         }
                         loginUIStatusEventChannel.send(LoginUIStatusEvent.Error)
                     }
@@ -138,9 +158,11 @@ class LoginViewModel @Inject constructor(
                     }
                     is Resource.Success -> {
                         _loginUIState.update {
-                            it.copy(isLoading = false,
+                            it.copy(
+                                isLoading = false,
                                 isSuccess = true,
-                                isError = false)
+                                isError = false
+                            )
                         }
                     }
                 }

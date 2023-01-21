@@ -1,34 +1,43 @@
 package c.m.storyapp.form_validation.di
 
 import c.m.storyapp.form_validation.domain.use_case.field_validation_use_case.*
-import c.m.storyapp.form_validation.domain.use_case.field_validation_use_case_impl.*
-import dagger.Binds
 import dagger.Module
+import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-abstract class UseCaseModule {
-    @Binds
+object UseCaseModule {
+    @Provides
     @Singleton
-    abstract fun bindEmailFieldValidationUseCase(emailFieldValidationUseCaseImpl: EmailFieldValidationUseCaseImpl): EmailFieldValidationUseCase
+    fun provideEmailFieldValidationUseCase(): EmailFieldValidationUseCase {
+        return EmailFieldValidationUseCase()
+    }
 
-    @Binds
+    @Provides
     @Singleton
-    abstract fun bindPasswordFieldValidationUseCase(passwordFieldValidationUseCaseImpl: PasswordFieldValidationUseCaseImpl): PasswordFieldValidationUseCase
+    fun providePasswordFieldValidationUseCase(): PasswordFieldValidationUseCase {
+        return PasswordFieldValidationUseCase()
+    }
 
-    @Binds
+    @Provides
     @Singleton
-    abstract fun bindNameFieldValidationUseCase(nameFieldValidationUseCaseImpl: NameFieldValidationUseCaseImpl): NameFieldValidationUseCase
+    fun provideNameFieldValidationUseCase(): NameFieldValidationUseCase {
+        return NameFieldValidationUseCase()
+    }
 
-    @Binds
+    @Provides
     @Singleton
-    abstract fun bindDescriptionFieldValidationUseCase(descriptionFieldValidationUseCaseImpl: DescriptionFieldValidationUseCaseImpl): DescriptionFieldValidationUseCase
+    fun provideDescriptionFieldValidationUseCase(): DescriptionFieldValidationUseCase {
+        return DescriptionFieldValidationUseCase()
+    }
 
-    @Binds
+    @Provides
     @Singleton
-    abstract fun bindPhotoFieldValidationUseCase(photoFieldValidationUseCaseImpl: PhotoFieldValidationUseCaseImpl): PhotoFieldValidationUseCase
+    fun providePhotoFieldValidationUseCase(): PhotoFieldValidationUseCase {
+        return PhotoFieldValidationUseCase()
+    }
 
 }
