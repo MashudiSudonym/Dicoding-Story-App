@@ -41,12 +41,12 @@ class LoginViewModel @Inject constructor(
             is InputLoginDataEvent.PasswordFieldChange -> _loginUIState.update {
                 it.copy(password = event.password)
             }
-            InputLoginDataEvent.SendLoginFieldData -> userLoginProcess()
-            InputLoginDataEvent.Submit -> submitLoginData()
+            InputLoginDataEvent.SubmitUserLoginData -> submitUserLoginData()
+            InputLoginDataEvent.CheckUserLoginData -> checkUserLoginData()
         }
     }
 
-    private fun submitLoginData() {
+    private fun checkUserLoginData() {
         _loginUIState.update { it.copy(isLoading = true) }
         _loginUIState.update {
             it.copy(
@@ -92,16 +92,20 @@ class LoginViewModel @Inject constructor(
         }
     }
 
-    private fun userLoginProcess() {
+    private fun submitUserLoginData() {
         viewModelScope.launch {
-            userLoginUseCase(_loginUIState.value.email,
-                _loginUIState.value.password).collect { result ->
+            userLoginUseCase(
+                _loginUIState.value.email,
+                _loginUIState.value.password
+            ).collect { result ->
                 when (result) {
                     is Resource.Error -> {
                         _loginUIState.update {
-                            it.copy(isLoading = false,
+                            it.copy(
+                                isLoading = false,
                                 errorMessage = result.message,
-                                isError = true)
+                                isError = true
+                            )
                         }
                         loginUIStatusEventChannel.send(LoginUIStatusEvent.Error)
                     }

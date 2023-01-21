@@ -4,6 +4,6 @@ sealed class InputLoginDataEvent {
     data class EmailFieldChange(val email: String) : InputLoginDataEvent()
     data class PasswordFieldChange(val password: String) : InputLoginDataEvent()
 
-    object SendLoginFieldData : InputLoginDataEvent()
-    object Submit : InputLoginDataEvent()
+    object SubmitUserLoginData : InputLoginDataEvent()
+    object CheckUserLoginData : InputLoginDataEvent()
 }

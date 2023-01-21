@@ -5,6 +5,7 @@ import c.m.storyapp.MainDispatcherRule
 import c.m.storyapp.authentication_check.domain.use_case.save_token_to_data_store_use_case.SaveTokenToDataStoreUseCase
 import c.m.storyapp.authentication_check.utils.FakeAuthenticationCheckRepository
 import c.m.storyapp.login.domain.use_case.user_login_use_case.UserLoginUseCase
+import c.m.storyapp.login.presentation.event.InputLoginDataEvent
 import c.m.storyapp.login.utils.FakeLoginRepository
 import c.m.storyapp.login.utils.LoginUIStateDataDummy
 import c.m.storyapp.utils.FakeEmailFieldValidationUseCase
@@ -52,6 +53,11 @@ class LoginViewModelTest {
     @Test
     fun `submit login data success`() = runTest {
         //loginViewModel.submitLoginData("email.e@email.com", "123tes")
+
+        loginViewModel.onInputFieldEvent(event = InputLoginDataEvent.EmailFieldChange("email.e@email.com"))
+        loginViewModel.onInputFieldEvent(event = InputLoginDataEvent.PasswordFieldChange("123tes"))
+        loginViewModel.onInputFieldEvent(event = InputLoginDataEvent.CheckUserLoginData)
+        loginViewModel.onInputFieldEvent(event = InputLoginDataEvent.SubmitUserLoginData)
 
         val expectedStatus =
             LoginUIStateDataDummy.generateLoginUIStateSuccessStateDataDummy().isSuccess
