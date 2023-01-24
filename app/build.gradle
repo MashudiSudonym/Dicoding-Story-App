@@ -89,9 +89,6 @@ android {
 }
 
 dependencies {
-    //noinspection GradleDynamicVersion
-    implementation 'androidx.core:core-ktx:+'
-
     // Compose BOM
     def composeBom = platform('androidx.compose:compose-bom:2022.12.00')
     implementation composeBom
