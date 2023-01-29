@@ -8,7 +8,7 @@ class Resource<T> with _$Resource<T> {
   const factory Resource({
     @Default(false) bool success,
     AppError? error,
-    String? msg,
+    String? message,
     T? value,
   }) = _Resource<T>;
 }

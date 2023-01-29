@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:io';
 
 import 'package:injectable/injectable.dart';
 import 'package:story_app/common/util/app_error.dart';
@@ -31,14 +32,18 @@ class LoginRepositoryImpl implements LoginRepository {
         return Resource(
           success: false,
           error: AppError.NO_RESULTS,
-          msg: LoginResponseDTO.fromJson(
+          message: LoginResponseDTO.fromJson(
                   responseLogin.error as Map<String, Object?>)
               .toLoginResponse()
               .message,
         );
       }
+    } on HttpException {
+      return const Resource(success: false, error: AppError.NETWORK);
     } catch (e) {
-      return const Resource(success: false, error: AppError.NO_RESULTS);
+      return const Resource(success: false, error: AppError.UNEXPECTED);
+    } finally {
+      _loginServiceApi.client.dispose();
     }
   }
 }

@@ -18,7 +18,7 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$Resource<T> {
   bool get success => throw _privateConstructorUsedError;
   AppError? get error => throw _privateConstructorUsedError;
-  String? get msg => throw _privateConstructorUsedError;
+  String? get message => throw _privateConstructorUsedError;
   T? get value => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -32,7 +32,7 @@ abstract class $ResourceCopyWith<T, $Res> {
           Resource<T> value, $Res Function(Resource<T>) then) =
       _$ResourceCopyWithImpl<T, $Res, Resource<T>>;
   @useResult
-  $Res call({bool success, AppError? error, String? msg, T? value});
+  $Res call({bool success, AppError? error, String? message, T? value});
 }
 
 /// @nodoc
@@ -50,7 +50,7 @@ class _$ResourceCopyWithImpl<T, $Res, $Val extends Resource<T>>
   $Res call({
     Object? success = null,
     Object? error = freezed,
-    Object? msg = freezed,
+    Object? message = freezed,
     Object? value = freezed,
   }) {
     return _then(_value.copyWith(
@@ -62,9 +62,9 @@ class _$ResourceCopyWithImpl<T, $Res, $Val extends Resource<T>>
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
               as AppError?,
-      msg: freezed == msg
-          ? _value.msg
-          : msg // ignore: cast_nullable_to_non_nullable
+      message: freezed == message
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
               as String?,
       value: freezed == value
           ? _value.value
@@ -82,7 +82,7 @@ abstract class _$$_ResourceCopyWith<T, $Res>
       __$$_ResourceCopyWithImpl<T, $Res>;
   @override
   @useResult
-  $Res call({bool success, AppError? error, String? msg, T? value});
+  $Res call({bool success, AppError? error, String? message, T? value});
 }
 
 /// @nodoc
@@ -98,7 +98,7 @@ class __$$_ResourceCopyWithImpl<T, $Res>
   $Res call({
     Object? success = null,
     Object? error = freezed,
-    Object? msg = freezed,
+    Object? message = freezed,
     Object? value = freezed,
   }) {
     return _then(_$_Resource<T>(
@@ -110,9 +110,9 @@ class __$$_ResourceCopyWithImpl<T, $Res>
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
               as AppError?,
-      msg: freezed == msg
-          ? _value.msg
-          : msg // ignore: cast_nullable_to_non_nullable
+      message: freezed == message
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
               as String?,
       value: freezed == value
           ? _value.value
@@ -125,7 +125,8 @@ class __$$_ResourceCopyWithImpl<T, $Res>
 /// @nodoc
 
 class _$_Resource<T> implements _Resource<T> {
-  const _$_Resource({this.success = false, this.error, this.msg, this.value});
+  const _$_Resource(
+      {this.success = false, this.error, this.message, this.value});
 
   @override
   @JsonKey()
@@ -133,13 +134,13 @@ class _$_Resource<T> implements _Resource<T> {
   @override
   final AppError? error;
   @override
-  final String? msg;
+  final String? message;
   @override
   final T? value;
 
   @override
   String toString() {
-    return 'Resource<$T>(success: $success, error: $error, msg: $msg, value: $value)';
+    return 'Resource<$T>(success: $success, error: $error, message: $message, value: $value)';
   }
 
   @override
@@ -149,12 +150,12 @@ class _$_Resource<T> implements _Resource<T> {
             other is _$_Resource<T> &&
             (identical(other.success, success) || other.success == success) &&
             (identical(other.error, error) || other.error == error) &&
-            (identical(other.msg, msg) || other.msg == msg) &&
+            (identical(other.message, message) || other.message == message) &&
             const DeepCollectionEquality().equals(other.value, value));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, success, error, msg,
+  int get hashCode => Object.hash(runtimeType, success, error, message,
       const DeepCollectionEquality().hash(value));
 
   @JsonKey(ignore: true)
@@ -168,7 +169,7 @@ abstract class _Resource<T> implements Resource<T> {
   const factory _Resource(
       {final bool success,
       final AppError? error,
-      final String? msg,
+      final String? message,
       final T? value}) = _$_Resource<T>;
 
   @override
@@ -176,7 +177,7 @@ abstract class _Resource<T> implements Resource<T> {
   @override
   AppError? get error;
   @override
-  String? get msg;
+  String? get message;
   @override
   T? get value;
   @override
