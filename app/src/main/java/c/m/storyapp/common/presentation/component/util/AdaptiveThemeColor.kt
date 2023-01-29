@@ -9,7 +9,7 @@ import androidx.compose.ui.graphics.Color
 
 // If you need dynamic background color on dark theme and light theme for ui component
 @Composable
-fun AdaptiveCustomColor(isDarkTheme: Boolean, onDark: Color, onLight: Color): Color =
+fun AdaptiveThemeColor(isDarkTheme: Boolean, onDark: Color, onLight: Color): Color =
     if (isDarkTheme) {
         onDark
     } else {
