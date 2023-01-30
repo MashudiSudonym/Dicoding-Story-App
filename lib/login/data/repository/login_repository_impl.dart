@@ -19,18 +19,14 @@ class LoginRepositoryImpl implements LoginRepository {
       String email, String password) async {
     Resource<LoginResponse> result;
 
-    result = const Resource.loading(isLoading: true);
-
     try {
       final responseLogin = await _loginServiceApi.postLogin(email, password);
 
       if (responseLogin.isSuccessful) {
-        result = const Resource.loading(isLoading: false);
         result = Resource.success(
           LoginResponseDTO.fromJson(responseLogin.body).toLoginResponse(),
         );
       } else {
-        result = const Resource.loading(isLoading: false);
         result = Resource.error(
           LoginResponseDTO.fromJson(responseLogin.error as Map<String, Object?>)
               .toLoginResponse()
@@ -40,7 +36,6 @@ class LoginRepositoryImpl implements LoginRepository {
         );
       }
     } catch (e) {
-      result = const Resource.loading(isLoading: true);
       result = Resource.error(e.toString(), null);
     } finally {
       _loginServiceApi.client.dispose();
