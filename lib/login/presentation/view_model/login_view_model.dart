@@ -1,9 +1,26 @@
+import 'package:flutter/foundation.dart';
 import 'package:injectable/injectable.dart';
-import 'package:story_app/login/domain/use_case/user_login_use_case.dart';
+import 'package:story_app/login/presentation/bloc/login_bloc.dart';
 
 @injectable
-class LoginViewModel {
-  final UserLoginUseCase _userLoginUseCase;
+class LoginViewModel extends ChangeNotifier {
+  final LoginBloc _loginBloc;
 
-  LoginViewModel(this._userLoginUseCase);
+  LoginViewModel({
+    required LoginBloc loginBloc,
+  }) : _loginBloc = loginBloc;
+
+  void submitLogin({String? email, String? password}) {
+    _loginBloc.add(
+      LoginEvent.loginButtonPressed(email: email, password: password),
+    );
+  }
+
+  LoginState get loginState => _loginBloc.state;
+
+  @override
+  void dispose() {
+    super.dispose();
+    _loginBloc.close();
+  }
 }

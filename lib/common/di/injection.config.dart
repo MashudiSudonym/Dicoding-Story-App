@@ -16,8 +16,7 @@ import 'package:story_app/login/di/login_network_module.dart' as _i10;
 import 'package:story_app/login/domain/repository/login_repository.dart' as _i5;
 import 'package:story_app/login/domain/use_case/user_login_use_case.dart'
     as _i7;
-import 'package:story_app/login/presentation/view_model/login_view_model.dart'
-    as _i8;
+import 'package:story_app/login/presentation/bloc/login_bloc.dart' as _i8;
 
 /// ignore_for_file: unnecessary_lambdas
 /// ignore_for_file: lines_longer_than_80_chars
@@ -46,8 +45,7 @@ extension GetItInjectableX on _i1.GetIt {
         () => _i6.LoginRepositoryImpl(gh<_i4.LoginServiceApi>()));
     gh.factory<_i7.UserLoginUseCase>(
         () => _i7.UserLoginUseCase(gh<_i5.LoginRepository>()));
-    gh.factory<_i8.LoginViewModel>(
-        () => _i8.LoginViewModel(gh<_i7.UserLoginUseCase>()));
+    gh.factory<_i8.LoginBloc>(() => _i8.LoginBloc(gh<_i7.UserLoginUseCase>()));
     return this;
   }
 }
