@@ -19,31 +19,35 @@ class LoginRepositoryImpl implements LoginRepository {
   @override
   Future<Resource<LoginResponse>> postLogin(
       String email, String password) async {
+    Resource<LoginResponse> result;
+
+    result = const Resource.loading(isLoading: true);
+
     try {
       final responseLogin = await _loginServiceApi.postLogin(email, password);
 
       if (responseLogin.isSuccessful) {
-        return Resource(
-          success: true,
-          value:
-              LoginResponseDTO.fromJson(responseLogin.body).toLoginResponse(),
+        result = const Resource.loading(isLoading: false);
+        result = Resource.success(
+          LoginResponseDTO.fromJson(responseLogin.body).toLoginResponse(),
         );
       } else {
-        return Resource(
-          success: false,
-          error: AppError.NO_RESULTS,
-          message: LoginResponseDTO.fromJson(
-                  responseLogin.error as Map<String, Object?>)
+        result = const Resource.loading(isLoading: false);
+        result = Resource.error(
+          LoginResponseDTO.fromJson(responseLogin.error as Map<String, Object?>)
               .toLoginResponse()
               .message,
+          LoginResponseDTO.fromJson(responseLogin.error as Map<String, Object?>)
+              .toLoginResponse(),
         );
       }
-    } on HttpException {
-      return const Resource(success: false, error: AppError.NETWORK);
     } catch (e) {
-      return const Resource(success: false, error: AppError.UNEXPECTED);
+      result = const Resource.loading(isLoading: true);
+      result = Resource.error(e.toString(), null);
     } finally {
       _loginServiceApi.client.dispose();
     }
+
+    return result;
   }
 }

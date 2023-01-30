@@ -6,8 +6,4 @@ class LoginViewModel {
   final UserLoginUseCase _userLoginUseCase;
 
   LoginViewModel(this._userLoginUseCase);
-
-  void init() async {
-    final a = await _userLoginUseCase('masrobot6969@gmail.com', '123tes');
-  }
 }

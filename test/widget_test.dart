@@ -8,6 +8,7 @@
 import 'package:story_app/common/di/injection.dart';
 import 'package:story_app/common/util/constants.dart';
 import 'package:story_app/common/util/extension.dart';
+import 'package:story_app/common/util/resource.dart';
 import 'package:story_app/login/domain/use_case/user_login_use_case.dart';
 
 void main() async {
@@ -48,12 +49,11 @@ void main() async {
 
   final result = await userLoginUseCase('masrobot6969@gmail.com', 'sad');
 
-  if (result.success) {
-    Constants.logger.d(result.value?.loginResult?.token);
-  } else {
-    Constants.logger.d(result.message);
-    Constants.logger.d(result.error);
+  if (result is Success) {
+    Constants.logger.d(result.data?.message);
+  } else if (result is Error) {
+    Constants.logger.e(result.message);
+  } else if (result is Loading) {
+    Constants.logger.d(result.isLoading);
   }
-
-  Constants.logger.d('tes');
 }
