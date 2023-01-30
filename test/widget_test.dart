@@ -6,9 +6,7 @@
 // tree, read text, and verify that the values of widget properties are correct.
 
 import 'package:story_app/common/di/injection.dart';
-import 'package:story_app/common/util/constants.dart';
 import 'package:story_app/common/util/extension.dart';
-import 'package:story_app/common/util/resource.dart';
 import 'package:story_app/login/domain/use_case/user_login_use_case.dart';
 
 void main() async {
@@ -48,12 +46,4 @@ void main() async {
   final userLoginUseCase = getIt<UserLoginUseCase>();
 
   final result = await userLoginUseCase('masrobot6969@gmail.com', 'sad');
-
-  if (result is Success) {
-    Constants.logger.d(result.data?.message);
-  } else if (result is Error) {
-    Constants.logger.e(result.message);
-  } else if (result is Loading) {
-    Constants.logger.d(result.isLoading);
-  }
 }

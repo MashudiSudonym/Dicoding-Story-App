@@ -1,8 +1,6 @@
 import 'dart:async';
-import 'dart:io';
 
 import 'package:injectable/injectable.dart';
-import 'package:story_app/common/util/app_error.dart';
 import 'package:story_app/common/util/resource.dart';
 import 'package:story_app/login/data/mapper/login_mapper.dart';
 import 'package:story_app/login/data/remote/dto/login_response_dto.dart';
