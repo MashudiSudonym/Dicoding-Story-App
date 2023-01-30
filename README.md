@@ -1,10 +1,16 @@
-* add base url for api on local.properties :
-  ```baseURL = "https://story-api.dicoding.dev/v1/"```
+# Dicoding-Story-App
 
-* create file
-  ```storyapp/app/src/release/res/values/google_maps_api.xml```
-  and ```storyapp/app/src/debug/res/values/google_maps_api.xml```
+[Android XML, ViewBinding version](https://github.com/MashudiSudonym/Dicoding-Story-App/tree/main)
 
-* write this code into those file
+[Android Jetpack Compose version](https://github.com/MashudiSudonym/Dicoding-Story-App/tree/jetpack-compose-version)
 
-  ```<resources> <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">GET_KEY_FROM_GOOGLE_CONSOLE</string> </resources>```
+[Flutter version](https://github.com/MashudiSudonym/Dicoding-Story-App/tree/flutter-version)
+
+
+## Configuration before running this app
+
+* add base url for api on local.properties : ```baseURL = "https://story-api.dicoding.dev/v1/"```
+
+* create file ```storyapp/app/src/release/res/values/google_maps_api.xml``` and ```storyapp/app/src/debug/res/values/google_maps_api.xml```
+
+* write this code into those file ```<resources> <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">GET_KEY_FROM_GOOGLE_CONSOLE</string> </resources>```
