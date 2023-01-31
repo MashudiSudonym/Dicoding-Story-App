@@ -17,16 +17,13 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$LoginEvent {
   String? get email => throw _privateConstructorUsedError;
-
   String? get password => throw _privateConstructorUsedError;
-
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String? email, String? password)
         loginButtonPressed,
   }) =>
       throw _privateConstructorUsedError;
-
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String? email, String? password)? loginButtonPressed,
@@ -43,7 +40,6 @@ mixin _$LoginEvent {
     required TResult Function(_LoginButtonPressed value) loginButtonPressed,
   }) =>
       throw _privateConstructorUsedError;
-
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_LoginButtonPressed value)? loginButtonPressed,
@@ -75,9 +71,9 @@ class _$LoginEventCopyWithImpl<$Res, $Val extends LoginEvent>
     implements $LoginEventCopyWith<$Res> {
   _$LoginEventCopyWithImpl(this._value, this._then);
 
-// ignore: unused_field
+  // ignore: unused_field
   final $Val _value;
-// ignore: unused_field
+  // ignore: unused_field
   final $Res Function($Val) _then;
 
   @pragma('vm:prefer-inline')
@@ -310,9 +306,9 @@ class _$LoginStateCopyWithImpl<$Res, $Val extends LoginState>
     implements $LoginStateCopyWith<$Res> {
   _$LoginStateCopyWithImpl(this._value, this._then);
 
-// ignore: unused_field
+  // ignore: unused_field
   final $Val _value;
-// ignore: unused_field
+  // ignore: unused_field
   final $Res Function($Val) _then;
 }
 

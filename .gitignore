@@ -44,3 +44,8 @@ app.*.map.json
 /android/app/release
 
 pubspec.lock
+
+*.hive
+*_keys.lock
+/*_collection/*.hive
+/*_collection/*.lock
