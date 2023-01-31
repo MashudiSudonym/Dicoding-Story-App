@@ -1,13 +1,14 @@
 import 'package:injectable/injectable.dart';
 import 'package:hive/hive.dart';
+import 'package:story_app/common/util/constants.dart';
 
 @module
 abstract class DataStoreModule {
   @preResolve
   Future<BoxCollection> storyAppCollection() => BoxCollection.open(
-        'story_app_collection',
+        Constants.hiveCollectionName,
         {
-          'login_data_store',
+          Constants.boxCollectionLoginDataStore,
         },
         path: './',
       );
