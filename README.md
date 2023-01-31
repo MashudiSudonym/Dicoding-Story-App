@@ -1,10 +1,12 @@
-# story_app
+# Dicoding-Story-App
 
-Story App from dicoding
+[Android XML, ViewBinding version](https://github.com/MashudiSudonym/Dicoding-Story-App/tree/main)
 
-## Getting Started
+[Android Jetpack Compose version](https://github.com/MashudiSudonym/Dicoding-Story-App/tree/jetpack-compose-version)
 
-This project is a starting point for a Flutter application.
+[Flutter version](https://github.com/MashudiSudonym/Dicoding-Story-App/tree/flutter-version)
+
+## Configuration before running this app
 
 Run this command before running the project
 
