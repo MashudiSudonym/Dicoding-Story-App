@@ -9,7 +9,7 @@ part of 'authentication_status.dart';
 _$_AuthenticationStatus _$$_AuthenticationStatusFromJson(
         Map<String, dynamic> json) =>
     _$_AuthenticationStatus(
-      isAuthenticated: json['isAuthenticated'] as bool? ?? false,
+      isAuthenticated: json['isAuthenticated'] as bool,
     );
 
 Map<String, dynamic> _$$_AuthenticationStatusToJson(

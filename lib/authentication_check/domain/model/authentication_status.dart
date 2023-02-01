@@ -6,7 +6,7 @@ part 'authentication_status.g.dart';
 @freezed
 class AuthenticationStatus with _$AuthenticationStatus {
   const factory AuthenticationStatus({
-    @Default(false) required bool isAuthenticated,
+    required bool isAuthenticated,
   }) = _AuthenticationStatus;
 
   factory AuthenticationStatus.fromJson(Map<String, dynamic> json) =>

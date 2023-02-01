@@ -5,6 +5,7 @@
 // gestures. You can also use WidgetTester to find child widgets in the widget
 // tree, read text, and verify that the values of widget properties are correct.
 
+import 'package:story_app/authentication_check/domain/repository/authentication_check_repository.dart';
 import 'package:story_app/common/di/injection.dart';
 import 'package:story_app/common/util/constants.dart';
 import 'package:story_app/common/util/extension.dart';
@@ -46,17 +47,17 @@ void main() async {
   //   Constants.logger.d(postLogin.error);
   // }
 
-  final userLoginUseCase = getIt<UserLoginUseCase>();
+  // final userLoginUseCase = getIt<UserLoginUseCase>();
 
-  final failureOrResponse =
-      await userLoginUseCase('masrobot6969@gmail.com', '123tes');
+  // final failureOrResponse =
+  //     await userLoginUseCase('masrobot6969@gmail.com', '123tes');
 
-  final a = failureOrResponse.fold(
-    (failure) => LoginResponse(error: true, message: failure.message),
-    (response) => response,
-  );
+  // final a = failureOrResponse.fold(
+  //   (failure) => LoginResponse(error: true, message: failure.message),
+  //   (response) => response,
+  // );
 
-  Constants.logger.d(a.message);
+  // Constants.logger.d(a.message);
 
   // final hive = getIt<BoxCollection>();
 
@@ -67,11 +68,23 @@ void main() async {
 
   // Constants.logger.d(exampleBoxData);
 
-  final dataStoreRepository = getIt<DataStoreRepository>();
+  // final dataStoreRepository = getIt<DataStoreRepository>();
 
   // dataStoreRepository.postLoginToken('token');
 
-  final getLoginToken = await dataStoreRepository.getLoginToken();
+  // final getLoginToken = await dataStoreRepository.getLoginToken();
 
-  Constants.logger.d(getLoginToken);
+  // Constants.logger.d(getLoginToken);
+
+  // final authenticationCheckRepository = getIt<AuthenticationCheckRepository>();
+
+  // await authenticationCheckRepository.saveToken('token');
+
+  // final a = await authenticationCheckRepository.getToken();
+
+  // if (a.data?.token != '') {
+  //   Constants.logger.d(a.data?.token);
+  // } else {
+  //   Constants.logger.e(a.message);
+  // }
 }

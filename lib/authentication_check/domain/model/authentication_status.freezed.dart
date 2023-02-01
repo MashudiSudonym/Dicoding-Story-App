@@ -98,13 +98,12 @@ class __$$_AuthenticationStatusCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_AuthenticationStatus implements _AuthenticationStatus {
-  const _$_AuthenticationStatus({required this.isAuthenticated = false});
+  const _$_AuthenticationStatus({required this.isAuthenticated});
 
   factory _$_AuthenticationStatus.fromJson(Map<String, dynamic> json) =>
       _$$_AuthenticationStatusFromJson(json);
 
   @override
-  @JsonKey()
   final bool isAuthenticated;
 
   @override
