@@ -6,9 +6,7 @@ import 'package:story_app/login/presentation/bloc/login_bloc.dart';
 class LoginViewModel extends ChangeNotifier {
   final LoginBloc _loginBloc;
 
-  LoginViewModel({
-    required LoginBloc loginBloc,
-  }) : _loginBloc = loginBloc;
+  LoginViewModel(this._loginBloc);
 
   void submitLogin({String? email, String? password}) {
     _loginBloc.add(
