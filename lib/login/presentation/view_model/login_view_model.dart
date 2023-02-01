@@ -4,21 +4,21 @@ import 'package:story_app/login/presentation/bloc/login_bloc.dart';
 
 @injectable
 class LoginViewModel extends ChangeNotifier {
-  final LoginBloc _loginBloc;
+  final LoginBloc loginBloc;
 
-  LoginViewModel(this._loginBloc);
+  LoginViewModel(this.loginBloc);
 
   void submitLogin({String? email, String? password}) {
-    _loginBloc.add(
+    loginBloc.add(
       LoginEvent.loginButtonPressed(email: email, password: password),
     );
   }
 
-  LoginState get loginState => _loginBloc.state;
+  LoginState get loginState => loginBloc.state;
 
   @override
   void dispose() {
     super.dispose();
-    _loginBloc.close();
+    loginBloc.close();
   }
 }
