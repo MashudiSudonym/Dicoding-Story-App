@@ -13,4 +13,8 @@ class Constants {
   static const hiveCollectionName = 'story_app_collection';
   static const boxCollectionLoginDataStore = 'login_data_store';
   static const keyLoginToken = 'login_token';
+  static const blankString = '';
+  static const authenticationFailedMessage = 'authentication failed';
+  static const tokenIsEmptyMessage = 'token is empty';
+  static const isAuthenticated = true;
 }

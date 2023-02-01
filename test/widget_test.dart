@@ -5,7 +5,11 @@
 // gestures. You can also use WidgetTester to find child widgets in the widget
 // tree, read text, and verify that the values of widget properties are correct.
 
-import 'package:story_app/authentication_check/domain/repository/authentication_check_repository.dart';
+import 'package:chopper/chopper.dart';
+import 'package:story_app/authentication_check/domain/model/authentication_status.dart';
+import 'package:story_app/authentication_check/domain/model/authentication_token.dart';
+import 'package:story_app/authentication_check/domain/use_case/check_authentication_use_case/check_authentication_use_case.dart';
+import 'package:story_app/authentication_check/domain/use_case/get_token_from_data_store_use_case/get_token_from_data_store_use_case.dart';
 import 'package:story_app/common/di/injection.dart';
 import 'package:story_app/common/util/constants.dart';
 import 'package:story_app/common/util/extension.dart';
@@ -47,17 +51,17 @@ void main() async {
   //   Constants.logger.d(postLogin.error);
   // }
 
-  // final userLoginUseCase = getIt<UserLoginUseCase>();
+  final userLoginUseCase = getIt<UserLoginUseCase>();
 
-  // final failureOrResponse =
-  //     await userLoginUseCase('masrobot6969@gmail.com', '123tes');
+  final failureOrResponse =
+      await userLoginUseCase('masrobot6969@gmail.com', '123tes');
 
-  // final a = failureOrResponse.fold(
-  //   (failure) => LoginResponse(error: true, message: failure.message),
-  //   (response) => response,
-  // );
+  final a = failureOrResponse.fold(
+    (failure) => LoginResponse(error: true, message: failure.message),
+    (response) => response,
+  );
 
-  // Constants.logger.d(a.message);
+  Constants.logger.d(a.message);
 
   // final hive = getIt<BoxCollection>();
 
@@ -87,4 +91,28 @@ void main() async {
   // } else {
   //   Constants.logger.e(a.message);
   // }
+
+  final getTokenFromDataStoreUseCase = getIt<GetTokenFromDataStoreUseCase>();
+
+  final failureOrResponseGetToken = await getTokenFromDataStoreUseCase();
+
+  final resultGetToken = failureOrResponseGetToken.fold(
+    (failure) => const AuthenticationToken(token: Constants.blankString),
+    (response) => response,
+  );
+
+  Constants.logger.d(resultGetToken.token);
+
+  final checkAuthenticationUseCase = getIt<CheckAuthenticationUseCase>();
+
+  final failureOrResponseAuth = await checkAuthenticationUseCase();
+
+  final resultAuth = failureOrResponseAuth.fold(
+    (failure) => const AuthenticationStatus(
+      isAuthenticated: !Constants.isAuthenticated,
+    ),
+    (response) => response,
+  );
+
+  Constants.logger.d(resultAuth.isAuthenticated);
 }

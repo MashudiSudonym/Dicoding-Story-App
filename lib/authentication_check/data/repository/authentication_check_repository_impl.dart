@@ -2,6 +2,7 @@ import 'package:injectable/injectable.dart';
 import 'package:story_app/authentication_check/domain/model/authentication_token.dart';
 import 'package:story_app/authentication_check/domain/model/authentication_status.dart';
 import 'package:story_app/authentication_check/domain/repository/authentication_check_repository.dart';
+import 'package:story_app/common/util/constants.dart';
 import 'package:story_app/common/util/resource.dart';
 import 'package:story_app/data_store/domain/repository/data_store_repository.dart';
 
@@ -18,12 +19,12 @@ class AuthenticationCheckRepositoryImpl extends AuthenticationCheckRepository {
 
     if (getToken.isNotEmpty) {
       result = const Resource.success(
-        AuthenticationStatus(isAuthenticated: true),
+        AuthenticationStatus(isAuthenticated: Constants.isAuthenticated),
       );
     } else {
       result = const Resource.error(
-        'token is empty',
-        AuthenticationStatus(isAuthenticated: false),
+        Constants.authenticationFailedMessage,
+        AuthenticationStatus(isAuthenticated: !Constants.isAuthenticated),
       );
     }
 
@@ -39,8 +40,8 @@ class AuthenticationCheckRepositoryImpl extends AuthenticationCheckRepository {
       result = Resource.success(AuthenticationToken(token: getToken));
     } else {
       result = const Resource.error(
-        'token is empty',
-        AuthenticationToken(token: ''),
+        Constants.tokenIsEmptyMessage,
+        AuthenticationToken(token: Constants.blankString),
       );
     }
 
