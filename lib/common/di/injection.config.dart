@@ -18,23 +18,23 @@ import 'package:story_app/authentication_check/domain/use_case/check_authenticat
 import 'package:story_app/authentication_check/domain/use_case/get_token_from_data_store_use_case/get_token_from_data_store_use_case.dart'
     as _i10;
 import 'package:story_app/authentication_check/domain/use_case/logout_use_case/logout_use_case.dart'
-    as _i12;
+    as _i11;
 import 'package:story_app/authentication_check/domain/use_case/save_token_to_data_store_use_case/save_token_to_data_store_use_case.dart'
-    as _i13;
+    as _i12;
 import 'package:story_app/authentication_check/presentation/bloc/authentication_check_bloc.dart'
     as _i14;
 import 'package:story_app/authentication_check/presentation/view_model/authentication_check_view_model.dart'
     as _i15;
+import 'package:story_app/common/data/remote/api_services.dart' as _i13;
+import 'package:story_app/common/di/api_services_network_module.dart' as _i23;
 import 'package:story_app/common/di/network_module.dart' as _i21;
 import 'package:story_app/data_store/data/repository/data_store_repository_impl.dart'
     as _i5;
-import 'package:story_app/data_store/di/data_store_module.dart' as _i23;
+import 'package:story_app/data_store/di/data_store_module.dart' as _i22;
 import 'package:story_app/data_store/domain/repository/data_store_repository.dart'
     as _i4;
-import 'package:story_app/login/data/remote/login_service_api.dart' as _i11;
 import 'package:story_app/login/data/repository/login_repository_impl.dart'
     as _i17;
-import 'package:story_app/login/di/login_network_module.dart' as _i22;
 import 'package:story_app/login/domain/repository/login_repository.dart'
     as _i16;
 import 'package:story_app/login/domain/use_case/user_login_use_case.dart'
@@ -58,7 +58,7 @@ extension GetItInjectableX on _i1.GetIt {
     );
     final dataStoreModule = _$DataStoreModule();
     final networkModule = _$NetworkModule();
-    final loginNetworkModule = _$LoginNetworkModule();
+    final apiServicesNetworkModule = _$ApiServicesNetworkModule();
     await gh.factoryAsync<_i3.BoxCollection>(
       () => dataStoreModule.storyAppCollection(),
       preResolve: true,
@@ -79,22 +79,22 @@ extension GetItInjectableX on _i1.GetIt {
     gh.factory<_i10.GetTokenFromDataStoreUseCase>(() =>
         _i10.GetTokenFromDataStoreUseCase(
             gh<_i6.AuthenticationCheckRepository>()));
-    gh.lazySingleton<_i11.LoginServiceApi>(
-        () => loginNetworkModule.loginServiceApi(gh<_i9.ChopperClient>()));
-    gh.factory<_i12.LogoutUseCase>(
-        () => _i12.LogoutUseCase(gh<_i6.AuthenticationCheckRepository>()));
-    gh.factory<_i13.SaveTokenToDataStoreUseCase>(() =>
-        _i13.SaveTokenToDataStoreUseCase(
+    gh.factory<_i11.LogoutUseCase>(
+        () => _i11.LogoutUseCase(gh<_i6.AuthenticationCheckRepository>()));
+    gh.factory<_i12.SaveTokenToDataStoreUseCase>(() =>
+        _i12.SaveTokenToDataStoreUseCase(
             gh<_i6.AuthenticationCheckRepository>()));
+    gh.lazySingleton<_i13.ApiServices>(() =>
+        apiServicesNetworkModule.loginServiceApi(gh<_i9.ChopperClient>()));
     gh.factory<_i14.AuthenticationCheckBloc>(() =>
         _i14.AuthenticationCheckBloc(gh<_i8.CheckAuthenticationUseCase>()));
     gh.factory<_i15.AuthenticationCheckViewModel>(() =>
         _i15.AuthenticationCheckViewModel(gh<_i14.AuthenticationCheckBloc>()));
     gh.factory<_i16.LoginRepository>(
-        () => _i17.LoginRepositoryImpl(gh<_i11.LoginServiceApi>()));
+        () => _i17.LoginRepositoryImpl(gh<_i13.ApiServices>()));
     gh.factory<_i18.UserLoginUseCase>(() => _i18.UserLoginUseCase(
           gh<_i16.LoginRepository>(),
-          gh<_i13.SaveTokenToDataStoreUseCase>(),
+          gh<_i12.SaveTokenToDataStoreUseCase>(),
         ));
     gh.factory<_i19.LoginBloc>(
         () => _i19.LoginBloc(gh<_i18.UserLoginUseCase>()));
@@ -106,6 +106,6 @@ extension GetItInjectableX on _i1.GetIt {
 
 class _$NetworkModule extends _i21.NetworkModule {}
 
-class _$LoginNetworkModule extends _i22.LoginNetworkModule {}
+class _$DataStoreModule extends _i22.DataStoreModule {}
 
-class _$DataStoreModule extends _i23.DataStoreModule {}
+class _$ApiServicesNetworkModule extends _i23.ApiServicesNetworkModule {}

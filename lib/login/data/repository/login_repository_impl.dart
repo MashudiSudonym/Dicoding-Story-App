@@ -1,18 +1,18 @@
 import 'dart:async';
 
 import 'package:injectable/injectable.dart';
+import 'package:story_app/common/data/remote/api_services.dart';
 import 'package:story_app/common/util/resource.dart';
 import 'package:story_app/login/data/mapper/login_mapper.dart';
 import 'package:story_app/login/data/remote/dto/login_response_dto.dart';
-import 'package:story_app/login/data/remote/login_service_api.dart';
 import 'package:story_app/login/domain/model/login_response.dart';
 import 'package:story_app/login/domain/repository/login_repository.dart';
 
 @Injectable(as: LoginRepository)
 class LoginRepositoryImpl implements LoginRepository {
-  final LoginServiceApi _loginServiceApi;
+  final ApiServices _apiServices;
 
-  LoginRepositoryImpl(this._loginServiceApi);
+  LoginRepositoryImpl(this._apiServices);
 
   @override
   Future<Resource<LoginResponse>> postLogin(
@@ -20,7 +20,7 @@ class LoginRepositoryImpl implements LoginRepository {
     Resource<LoginResponse> result;
 
     try {
-      final responseLogin = await _loginServiceApi.postLogin(email, password);
+      final responseLogin = await _apiServices.postLogin(email, password);
 
       if (responseLogin.isSuccessful) {
         result = Resource.success(
@@ -38,7 +38,7 @@ class LoginRepositoryImpl implements LoginRepository {
     } catch (e) {
       result = Resource.error(e.toString(), null);
     } finally {
-      _loginServiceApi.client.dispose();
+      _apiServices.client.dispose();
     }
 
     return result;

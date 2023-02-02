@@ -8,6 +8,7 @@ class Constants {
   static const loginApi = 'login';
   static const storiesApi = 'stories';
   static const paramLocation = 'stories?location=1';
+  static const name = 'name';
   static const email = 'email';
   static const password = 'password';
   static const hiveCollectionName = 'story_app_collection';

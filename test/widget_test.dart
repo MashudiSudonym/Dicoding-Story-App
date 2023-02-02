@@ -5,7 +5,6 @@
 // gestures. You can also use WidgetTester to find child widgets in the widget
 // tree, read text, and verify that the values of widget properties are correct.
 
-import 'package:chopper/chopper.dart';
 import 'package:story_app/authentication_check/domain/model/authentication_status.dart';
 import 'package:story_app/authentication_check/domain/model/authentication_token.dart';
 import 'package:story_app/authentication_check/domain/use_case/check_authentication_use_case/check_authentication_use_case.dart';
@@ -13,7 +12,6 @@ import 'package:story_app/authentication_check/domain/use_case/get_token_from_da
 import 'package:story_app/common/di/injection.dart';
 import 'package:story_app/common/util/constants.dart';
 import 'package:story_app/common/util/extension.dart';
-import 'package:story_app/data_store/domain/repository/data_store_repository.dart';
 import 'package:story_app/login/domain/model/login_response.dart';
 import 'package:story_app/login/domain/use_case/user_login_use_case.dart';
 
