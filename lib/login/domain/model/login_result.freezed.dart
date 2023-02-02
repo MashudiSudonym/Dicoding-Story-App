@@ -20,11 +20,8 @@ LoginResult _$LoginResultFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$LoginResult {
-  @JsonKey(name: 'userId')
   String get userId => throw _privateConstructorUsedError;
-  @JsonKey(name: 'name')
   String get name => throw _privateConstructorUsedError;
-  @JsonKey(name: 'token')
   String get token => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -39,10 +36,7 @@ abstract class $LoginResultCopyWith<$Res> {
           LoginResult value, $Res Function(LoginResult) then) =
       _$LoginResultCopyWithImpl<$Res, LoginResult>;
   @useResult
-  $Res call(
-      {@JsonKey(name: 'userId') String userId,
-      @JsonKey(name: 'name') String name,
-      @JsonKey(name: 'token') String token});
+  $Res call({String userId, String name, String token});
 }
 
 /// @nodoc
@@ -87,10 +81,7 @@ abstract class _$$_LoginResultCopyWith<$Res>
       __$$_LoginResultCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {@JsonKey(name: 'userId') String userId,
-      @JsonKey(name: 'name') String name,
-      @JsonKey(name: 'token') String token});
+  $Res call({String userId, String name, String token});
 }
 
 /// @nodoc
@@ -129,21 +120,16 @@ class __$$_LoginResultCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_LoginResult implements _LoginResult {
   const _$_LoginResult(
-      {@JsonKey(name: 'userId') required this.userId,
-      @JsonKey(name: 'name') required this.name,
-      @JsonKey(name: 'token') required this.token});
+      {required this.userId, required this.name, required this.token});
 
   factory _$_LoginResult.fromJson(Map<String, dynamic> json) =>
       _$$_LoginResultFromJson(json);
 
   @override
-  @JsonKey(name: 'userId')
   final String userId;
   @override
-  @JsonKey(name: 'name')
   final String name;
   @override
-  @JsonKey(name: 'token')
   final String token;
 
   @override
@@ -181,21 +167,18 @@ class _$_LoginResult implements _LoginResult {
 
 abstract class _LoginResult implements LoginResult {
   const factory _LoginResult(
-      {@JsonKey(name: 'userId') required final String userId,
-      @JsonKey(name: 'name') required final String name,
-      @JsonKey(name: 'token') required final String token}) = _$_LoginResult;
+      {required final String userId,
+      required final String name,
+      required final String token}) = _$_LoginResult;
 
   factory _LoginResult.fromJson(Map<String, dynamic> json) =
       _$_LoginResult.fromJson;
 
   @override
-  @JsonKey(name: 'userId')
   String get userId;
   @override
-  @JsonKey(name: 'name')
   String get name;
   @override
-  @JsonKey(name: 'token')
   String get token;
   @override
   @JsonKey(ignore: true)

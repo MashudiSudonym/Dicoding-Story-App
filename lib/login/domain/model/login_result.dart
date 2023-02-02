@@ -6,9 +6,9 @@ part 'login_result.g.dart';
 @freezed
 class LoginResult with _$LoginResult {
   const factory LoginResult({
-    @JsonKey(name: 'userId') required String userId,
-    @JsonKey(name: 'name') required String name,
-    @JsonKey(name: 'token') required String token,
+    required String userId,
+    required String name,
+    required String token,
   }) = _LoginResult;
 
   factory LoginResult.fromJson(Map<String, dynamic> json) =>
