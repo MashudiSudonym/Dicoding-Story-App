@@ -14,11 +14,11 @@ class AuthenticationCheckBloc
   final CheckAuthenticationUseCase _checkAuthenticationUseCase;
 
   AuthenticationCheckBloc(this._checkAuthenticationUseCase)
-      : super(const _Initial());
+      : super(const Initial());
 
   Stream<AuthenticationCheckState> mapEventToState(
       AuthenticationCheckEvent event) async* {
-    if (event is _$_CheckAuthentication) {
+    if (event is CheckAuthentication) {
       yield const AuthenticationCheckState.loading();
 
       final either = await _checkAuthenticationUseCase();

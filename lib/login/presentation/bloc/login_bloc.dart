@@ -16,7 +16,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
   LoginBloc(this._userLoginUseCase) : super(const LoginState.initial());
 
   Stream<LoginState> mapEventToState(LoginEvent event) async* {
-    if (event is _LoginButtonPressed) {
+    if (event is LoginButtonPressed) {
       yield const LoginState.loading();
 
       final either = await _userLoginUseCase(
