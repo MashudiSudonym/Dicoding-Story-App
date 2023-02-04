@@ -18,4 +18,5 @@ class Constants {
   static const tokenIsEmptyMessage = 'token is empty';
   static const isAuthenticated = true;
   static const authorization = "Authorization";
+  static const bearer = "Bearer ";
 }

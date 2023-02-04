@@ -37,8 +37,6 @@ class LoginRepositoryImpl implements LoginRepository {
       }
     } catch (e) {
       result = Resource.error(e.toString(), null);
-    } finally {
-      _apiServices.client.dispose();
     }
 
     return result;
