@@ -8,7 +8,7 @@ class LoginViewModel extends ChangeNotifier {
 
   LoginViewModel(this.loginBloc);
 
-  void submitLogin({String? email, String? password}) {
+  void submitLogin(String? email, String? password) {
     loginBloc.add(
       LoginEvent.loginButtonPressed(email: email, password: password),
     );
