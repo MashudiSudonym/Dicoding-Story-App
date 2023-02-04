@@ -1,5 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:injectable/injectable.dart';
 import 'package:story_app/common/util/constants.dart';
 import 'package:story_app/register/domain/model/register_response.dart';
 import 'package:story_app/register/domain/use_case/user_register_use_case.dart';
@@ -8,6 +9,7 @@ part 'register_bloc.freezed.dart';
 part 'register_event.dart';
 part 'register_state.dart';
 
+@injectable
 class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
   final UserRegisterUseCase _userRegisterUseCase;
 
