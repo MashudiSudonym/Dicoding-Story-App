@@ -61,4 +61,19 @@ class _$ApiServices extends ApiServices {
       requestConverter: FormUrlEncodedConverter.requestFactory,
     );
   }
+
+  @override
+  Future<Response<dynamic>> getListStory(String token) {
+    final Uri $url = Uri.parse('stories');
+    final Map<String, String> $headers = {
+      'Authorization': token,
+    };
+    final Request $request = Request(
+      'GET',
+      $url,
+      client.baseUrl,
+      headers: $headers,
+    );
+    return client.send<dynamic, dynamic>($request);
+  }
 }
