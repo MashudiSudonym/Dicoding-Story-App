@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:chopper/chopper.dart';
 import 'package:story_app/common/util/constants.dart';
+import 'package:story_app/list_story/data/remote/dto/list_story_response_dto.dart';
 
 part 'api_services.chopper.dart';
 
@@ -28,5 +29,11 @@ abstract class ApiServices extends ChopperService {
     @Field(Constants.name) String name,
     @Field(Constants.email) String email,
     @Field(Constants.password) String password,
+  );
+
+  // List Stories Services
+  @Get(path: Constants.storiesApi)
+  Future<ListStoryResponseDTO> getListStory(
+    @Header(Constants.authorization) String token,
   );
 }

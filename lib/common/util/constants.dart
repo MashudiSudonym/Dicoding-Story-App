@@ -17,4 +17,5 @@ class Constants {
   static const authenticationFailedMessage = 'authentication failed';
   static const tokenIsEmptyMessage = 'token is empty';
   static const isAuthenticated = true;
+  static const authorization = "Authorization";
 }
