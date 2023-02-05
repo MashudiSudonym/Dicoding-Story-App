@@ -9,7 +9,7 @@ extension StoryResponseDTOExtension on StoryResponseDTO {
         name: name,
         description: description,
         photoUrl: photoUrl,
-        createAt: createAt,
+        createdAt: createdAt,
       );
 }
 
@@ -19,7 +19,7 @@ extension ListStoryResponseDTOExtension on ListStoryResponseDTO {
         message: message,
         listStoryResponse: listStoryResponseDTO
             ?.map(
-              (data) => data.toStoryResponse(),
+              (data) => data?.toStoryResponse(),
             )
             .toList(),
       );

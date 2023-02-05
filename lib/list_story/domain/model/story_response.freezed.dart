@@ -24,7 +24,8 @@ mixin _$StoryResponse {
   String get name => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
   String get photoUrl => throw _privateConstructorUsedError;
-  String get createAt => throw _privateConstructorUsedError;
+
+  String get createdAt => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -37,13 +38,14 @@ abstract class $StoryResponseCopyWith<$Res> {
   factory $StoryResponseCopyWith(
           StoryResponse value, $Res Function(StoryResponse) then) =
       _$StoryResponseCopyWithImpl<$Res, StoryResponse>;
+
   @useResult
   $Res call(
       {String id,
       String name,
       String description,
       String photoUrl,
-      String createAt});
+      String createdAt});
 }
 
 /// @nodoc
@@ -63,7 +65,7 @@ class _$StoryResponseCopyWithImpl<$Res, $Val extends StoryResponse>
     Object? name = null,
     Object? description = null,
     Object? photoUrl = null,
-    Object? createAt = null,
+    Object? createdAt = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -82,9 +84,9 @@ class _$StoryResponseCopyWithImpl<$Res, $Val extends StoryResponse>
           ? _value.photoUrl
           : photoUrl // ignore: cast_nullable_to_non_nullable
               as String,
-      createAt: null == createAt
-          ? _value.createAt
-          : createAt // ignore: cast_nullable_to_non_nullable
+      createdAt: null == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
               as String,
     ) as $Val);
   }
@@ -96,6 +98,7 @@ abstract class _$$_StoryResponseCopyWith<$Res>
   factory _$$_StoryResponseCopyWith(
           _$_StoryResponse value, $Res Function(_$_StoryResponse) then) =
       __$$_StoryResponseCopyWithImpl<$Res>;
+
   @override
   @useResult
   $Res call(
@@ -103,7 +106,7 @@ abstract class _$$_StoryResponseCopyWith<$Res>
       String name,
       String description,
       String photoUrl,
-      String createAt});
+      String createdAt});
 }
 
 /// @nodoc
@@ -121,7 +124,7 @@ class __$$_StoryResponseCopyWithImpl<$Res>
     Object? name = null,
     Object? description = null,
     Object? photoUrl = null,
-    Object? createAt = null,
+    Object? createdAt = null,
   }) {
     return _then(_$_StoryResponse(
       id: null == id
@@ -140,9 +143,9 @@ class __$$_StoryResponseCopyWithImpl<$Res>
           ? _value.photoUrl
           : photoUrl // ignore: cast_nullable_to_non_nullable
               as String,
-      createAt: null == createAt
-          ? _value.createAt
-          : createAt // ignore: cast_nullable_to_non_nullable
+      createdAt: null == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -156,7 +159,7 @@ class _$_StoryResponse implements _StoryResponse {
       required this.name,
       required this.description,
       required this.photoUrl,
-      required this.createAt});
+      required this.createdAt});
 
   factory _$_StoryResponse.fromJson(Map<String, dynamic> json) =>
       _$$_StoryResponseFromJson(json);
@@ -170,11 +173,11 @@ class _$_StoryResponse implements _StoryResponse {
   @override
   final String photoUrl;
   @override
-  final String createAt;
+  final String createdAt;
 
   @override
   String toString() {
-    return 'StoryResponse(id: $id, name: $name, description: $description, photoUrl: $photoUrl, createAt: $createAt)';
+    return 'StoryResponse(id: $id, name: $name, description: $description, photoUrl: $photoUrl, createdAt: $createdAt)';
   }
 
   @override
@@ -188,14 +191,14 @@ class _$_StoryResponse implements _StoryResponse {
                 other.description == description) &&
             (identical(other.photoUrl, photoUrl) ||
                 other.photoUrl == photoUrl) &&
-            (identical(other.createAt, createAt) ||
-                other.createAt == createAt));
+            (identical(other.createdAt, createdAt) ||
+                other.createdAt == createdAt));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode =>
-      Object.hash(runtimeType, id, name, description, photoUrl, createAt);
+      Object.hash(runtimeType, id, name, description, photoUrl, createdAt);
 
   @JsonKey(ignore: true)
   @override
@@ -217,7 +220,7 @@ abstract class _StoryResponse implements StoryResponse {
       required final String name,
       required final String description,
       required final String photoUrl,
-      required final String createAt}) = _$_StoryResponse;
+      required final String createdAt}) = _$_StoryResponse;
 
   factory _StoryResponse.fromJson(Map<String, dynamic> json) =
       _$_StoryResponse.fromJson;
@@ -228,10 +231,13 @@ abstract class _StoryResponse implements StoryResponse {
   String get name;
   @override
   String get description;
+
   @override
   String get photoUrl;
+
   @override
-  String get createAt;
+  String get createdAt;
+
   @override
   @JsonKey(ignore: true)
   _$$_StoryResponseCopyWith<_$_StoryResponse> get copyWith =>

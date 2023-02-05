@@ -67,6 +67,7 @@ class _$ApiServices extends ApiServices {
     final Uri $url = Uri.parse('stories');
     final Map<String, String> $headers = {
       'Authorization': token,
+      'Content-Type': 'application/json',
     };
     final Request $request = Request(
       'GET',

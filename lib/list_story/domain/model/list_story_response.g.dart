@@ -11,7 +11,9 @@ _$_ListStoryResponse _$$_ListStoryResponseFromJson(Map<String, dynamic> json) =>
       error: json['error'] as bool,
       message: json['message'] as String,
       listStoryResponse: (json['listStoryResponse'] as List<dynamic>?)
-          ?.map((e) => StoryResponse.fromJson(e as Map<String, dynamic>))
+          ?.map((e) => e == null
+              ? null
+              : StoryResponse.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 

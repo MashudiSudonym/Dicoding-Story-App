@@ -19,4 +19,6 @@ class Constants {
   static const isAuthenticated = true;
   static const authorization = "Authorization";
   static const bearer = "Bearer ";
+  static const contentType = 'Content-Type';
+  static const applicationJson = 'application/json';
 }

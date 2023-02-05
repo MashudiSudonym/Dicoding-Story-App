@@ -9,7 +9,7 @@ class ListStoryResponseDTO with _$ListStoryResponseDTO {
   const factory ListStoryResponseDTO({
     @JsonKey(name: 'error') required bool error,
     @JsonKey(name: 'message') required String message,
-    @JsonKey(name: 'listStory') List<StoryResponseDTO>? listStoryResponseDTO,
+    @JsonKey(name: 'listStory') List<StoryResponseDTO?>? listStoryResponseDTO,
   }) = _ListStoryResponseDTO;
 
   factory ListStoryResponseDTO.fromJson(Map<String, dynamic> json) =>

@@ -9,7 +9,7 @@ class ListStoryResponse with _$ListStoryResponse {
   const factory ListStoryResponse({
     required bool error,
     required String message,
-    List<StoryResponse>? listStoryResponse,
+    List<StoryResponse?>? listStoryResponse,
   }) = _ListStoryResponse;
 
   factory ListStoryResponse.fromJson(Map<String, dynamic> json) =>

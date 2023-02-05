@@ -22,16 +22,21 @@ StoryResponseDTO _$StoryResponseDTOFromJson(Map<String, dynamic> json) {
 mixin _$StoryResponseDTO {
   @JsonKey(name: 'id')
   String get id => throw _privateConstructorUsedError;
+
   @JsonKey(name: 'name')
   String get name => throw _privateConstructorUsedError;
+
   @JsonKey(name: 'description')
   String get description => throw _privateConstructorUsedError;
+
   @JsonKey(name: 'photoUrl')
   String get photoUrl => throw _privateConstructorUsedError;
-  @JsonKey(name: 'createAt')
-  String get createAt => throw _privateConstructorUsedError;
+
+  @JsonKey(name: 'createdAt')
+  String get createdAt => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+
   @JsonKey(ignore: true)
   $StoryResponseDTOCopyWith<StoryResponseDTO> get copyWith =>
       throw _privateConstructorUsedError;
@@ -42,13 +47,14 @@ abstract class $StoryResponseDTOCopyWith<$Res> {
   factory $StoryResponseDTOCopyWith(
           StoryResponseDTO value, $Res Function(StoryResponseDTO) then) =
       _$StoryResponseDTOCopyWithImpl<$Res, StoryResponseDTO>;
+
   @useResult
   $Res call(
       {@JsonKey(name: 'id') String id,
       @JsonKey(name: 'name') String name,
       @JsonKey(name: 'description') String description,
       @JsonKey(name: 'photoUrl') String photoUrl,
-      @JsonKey(name: 'createAt') String createAt});
+      @JsonKey(name: 'createdAt') String createdAt});
 }
 
 /// @nodoc
@@ -68,7 +74,7 @@ class _$StoryResponseDTOCopyWithImpl<$Res, $Val extends StoryResponseDTO>
     Object? name = null,
     Object? description = null,
     Object? photoUrl = null,
-    Object? createAt = null,
+    Object? createdAt = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -87,9 +93,9 @@ class _$StoryResponseDTOCopyWithImpl<$Res, $Val extends StoryResponseDTO>
           ? _value.photoUrl
           : photoUrl // ignore: cast_nullable_to_non_nullable
               as String,
-      createAt: null == createAt
-          ? _value.createAt
-          : createAt // ignore: cast_nullable_to_non_nullable
+      createdAt: null == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
               as String,
     ) as $Val);
   }
@@ -101,6 +107,7 @@ abstract class _$$_StoryResponseDTOCopyWith<$Res>
   factory _$$_StoryResponseDTOCopyWith(
           _$_StoryResponseDTO value, $Res Function(_$_StoryResponseDTO) then) =
       __$$_StoryResponseDTOCopyWithImpl<$Res>;
+
   @override
   @useResult
   $Res call(
@@ -108,7 +115,7 @@ abstract class _$$_StoryResponseDTOCopyWith<$Res>
       @JsonKey(name: 'name') String name,
       @JsonKey(name: 'description') String description,
       @JsonKey(name: 'photoUrl') String photoUrl,
-      @JsonKey(name: 'createAt') String createAt});
+      @JsonKey(name: 'createdAt') String createdAt});
 }
 
 /// @nodoc
@@ -126,7 +133,7 @@ class __$$_StoryResponseDTOCopyWithImpl<$Res>
     Object? name = null,
     Object? description = null,
     Object? photoUrl = null,
-    Object? createAt = null,
+    Object? createdAt = null,
   }) {
     return _then(_$_StoryResponseDTO(
       id: null == id
@@ -145,9 +152,9 @@ class __$$_StoryResponseDTOCopyWithImpl<$Res>
           ? _value.photoUrl
           : photoUrl // ignore: cast_nullable_to_non_nullable
               as String,
-      createAt: null == createAt
-          ? _value.createAt
-          : createAt // ignore: cast_nullable_to_non_nullable
+      createdAt: null == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -161,7 +168,7 @@ class _$_StoryResponseDTO implements _StoryResponseDTO {
       @JsonKey(name: 'name') required this.name,
       @JsonKey(name: 'description') required this.description,
       @JsonKey(name: 'photoUrl') required this.photoUrl,
-      @JsonKey(name: 'createAt') required this.createAt});
+      @JsonKey(name: 'createdAt') required this.createdAt});
 
   factory _$_StoryResponseDTO.fromJson(Map<String, dynamic> json) =>
       _$$_StoryResponseDTOFromJson(json);
@@ -179,12 +186,12 @@ class _$_StoryResponseDTO implements _StoryResponseDTO {
   @JsonKey(name: 'photoUrl')
   final String photoUrl;
   @override
-  @JsonKey(name: 'createAt')
-  final String createAt;
+  @JsonKey(name: 'createdAt')
+  final String createdAt;
 
   @override
   String toString() {
-    return 'StoryResponseDTO(id: $id, name: $name, description: $description, photoUrl: $photoUrl, createAt: $createAt)';
+    return 'StoryResponseDTO(id: $id, name: $name, description: $description, photoUrl: $photoUrl, createdAt: $createdAt)';
   }
 
   @override
@@ -198,14 +205,14 @@ class _$_StoryResponseDTO implements _StoryResponseDTO {
                 other.description == description) &&
             (identical(other.photoUrl, photoUrl) ||
                 other.photoUrl == photoUrl) &&
-            (identical(other.createAt, createAt) ||
-                other.createAt == createAt));
+            (identical(other.createdAt, createdAt) ||
+                other.createdAt == createdAt));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode =>
-      Object.hash(runtimeType, id, name, description, photoUrl, createAt);
+      Object.hash(runtimeType, id, name, description, photoUrl, createdAt);
 
   @JsonKey(ignore: true)
   @override
@@ -227,7 +234,7 @@ abstract class _StoryResponseDTO implements StoryResponseDTO {
           @JsonKey(name: 'name') required final String name,
           @JsonKey(name: 'description') required final String description,
           @JsonKey(name: 'photoUrl') required final String photoUrl,
-          @JsonKey(name: 'createAt') required final String createAt}) =
+          @JsonKey(name: 'createdAt') required final String createdAt}) =
       _$_StoryResponseDTO;
 
   factory _StoryResponseDTO.fromJson(Map<String, dynamic> json) =
@@ -242,12 +249,15 @@ abstract class _StoryResponseDTO implements StoryResponseDTO {
   @override
   @JsonKey(name: 'description')
   String get description;
+
   @override
   @JsonKey(name: 'photoUrl')
   String get photoUrl;
+
   @override
-  @JsonKey(name: 'createAt')
-  String get createAt;
+  @JsonKey(name: 'createdAt')
+  String get createdAt;
+
   @override
   @JsonKey(ignore: true)
   _$$_StoryResponseDTOCopyWith<_$_StoryResponseDTO> get copyWith =>

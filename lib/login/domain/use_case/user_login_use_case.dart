@@ -19,7 +19,7 @@ class UserLoginUseCase {
       String email, String password) async {
     final resource = await _loginRepository.postLogin(email, password);
     final saveToken = await _saveTokenToDataStoreUseCase(
-      resource.data?.loginResult?.token ?? Constants.blankString,
+      '${Constants.bearer}${resource.data?.loginResult?.token}',
     );
 
     if (resource is Success) {

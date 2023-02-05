@@ -26,11 +26,11 @@ import 'package:story_app/authentication_check/presentation/bloc/authentication_
 import 'package:story_app/authentication_check/presentation/view_model/authentication_check_view_model.dart'
     as _i15;
 import 'package:story_app/common/data/remote/api_services.dart' as _i13;
-import 'package:story_app/common/di/api_services_network_module.dart' as _i31;
-import 'package:story_app/common/di/network_module.dart' as _i29;
+import 'package:story_app/common/di/api_services_network_module.dart' as _i29;
+import 'package:story_app/common/di/network_module.dart' as _i30;
 import 'package:story_app/data_store/data/repository/data_store_repository_impl.dart'
     as _i5;
-import 'package:story_app/data_store/di/data_store_module.dart' as _i30;
+import 'package:story_app/data_store/di/data_store_module.dart' as _i31;
 import 'package:story_app/data_store/domain/repository/data_store_repository.dart'
     as _i4;
 import 'package:story_app/list_story/data/repository/list_story_repository_impl.dart'
@@ -134,8 +134,8 @@ extension GetItInjectableX on _i1.GetIt {
   }
 }
 
-class _$NetworkModule extends _i29.NetworkModule {}
+class _$ApiServicesNetworkModule extends _i29.ApiServicesNetworkModule {}
 
-class _$DataStoreModule extends _i30.DataStoreModule {}
+class _$NetworkModule extends _i30.NetworkModule {}
 
-class _$ApiServicesNetworkModule extends _i31.ApiServicesNetworkModule {}
+class _$DataStoreModule extends _i31.DataStoreModule {}

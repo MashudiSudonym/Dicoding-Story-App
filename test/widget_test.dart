@@ -5,9 +5,7 @@
 // gestures. You can also use WidgetTester to find child widgets in the widget
 // tree, read text, and verify that the values of widget properties are correct.
 
-import 'package:story_app/authentication_check/domain/model/authentication_status.dart';
 import 'package:story_app/authentication_check/domain/model/authentication_token.dart';
-import 'package:story_app/authentication_check/domain/use_case/check_authentication_use_case/check_authentication_use_case.dart';
 import 'package:story_app/authentication_check/domain/use_case/get_token_from_data_store_use_case/get_token_from_data_store_use_case.dart';
 import 'package:story_app/common/di/injection.dart';
 import 'package:story_app/common/util/constants.dart';
@@ -103,18 +101,23 @@ void main() async {
 
   Constants.logger.d(resultGetToken.token);
 
-  final checkAuthenticationUseCase = getIt<CheckAuthenticationUseCase>();
+  // final listStoryRepository = getIt<ListStoryRepository>();
+  // final result = await listStoryRepository.getListStory(resultGetToken.token);
+  //
+  // Constants.logger.w(result);
 
-  final failureOrResponseAuth = await checkAuthenticationUseCase();
-
-  final resultAuth = failureOrResponseAuth.fold(
-    (failure) => const AuthenticationStatus(
-      isAuthenticated: !Constants.isAuthenticated,
-    ),
-    (response) => response,
-  );
-
-  Constants.logger.d(resultAuth.isAuthenticated);
+  // final checkAuthenticationUseCase = getIt<CheckAuthenticationUseCase>();
+  //
+  // final failureOrResponseAuth = await checkAuthenticationUseCase();
+  //
+  // final resultAuth = failureOrResponseAuth.fold(
+  //   (failure) => const AuthenticationStatus(
+  //     isAuthenticated: !Constants.isAuthenticated,
+  //   ),
+  //   (response) => response,
+  // );
+  //
+  // Constants.logger.d(resultAuth.isAuthenticated);
 
   final showListStoryUseCase = getIt<ShowListStoryUseCase>();
 
@@ -124,9 +127,16 @@ void main() async {
     (failure) => ListStoryResponse(
       error: true,
       message: failure.message,
+      listStoryResponse: [],
     ),
     (response) => response,
   );
 
   Constants.logger.d(resultShowListStory);
+
+  // final apiServices = getIt<ApiServices>();
+  //
+  // final getListStory = await apiServices.getListStory(resultGetToken.token);
+  //
+  // Constants.logger.w(getListStory.body);
 }

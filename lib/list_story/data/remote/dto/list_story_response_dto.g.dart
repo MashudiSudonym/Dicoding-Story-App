@@ -12,7 +12,9 @@ _$_ListStoryResponseDTO _$$_ListStoryResponseDTOFromJson(
       error: json['error'] as bool,
       message: json['message'] as String,
       listStoryResponseDTO: (json['listStory'] as List<dynamic>?)
-          ?.map((e) => StoryResponseDTO.fromJson(e as Map<String, dynamic>))
+          ?.map((e) => e == null
+              ? null
+              : StoryResponseDTO.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 

@@ -31,7 +31,12 @@ abstract class ApiServices extends ChopperService {
   );
 
   // List Stories Services
-  @Get(path: Constants.storiesApi)
+  @Get(
+    path: Constants.storiesApi,
+    headers: {
+      Constants.contentType: Constants.applicationJson,
+    },
+  )
   Future<Response> getListStory(
     @Header(Constants.authorization) String token,
   );

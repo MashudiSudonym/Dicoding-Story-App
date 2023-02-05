@@ -26,7 +26,6 @@ class ShowListStoryUseCase {
       (failure) => const AuthenticationToken(token: Constants.blankString),
       (response) => response,
     );
-
     final resource =
         await _listStoryRepository.getListStory(resultGetToken.token);
 

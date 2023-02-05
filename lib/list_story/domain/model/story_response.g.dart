@@ -12,7 +12,7 @@ _$_StoryResponse _$$_StoryResponseFromJson(Map<String, dynamic> json) =>
       name: json['name'] as String,
       description: json['description'] as String,
       photoUrl: json['photoUrl'] as String,
-      createAt: json['createAt'] as String,
+      createdAt: json['createdAt'] as String,
     );
 
 Map<String, dynamic> _$$_StoryResponseToJson(_$_StoryResponse instance) =>
@@ -21,5 +21,5 @@ Map<String, dynamic> _$$_StoryResponseToJson(_$_StoryResponse instance) =>
       'name': instance.name,
       'description': instance.description,
       'photoUrl': instance.photoUrl,
-      'createAt': instance.createAt,
+      'createdAt': instance.createdAt,
     };

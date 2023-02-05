@@ -10,7 +10,7 @@ class StoryResponse with _$StoryResponse {
     required String name,
     required String description,
     required String photoUrl,
-    required String createAt,
+    required String createdAt,
   }) = _StoryResponse;
 
   factory StoryResponse.fromJson(Map<String, dynamic> json) =>
