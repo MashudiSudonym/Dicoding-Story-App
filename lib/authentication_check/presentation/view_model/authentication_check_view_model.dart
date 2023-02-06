@@ -4,16 +4,16 @@ import 'package:story_app/authentication_check/presentation/bloc/authentication_
 
 @injectable
 class AuthenticationCheckViewModel extends ChangeNotifier {
-  final AuthenticationCheckBloc authenticationCheckBloc;
+  final AuthenticationCheckBloc _authenticationCheckBloc;
 
-  AuthenticationCheckViewModel(this.authenticationCheckBloc);
+  AuthenticationCheckViewModel(this._authenticationCheckBloc);
 
   AuthenticationCheckState get authenticationCheckState =>
-      authenticationCheckBloc.state;
+      _authenticationCheckBloc.state;
 
   @override
   void dispose() {
-    authenticationCheckBloc.close();
+    _authenticationCheckBloc.close();
     super.dispose();
   }
 }
