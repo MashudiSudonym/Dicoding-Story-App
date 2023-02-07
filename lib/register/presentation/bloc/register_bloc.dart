@@ -13,11 +13,10 @@ part 'register_state.dart';
 class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
   final UserRegisterUseCase _userRegisterUseCase;
 
-  RegisterBloc(this._userRegisterUseCase)
-      : super(const RegisterState.initial());
+  RegisterBloc(this._userRegisterUseCase) : super(const _Initial());
 
   Stream<RegisterState> mapEventToState(RegisterEvent event) async* {
-    if (event is RegisterButtonPressed) {
+    if (event is _RegisterButtonPressed) {
       yield const RegisterState.loading();
 
       final either = await _userRegisterUseCase(

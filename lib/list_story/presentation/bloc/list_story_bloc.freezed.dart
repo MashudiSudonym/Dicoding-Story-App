@@ -34,17 +34,17 @@ mixin _$ListStoryEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(LoadListStory value) loadListStory,
+    required TResult Function(_LoadListStory value) loadListStory,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(LoadListStory value)? loadListStory,
+    TResult? Function(_LoadListStory value)? loadListStory,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(LoadListStory value)? loadListStory,
+    TResult Function(_LoadListStory value)? loadListStory,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -69,25 +69,25 @@ class _$ListStoryEventCopyWithImpl<$Res, $Val extends ListStoryEvent>
 }
 
 /// @nodoc
-abstract class _$$LoadListStoryCopyWith<$Res> {
-  factory _$$LoadListStoryCopyWith(
-          _$LoadListStory value, $Res Function(_$LoadListStory) then) =
-      __$$LoadListStoryCopyWithImpl<$Res>;
+abstract class _$$_LoadListStoryCopyWith<$Res> {
+  factory _$$_LoadListStoryCopyWith(
+          _$_LoadListStory value, $Res Function(_$_LoadListStory) then) =
+      __$$_LoadListStoryCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$LoadListStoryCopyWithImpl<$Res>
-    extends _$ListStoryEventCopyWithImpl<$Res, _$LoadListStory>
-    implements _$$LoadListStoryCopyWith<$Res> {
-  __$$LoadListStoryCopyWithImpl(
-      _$LoadListStory _value, $Res Function(_$LoadListStory) _then)
+class __$$_LoadListStoryCopyWithImpl<$Res>
+    extends _$ListStoryEventCopyWithImpl<$Res, _$_LoadListStory>
+    implements _$$_LoadListStoryCopyWith<$Res> {
+  __$$_LoadListStoryCopyWithImpl(
+      _$_LoadListStory _value, $Res Function(_$_LoadListStory) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$LoadListStory implements LoadListStory {
-  const _$LoadListStory();
+class _$_LoadListStory implements _LoadListStory {
+  const _$_LoadListStory();
 
   @override
   String toString() {
@@ -97,7 +97,7 @@ class _$LoadListStory implements LoadListStory {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$LoadListStory);
+        (other.runtimeType == runtimeType && other is _$_LoadListStory);
   }
 
   @override
@@ -134,7 +134,7 @@ class _$LoadListStory implements LoadListStory {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(LoadListStory value) loadListStory,
+    required TResult Function(_LoadListStory value) loadListStory,
   }) {
     return loadListStory(this);
   }
@@ -142,7 +142,7 @@ class _$LoadListStory implements LoadListStory {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(LoadListStory value)? loadListStory,
+    TResult? Function(_LoadListStory value)? loadListStory,
   }) {
     return loadListStory?.call(this);
   }
@@ -150,7 +150,7 @@ class _$LoadListStory implements LoadListStory {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(LoadListStory value)? loadListStory,
+    TResult Function(_LoadListStory value)? loadListStory,
     required TResult orElse(),
   }) {
     if (loadListStory != null) {
@@ -160,8 +160,8 @@ class _$LoadListStory implements LoadListStory {
   }
 }
 
-abstract class LoadListStory implements ListStoryEvent {
-  const factory LoadListStory() = _$LoadListStory;
+abstract class _LoadListStory implements ListStoryEvent {
+  const factory _LoadListStory() = _$_LoadListStory;
 }
 
 /// @nodoc
@@ -190,23 +190,23 @@ mixin _$ListStoryState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(Loading value) loading,
-    required TResult Function(Success value) success,
-    required TResult Function(Failure value) failure,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_Success value) success,
+    required TResult Function(_Failure value) failure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(Loading value)? loading,
-    TResult? Function(Success value)? success,
-    TResult? Function(Failure value)? failure,
+    TResult? Function(_Loading value)? loading,
+    TResult? Function(_Success value)? success,
+    TResult? Function(_Failure value)? failure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(Loading value)? loading,
-    TResult Function(Success value)? success,
-    TResult Function(Failure value)? failure,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Success value)? success,
+    TResult Function(_Failure value)? failure,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -231,23 +231,24 @@ class _$ListStoryStateCopyWithImpl<$Res, $Val extends ListStoryState>
 }
 
 /// @nodoc
-abstract class _$$LoadingCopyWith<$Res> {
-  factory _$$LoadingCopyWith(_$Loading value, $Res Function(_$Loading) then) =
-      __$$LoadingCopyWithImpl<$Res>;
+abstract class _$$_LoadingCopyWith<$Res> {
+  factory _$$_LoadingCopyWith(
+          _$_Loading value, $Res Function(_$_Loading) then) =
+      __$$_LoadingCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$LoadingCopyWithImpl<$Res>
-    extends _$ListStoryStateCopyWithImpl<$Res, _$Loading>
-    implements _$$LoadingCopyWith<$Res> {
-  __$$LoadingCopyWithImpl(_$Loading _value, $Res Function(_$Loading) _then)
+class __$$_LoadingCopyWithImpl<$Res>
+    extends _$ListStoryStateCopyWithImpl<$Res, _$_Loading>
+    implements _$$_LoadingCopyWith<$Res> {
+  __$$_LoadingCopyWithImpl(_$_Loading _value, $Res Function(_$_Loading) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$Loading implements Loading {
-  const _$Loading();
+class _$_Loading implements _Loading {
+  const _$_Loading();
 
   @override
   String toString() {
@@ -257,7 +258,7 @@ class _$Loading implements Loading {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$Loading);
+        (other.runtimeType == runtimeType && other is _$_Loading);
   }
 
   @override
@@ -300,9 +301,9 @@ class _$Loading implements Loading {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(Loading value) loading,
-    required TResult Function(Success value) success,
-    required TResult Function(Failure value) failure,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_Success value) success,
+    required TResult Function(_Failure value) failure,
   }) {
     return loading(this);
   }
@@ -310,9 +311,9 @@ class _$Loading implements Loading {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(Loading value)? loading,
-    TResult? Function(Success value)? success,
-    TResult? Function(Failure value)? failure,
+    TResult? Function(_Loading value)? loading,
+    TResult? Function(_Success value)? success,
+    TResult? Function(_Failure value)? failure,
   }) {
     return loading?.call(this);
   }
@@ -320,9 +321,9 @@ class _$Loading implements Loading {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(Loading value)? loading,
-    TResult Function(Success value)? success,
-    TResult Function(Failure value)? failure,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Success value)? success,
+    TResult Function(_Failure value)? failure,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -332,14 +333,15 @@ class _$Loading implements Loading {
   }
 }
 
-abstract class Loading implements ListStoryState {
-  const factory Loading() = _$Loading;
+abstract class _Loading implements ListStoryState {
+  const factory _Loading() = _$_Loading;
 }
 
 /// @nodoc
-abstract class _$$SuccessCopyWith<$Res> {
-  factory _$$SuccessCopyWith(_$Success value, $Res Function(_$Success) then) =
-      __$$SuccessCopyWithImpl<$Res>;
+abstract class _$$_SuccessCopyWith<$Res> {
+  factory _$$_SuccessCopyWith(
+          _$_Success value, $Res Function(_$_Success) then) =
+      __$$_SuccessCopyWithImpl<$Res>;
   @useResult
   $Res call({ListStoryResponse listStoryResponse});
 
@@ -347,10 +349,10 @@ abstract class _$$SuccessCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$SuccessCopyWithImpl<$Res>
-    extends _$ListStoryStateCopyWithImpl<$Res, _$Success>
-    implements _$$SuccessCopyWith<$Res> {
-  __$$SuccessCopyWithImpl(_$Success _value, $Res Function(_$Success) _then)
+class __$$_SuccessCopyWithImpl<$Res>
+    extends _$ListStoryStateCopyWithImpl<$Res, _$_Success>
+    implements _$$_SuccessCopyWith<$Res> {
+  __$$_SuccessCopyWithImpl(_$_Success _value, $Res Function(_$_Success) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -358,7 +360,7 @@ class __$$SuccessCopyWithImpl<$Res>
   $Res call({
     Object? listStoryResponse = null,
   }) {
-    return _then(_$Success(
+    return _then(_$_Success(
       null == listStoryResponse
           ? _value.listStoryResponse
           : listStoryResponse // ignore: cast_nullable_to_non_nullable
@@ -377,8 +379,8 @@ class __$$SuccessCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$Success implements Success {
-  const _$Success(this.listStoryResponse);
+class _$_Success implements _Success {
+  const _$_Success(this.listStoryResponse);
 
   @override
   final ListStoryResponse listStoryResponse;
@@ -392,7 +394,7 @@ class _$Success implements Success {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$Success &&
+            other is _$_Success &&
             (identical(other.listStoryResponse, listStoryResponse) ||
                 other.listStoryResponse == listStoryResponse));
   }
@@ -403,8 +405,8 @@ class _$Success implements Success {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$SuccessCopyWith<_$Success> get copyWith =>
-      __$$SuccessCopyWithImpl<_$Success>(this, _$identity);
+  _$$_SuccessCopyWith<_$_Success> get copyWith =>
+      __$$_SuccessCopyWithImpl<_$_Success>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -443,9 +445,9 @@ class _$Success implements Success {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(Loading value) loading,
-    required TResult Function(Success value) success,
-    required TResult Function(Failure value) failure,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_Success value) success,
+    required TResult Function(_Failure value) failure,
   }) {
     return success(this);
   }
@@ -453,9 +455,9 @@ class _$Success implements Success {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(Loading value)? loading,
-    TResult? Function(Success value)? success,
-    TResult? Function(Failure value)? failure,
+    TResult? Function(_Loading value)? loading,
+    TResult? Function(_Success value)? success,
+    TResult? Function(_Failure value)? failure,
   }) {
     return success?.call(this);
   }
@@ -463,9 +465,9 @@ class _$Success implements Success {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(Loading value)? loading,
-    TResult Function(Success value)? success,
-    TResult Function(Failure value)? failure,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Success value)? success,
+    TResult Function(_Failure value)? failure,
     required TResult orElse(),
   }) {
     if (success != null) {
@@ -475,28 +477,30 @@ class _$Success implements Success {
   }
 }
 
-abstract class Success implements ListStoryState {
-  const factory Success(final ListStoryResponse listStoryResponse) = _$Success;
+abstract class _Success implements ListStoryState {
+  const factory _Success(final ListStoryResponse listStoryResponse) =
+      _$_Success;
 
   ListStoryResponse get listStoryResponse;
   @JsonKey(ignore: true)
-  _$$SuccessCopyWith<_$Success> get copyWith =>
+  _$$_SuccessCopyWith<_$_Success> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$FailureCopyWith<$Res> {
-  factory _$$FailureCopyWith(_$Failure value, $Res Function(_$Failure) then) =
-      __$$FailureCopyWithImpl<$Res>;
+abstract class _$$_FailureCopyWith<$Res> {
+  factory _$$_FailureCopyWith(
+          _$_Failure value, $Res Function(_$_Failure) then) =
+      __$$_FailureCopyWithImpl<$Res>;
   @useResult
   $Res call({String message});
 }
 
 /// @nodoc
-class __$$FailureCopyWithImpl<$Res>
-    extends _$ListStoryStateCopyWithImpl<$Res, _$Failure>
-    implements _$$FailureCopyWith<$Res> {
-  __$$FailureCopyWithImpl(_$Failure _value, $Res Function(_$Failure) _then)
+class __$$_FailureCopyWithImpl<$Res>
+    extends _$ListStoryStateCopyWithImpl<$Res, _$_Failure>
+    implements _$$_FailureCopyWith<$Res> {
+  __$$_FailureCopyWithImpl(_$_Failure _value, $Res Function(_$_Failure) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -504,7 +508,7 @@ class __$$FailureCopyWithImpl<$Res>
   $Res call({
     Object? message = null,
   }) {
-    return _then(_$Failure(
+    return _then(_$_Failure(
       null == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -515,8 +519,8 @@ class __$$FailureCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$Failure implements Failure {
-  const _$Failure(this.message);
+class _$_Failure implements _Failure {
+  const _$_Failure(this.message);
 
   @override
   final String message;
@@ -530,7 +534,7 @@ class _$Failure implements Failure {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$Failure &&
+            other is _$_Failure &&
             (identical(other.message, message) || other.message == message));
   }
 
@@ -540,8 +544,8 @@ class _$Failure implements Failure {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$FailureCopyWith<_$Failure> get copyWith =>
-      __$$FailureCopyWithImpl<_$Failure>(this, _$identity);
+  _$$_FailureCopyWith<_$_Failure> get copyWith =>
+      __$$_FailureCopyWithImpl<_$_Failure>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -580,9 +584,9 @@ class _$Failure implements Failure {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(Loading value) loading,
-    required TResult Function(Success value) success,
-    required TResult Function(Failure value) failure,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_Success value) success,
+    required TResult Function(_Failure value) failure,
   }) {
     return failure(this);
   }
@@ -590,9 +594,9 @@ class _$Failure implements Failure {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(Loading value)? loading,
-    TResult? Function(Success value)? success,
-    TResult? Function(Failure value)? failure,
+    TResult? Function(_Loading value)? loading,
+    TResult? Function(_Success value)? success,
+    TResult? Function(_Failure value)? failure,
   }) {
     return failure?.call(this);
   }
@@ -600,9 +604,9 @@ class _$Failure implements Failure {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(Loading value)? loading,
-    TResult Function(Success value)? success,
-    TResult Function(Failure value)? failure,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Success value)? success,
+    TResult Function(_Failure value)? failure,
     required TResult orElse(),
   }) {
     if (failure != null) {
@@ -612,11 +616,11 @@ class _$Failure implements Failure {
   }
 }
 
-abstract class Failure implements ListStoryState {
-  const factory Failure(final String message) = _$Failure;
+abstract class _Failure implements ListStoryState {
+  const factory _Failure(final String message) = _$_Failure;
 
   String get message;
   @JsonKey(ignore: true)
-  _$$FailureCopyWith<_$Failure> get copyWith =>
+  _$$_FailureCopyWith<_$_Failure> get copyWith =>
       throw _privateConstructorUsedError;
 }

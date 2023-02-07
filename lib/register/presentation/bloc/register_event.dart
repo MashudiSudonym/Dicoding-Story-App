@@ -6,5 +6,5 @@ class RegisterEvent with _$RegisterEvent {
     @required String? name,
     @required String? email,
     @required String? password,
-  }) = RegisterButtonPressed;
+  }) = _RegisterButtonPressed;
 }

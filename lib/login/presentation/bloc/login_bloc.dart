@@ -13,10 +13,10 @@ part 'login_state.dart';
 class LoginBloc extends Bloc<LoginEvent, LoginState> {
   final UserLoginUseCase _userLoginUseCase;
 
-  LoginBloc(this._userLoginUseCase) : super(const LoginState.initial());
+  LoginBloc(this._userLoginUseCase) : super(const _Initial());
 
   Stream<LoginState> mapEventToState(LoginEvent event) async* {
-    if (event is LoginButtonPressed) {
+    if (event is _LoginButtonPressed) {
       yield const LoginState.loading();
 
       final either = await _userLoginUseCase(

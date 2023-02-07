@@ -12,11 +12,10 @@ part 'list_story_state.dart';
 class ListStoryBloc extends Bloc<ListStoryEvent, ListStoryState> {
   final ShowListStoryUseCase _showListStoryUseCase;
 
-  ListStoryBloc(this._showListStoryUseCase)
-      : super(const ListStoryState.loading());
+  ListStoryBloc(this._showListStoryUseCase) : super(const _Loading());
 
   Stream<ListStoryState> mapEventToState(ListStoryEvent event) async* {
-    if (event is LoadListStory) {
+    if (event is _LoadListStory) {
       yield* _mapLoadListStoryToState();
     }
   }
