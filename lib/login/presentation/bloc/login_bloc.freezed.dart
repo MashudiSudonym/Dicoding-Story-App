@@ -40,7 +40,6 @@ mixin _$LoginEvent {
     required TResult Function(_LoginButtonPressed value) loginButtonPressed,
   }) =>
       throw _privateConstructorUsedError;
-
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_LoginButtonPressed value)? loginButtonPressed,
@@ -127,27 +126,27 @@ class __$$_LoginButtonPressedCopyWithImpl<$Res>
           : email // ignore: cast_nullable_to_non_nullable
               as String?,
       password: freezed == password
-? _value.password
-    : password // ignore: cast_nullable_to_non_nullable
-as String?,
-));
-}
+          ? _value.password
+          : password // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$_LoginButtonPressed implements _LoginButtonPressed {
-const _$_LoginButtonPressed({this.email, this.password});
+  const _$_LoginButtonPressed({this.email, this.password});
 
-@override
-final String? email;
-@override
-final String? password;
+  @override
+  final String? email;
+  @override
+  final String? password;
 
-@override
-String toString() {
-return 'LoginEvent.loginButtonPressed(email: $email, password: $password)';
-}
+  @override
+  String toString() {
+    return 'LoginEvent.loginButtonPressed(email: $email, password: $password)';
+  }
 
   @override
   bool operator ==(dynamic other) {

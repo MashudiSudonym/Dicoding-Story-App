@@ -22,7 +22,6 @@ ListStoryResponse _$ListStoryResponseFromJson(Map<String, dynamic> json) {
 mixin _$ListStoryResponse {
   bool get error => throw _privateConstructorUsedError;
   String get message => throw _privateConstructorUsedError;
-
   List<StoryResponse?>? get listStoryResponse =>
       throw _privateConstructorUsedError;
 
@@ -37,7 +36,6 @@ abstract class $ListStoryResponseCopyWith<$Res> {
   factory $ListStoryResponseCopyWith(
           ListStoryResponse value, $Res Function(ListStoryResponse) then) =
       _$ListStoryResponseCopyWithImpl<$Res, ListStoryResponse>;
-
   @useResult
   $Res call(
       {bool error, String message, List<StoryResponse?>? listStoryResponse});
@@ -83,7 +81,6 @@ abstract class _$$_ListStoryResponseCopyWith<$Res>
   factory _$$_ListStoryResponseCopyWith(_$_ListStoryResponse value,
           $Res Function(_$_ListStoryResponse) then) =
       __$$_ListStoryResponseCopyWithImpl<$Res>;
-
   @override
   @useResult
   $Res call(
@@ -139,7 +136,6 @@ class _$_ListStoryResponse implements _ListStoryResponse {
   @override
   final String message;
   final List<StoryResponse?>? _listStoryResponse;
-
   @override
   List<StoryResponse?>? get listStoryResponse {
     final value = _listStoryResponse;
@@ -197,13 +193,10 @@ abstract class _ListStoryResponse implements ListStoryResponse {
 
   @override
   bool get error;
-
   @override
   String get message;
-
   @override
   List<StoryResponse?>? get listStoryResponse;
-
   @override
   @JsonKey(ignore: true)
   _$$_ListStoryResponseCopyWith<_$_ListStoryResponse> get copyWith =>

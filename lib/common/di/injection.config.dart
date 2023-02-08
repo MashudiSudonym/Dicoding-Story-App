@@ -5,55 +5,57 @@
 // **************************************************************************
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:chopper/chopper.dart' as _i9;
+import 'dart:io' as _i3;
+
+import 'package:chopper/chopper.dart' as _i5;
 import 'package:get_it/get_it.dart' as _i1;
-import 'package:hive/hive.dart' as _i3;
+import 'package:hive/hive.dart' as _i4;
 import 'package:injectable/injectable.dart' as _i2;
 import 'package:story_app/authentication_check/data/repository/authentication_check_repository_impl.dart'
-    as _i7;
-import 'package:story_app/authentication_check/domain/repository/authentication_check_repository.dart'
-    as _i6;
-import 'package:story_app/authentication_check/domain/use_case/check_authentication_use_case/check_authentication_use_case.dart'
-    as _i8;
-import 'package:story_app/authentication_check/domain/use_case/get_token_from_data_store_use_case/get_token_from_data_store_use_case.dart'
     as _i10;
-import 'package:story_app/authentication_check/domain/use_case/logout_use_case/logout_use_case.dart'
+import 'package:story_app/authentication_check/domain/repository/authentication_check_repository.dart'
+    as _i9;
+import 'package:story_app/authentication_check/domain/use_case/check_authentication_use_case/check_authentication_use_case.dart'
     as _i11;
-import 'package:story_app/authentication_check/domain/use_case/save_token_to_data_store_use_case/save_token_to_data_store_use_case.dart'
+import 'package:story_app/authentication_check/domain/use_case/get_token_from_data_store_use_case/get_token_from_data_store_use_case.dart'
     as _i12;
+import 'package:story_app/authentication_check/domain/use_case/logout_use_case/logout_use_case.dart'
+    as _i17;
+import 'package:story_app/authentication_check/domain/use_case/save_token_to_data_store_use_case/save_token_to_data_store_use_case.dart'
+    as _i20;
 import 'package:story_app/authentication_check/presentation/bloc/authentication_check_bloc.dart'
-    as _i14;
-import 'package:story_app/common/data/remote/api_services.dart' as _i13;
-import 'package:story_app/common/di/api_services_network_module.dart' as _i27;
-import 'package:story_app/common/di/network_module.dart' as _i28;
+    as _i24;
+import 'package:story_app/common/data/remote/api_services.dart' as _i8;
+import 'package:story_app/common/di/api_services_network_module.dart' as _i28;
+import 'package:story_app/common/di/network_module.dart' as _i29;
 import 'package:story_app/data_store/data/repository/data_store_repository_impl.dart'
-    as _i5;
-import 'package:story_app/data_store/di/data_store_module.dart' as _i29;
+    as _i7;
+import 'package:story_app/data_store/di/data_store_module.dart' as _i30;
 import 'package:story_app/data_store/domain/repository/data_store_repository.dart'
-    as _i4;
+    as _i6;
 import 'package:story_app/list_story/data/repository/list_story_repository_impl.dart'
-    as _i16;
+    as _i14;
 import 'package:story_app/list_story/domain/repository/list_story_repository.dart'
-    as _i15;
+    as _i13;
 import 'package:story_app/list_story/domain/use_case/show_list_story_use_case.dart'
     as _i21;
 import 'package:story_app/list_story/presentation/bloc/list_story_bloc.dart'
-    as _i24;
+    as _i25;
 import 'package:story_app/login/data/repository/login_repository_impl.dart'
-    as _i18;
+    as _i16;
 import 'package:story_app/login/domain/repository/login_repository.dart'
-    as _i17;
+    as _i15;
 import 'package:story_app/login/domain/use_case/user_login_use_case.dart'
     as _i22;
-import 'package:story_app/login/presentation/bloc/login_bloc.dart' as _i25;
+import 'package:story_app/login/presentation/bloc/login_bloc.dart' as _i26;
 import 'package:story_app/register/data/repository/register_repository_impl.dart'
-    as _i20;
-import 'package:story_app/register/domain/repository/register_repository.dart'
     as _i19;
+import 'package:story_app/register/domain/repository/register_repository.dart'
+    as _i18;
 import 'package:story_app/register/domain/use_case/user_register_use_case.dart'
     as _i23;
 import 'package:story_app/register/presentation/bloc/register_bloc.dart'
-    as _i26;
+    as _i27;
 
 /// ignore_for_file: unnecessary_lambdas
 /// ignore_for_file: lines_longer_than_80_chars
@@ -71,63 +73,71 @@ extension GetItInjectableX on _i1.GetIt {
     final dataStoreModule = _$DataStoreModule();
     final networkModule = _$NetworkModule();
     final apiServicesNetworkModule = _$ApiServicesNetworkModule();
-    await gh.factoryAsync<_i3.BoxCollection>(
-      () => dataStoreModule.storyAppCollection(),
-      preResolve: true,
+    gh.factoryAsync<_i3.Directory>(
+      () => dataStoreModule.directory,
+      instanceName: 'dirPath',
     );
-    gh.factory<_i4.DataStoreRepository>(
-        () => _i5.DataStoreRepositoryImpl(gh<_i3.BoxCollection>()));
     gh.factory<String>(
       () => networkModule.baseUrl,
       instanceName: 'BaseUrl',
     );
-    gh.factory<_i6.AuthenticationCheckRepository>(() =>
-        _i7.AuthenticationCheckRepositoryImpl(gh<_i4.DataStoreRepository>()));
-    gh.factory<_i8.CheckAuthenticationUseCase>(() =>
-        _i8.CheckAuthenticationUseCase(
-            gh<_i6.AuthenticationCheckRepository>()));
-    gh.lazySingleton<_i9.ChopperClient>(
+    await gh.factoryAsync<_i4.BoxCollection>(
+      () async => dataStoreModule.storyAppCollection(
+          await getAsync<_i3.Directory>(instanceName: 'dirPath')),
+      preResolve: true,
+    );
+    gh.lazySingleton<_i5.ChopperClient>(
         () => networkModule.chopperClient(gh<String>(instanceName: 'BaseUrl')));
-    gh.factory<_i10.GetTokenFromDataStoreUseCase>(() =>
-        _i10.GetTokenFromDataStoreUseCase(
-            gh<_i6.AuthenticationCheckRepository>()));
-    gh.factory<_i11.LogoutUseCase>(
-        () => _i11.LogoutUseCase(gh<_i6.AuthenticationCheckRepository>()));
-    gh.factory<_i12.SaveTokenToDataStoreUseCase>(() =>
-        _i12.SaveTokenToDataStoreUseCase(
-            gh<_i6.AuthenticationCheckRepository>()));
-    gh.lazySingleton<_i13.ApiServices>(() =>
-        apiServicesNetworkModule.loginServiceApi(gh<_i9.ChopperClient>()));
-    gh.factory<_i14.AuthenticationCheckBloc>(() =>
-        _i14.AuthenticationCheckBloc(gh<_i8.CheckAuthenticationUseCase>()));
-    gh.factory<_i15.ListStoryRepository>(
-        () => _i16.ListStoryRepositoryImpl(gh<_i13.ApiServices>()));
-    gh.factory<_i17.LoginRepository>(
-        () => _i18.LoginRepositoryImpl(gh<_i13.ApiServices>()));
-    gh.factory<_i19.RegisterRepository>(
-        () => _i20.RegisterRepositoryImpl(gh<_i13.ApiServices>()));
-    gh.factory<_i21.ShowListStoryUseCase>(() => _i21.ShowListStoryUseCase(
-          gh<_i15.ListStoryRepository>(),
-          gh<_i10.GetTokenFromDataStoreUseCase>(),
-        ));
-    gh.factory<_i22.UserLoginUseCase>(() => _i22.UserLoginUseCase(
-          gh<_i17.LoginRepository>(),
-          gh<_i12.SaveTokenToDataStoreUseCase>(),
+    gh.factoryAsync<_i6.DataStoreRepository>(() async =>
+        _i7.DataStoreRepositoryImpl(await getAsync<_i4.BoxCollection>()));
+    gh.lazySingleton<_i8.ApiServices>(() =>
+        apiServicesNetworkModule.loginServiceApi(gh<_i5.ChopperClient>()));
+    gh.factoryAsync<_i9.AuthenticationCheckRepository>(() async =>
+        _i10.AuthenticationCheckRepositoryImpl(
+            await getAsync<_i6.DataStoreRepository>()));
+    gh.factoryAsync<_i11.CheckAuthenticationUseCase>(() async =>
+        _i11.CheckAuthenticationUseCase(
+            await getAsync<_i9.AuthenticationCheckRepository>()));
+    gh.factoryAsync<_i12.GetTokenFromDataStoreUseCase>(() async =>
+        _i12.GetTokenFromDataStoreUseCase(
+            await getAsync<_i9.AuthenticationCheckRepository>()));
+    gh.factory<_i13.ListStoryRepository>(
+        () => _i14.ListStoryRepositoryImpl(gh<_i8.ApiServices>()));
+    gh.factory<_i15.LoginRepository>(
+        () => _i16.LoginRepositoryImpl(gh<_i8.ApiServices>()));
+    gh.factoryAsync<_i17.LogoutUseCase>(() async => _i17.LogoutUseCase(
+        await getAsync<_i9.AuthenticationCheckRepository>()));
+    gh.factory<_i18.RegisterRepository>(
+        () => _i19.RegisterRepositoryImpl(gh<_i8.ApiServices>()));
+    gh.factoryAsync<_i20.SaveTokenToDataStoreUseCase>(() async =>
+        _i20.SaveTokenToDataStoreUseCase(
+            await getAsync<_i9.AuthenticationCheckRepository>()));
+    gh.factoryAsync<_i21.ShowListStoryUseCase>(
+        () async => _i21.ShowListStoryUseCase(
+              gh<_i13.ListStoryRepository>(),
+              await getAsync<_i12.GetTokenFromDataStoreUseCase>(),
+            ));
+    gh.factoryAsync<_i22.UserLoginUseCase>(() async => _i22.UserLoginUseCase(
+          gh<_i15.LoginRepository>(),
+          await getAsync<_i20.SaveTokenToDataStoreUseCase>(),
         ));
     gh.factory<_i23.UserRegisterUseCase>(
-        () => _i23.UserRegisterUseCase(gh<_i19.RegisterRepository>()));
-    gh.factory<_i24.ListStoryBloc>(
-        () => _i24.ListStoryBloc(gh<_i21.ShowListStoryUseCase>()));
-    gh.factory<_i25.LoginBloc>(
-        () => _i25.LoginBloc(gh<_i22.UserLoginUseCase>()));
-    gh.factory<_i26.RegisterBloc>(
-        () => _i26.RegisterBloc(gh<_i23.UserRegisterUseCase>()));
+        () => _i23.UserRegisterUseCase(gh<_i18.RegisterRepository>()));
+    gh.factoryAsync<_i24.AuthenticationCheckBloc>(() async =>
+        _i24.AuthenticationCheckBloc(
+            await getAsync<_i11.CheckAuthenticationUseCase>()));
+    gh.factoryAsync<_i25.ListStoryBloc>(() async =>
+        _i25.ListStoryBloc(await getAsync<_i21.ShowListStoryUseCase>()));
+    gh.factoryAsync<_i26.LoginBloc>(
+        () async => _i26.LoginBloc(await getAsync<_i22.UserLoginUseCase>()));
+    gh.factory<_i27.RegisterBloc>(
+        () => _i27.RegisterBloc(gh<_i23.UserRegisterUseCase>()));
     return this;
   }
 }
 
-class _$ApiServicesNetworkModule extends _i27.ApiServicesNetworkModule {}
+class _$ApiServicesNetworkModule extends _i28.ApiServicesNetworkModule {}
 
-class _$NetworkModule extends _i28.NetworkModule {}
+class _$NetworkModule extends _i29.NetworkModule {}
 
-class _$DataStoreModule extends _i29.DataStoreModule {}
+class _$DataStoreModule extends _i30.DataStoreModule {}

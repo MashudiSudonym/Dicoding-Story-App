@@ -24,7 +24,6 @@ mixin _$StoryResponse {
   String get name => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
   String get photoUrl => throw _privateConstructorUsedError;
-
   String get createdAt => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -38,7 +37,6 @@ abstract class $StoryResponseCopyWith<$Res> {
   factory $StoryResponseCopyWith(
           StoryResponse value, $Res Function(StoryResponse) then) =
       _$StoryResponseCopyWithImpl<$Res, StoryResponse>;
-
   @useResult
   $Res call(
       {String id,
@@ -98,7 +96,6 @@ abstract class _$$_StoryResponseCopyWith<$Res>
   factory _$$_StoryResponseCopyWith(
           _$_StoryResponse value, $Res Function(_$_StoryResponse) then) =
       __$$_StoryResponseCopyWithImpl<$Res>;
-
   @override
   @useResult
   $Res call(
@@ -231,13 +228,10 @@ abstract class _StoryResponse implements StoryResponse {
   String get name;
   @override
   String get description;
-
   @override
   String get photoUrl;
-
   @override
   String get createdAt;
-
   @override
   @JsonKey(ignore: true)
   _$$_StoryResponseCopyWith<_$_StoryResponse> get copyWith =>

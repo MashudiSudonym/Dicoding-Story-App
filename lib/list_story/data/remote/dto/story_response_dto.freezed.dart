@@ -22,21 +22,16 @@ StoryResponseDTO _$StoryResponseDTOFromJson(Map<String, dynamic> json) {
 mixin _$StoryResponseDTO {
   @JsonKey(name: 'id')
   String get id => throw _privateConstructorUsedError;
-
   @JsonKey(name: 'name')
   String get name => throw _privateConstructorUsedError;
-
   @JsonKey(name: 'description')
   String get description => throw _privateConstructorUsedError;
-
   @JsonKey(name: 'photoUrl')
   String get photoUrl => throw _privateConstructorUsedError;
-
   @JsonKey(name: 'createdAt')
   String get createdAt => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
   @JsonKey(ignore: true)
   $StoryResponseDTOCopyWith<StoryResponseDTO> get copyWith =>
       throw _privateConstructorUsedError;
@@ -47,7 +42,6 @@ abstract class $StoryResponseDTOCopyWith<$Res> {
   factory $StoryResponseDTOCopyWith(
           StoryResponseDTO value, $Res Function(StoryResponseDTO) then) =
       _$StoryResponseDTOCopyWithImpl<$Res, StoryResponseDTO>;
-
   @useResult
   $Res call(
       {@JsonKey(name: 'id') String id,
@@ -107,7 +101,6 @@ abstract class _$$_StoryResponseDTOCopyWith<$Res>
   factory _$$_StoryResponseDTOCopyWith(
           _$_StoryResponseDTO value, $Res Function(_$_StoryResponseDTO) then) =
       __$$_StoryResponseDTOCopyWithImpl<$Res>;
-
   @override
   @useResult
   $Res call(
@@ -249,15 +242,12 @@ abstract class _StoryResponseDTO implements StoryResponseDTO {
   @override
   @JsonKey(name: 'description')
   String get description;
-
   @override
   @JsonKey(name: 'photoUrl')
   String get photoUrl;
-
   @override
   @JsonKey(name: 'createdAt')
   String get createdAt;
-
   @override
   @JsonKey(ignore: true)
   _$$_StoryResponseDTOCopyWith<_$_StoryResponseDTO> get copyWith =>

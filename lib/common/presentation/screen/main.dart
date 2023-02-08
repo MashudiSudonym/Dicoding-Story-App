@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:story_app/common/di/injection.dart';
 import 'package:story_app/common/util/extension.dart';
+import 'package:story_app/login/presentation/screen/login_screen.dart';
 
 void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   await configureDependencies();
   setupLogging();
   runApp(const MyApp());
@@ -19,11 +21,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepOrange),
       ),
-      home: const Scaffold(
-        body: Center(
-          child: Text('data'),
-        ),
-      ),
+      home: const LoginScreen(),
     );
   }
 }

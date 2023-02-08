@@ -24,7 +24,6 @@ mixin _$ListStoryResponseDTO {
   bool get error => throw _privateConstructorUsedError;
   @JsonKey(name: 'message')
   String get message => throw _privateConstructorUsedError;
-
   @JsonKey(name: 'listStory')
   List<StoryResponseDTO?>? get listStoryResponseDTO =>
       throw _privateConstructorUsedError;
@@ -40,7 +39,6 @@ abstract class $ListStoryResponseDTOCopyWith<$Res> {
   factory $ListStoryResponseDTOCopyWith(ListStoryResponseDTO value,
           $Res Function(ListStoryResponseDTO) then) =
       _$ListStoryResponseDTOCopyWithImpl<$Res, ListStoryResponseDTO>;
-
   @useResult
   $Res call(
       {@JsonKey(name: 'error')
@@ -92,7 +90,6 @@ abstract class _$$_ListStoryResponseDTOCopyWith<$Res>
   factory _$$_ListStoryResponseDTOCopyWith(_$_ListStoryResponseDTO value,
           $Res Function(_$_ListStoryResponseDTO) then) =
       __$$_ListStoryResponseDTOCopyWithImpl<$Res>;
-
   @override
   @useResult
   $Res call(
@@ -158,7 +155,6 @@ class _$_ListStoryResponseDTO implements _ListStoryResponseDTO {
   @JsonKey(name: 'message')
   final String message;
   final List<StoryResponseDTO?>? _listStoryResponseDTO;
-
   @override
   @JsonKey(name: 'listStory')
   List<StoryResponseDTO?>? get listStoryResponseDTO {
@@ -222,15 +218,12 @@ abstract class _ListStoryResponseDTO implements ListStoryResponseDTO {
   @override
   @JsonKey(name: 'error')
   bool get error;
-
   @override
   @JsonKey(name: 'message')
   String get message;
-
   @override
   @JsonKey(name: 'listStory')
   List<StoryResponseDTO?>? get listStoryResponseDTO;
-
   @override
   @JsonKey(ignore: true)
   _$$_ListStoryResponseDTOCopyWith<_$_ListStoryResponseDTO> get copyWith =>
