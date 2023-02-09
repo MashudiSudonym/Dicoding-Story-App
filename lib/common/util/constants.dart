@@ -21,4 +21,5 @@ class Constants {
   static const bearer = "Bearer ";
   static const contentType = 'Content-Type';
   static const applicationJson = 'application/json';
+  static const smallScreenWidth = 600;
 }

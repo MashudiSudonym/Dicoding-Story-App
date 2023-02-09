@@ -5,17 +5,17 @@
 // gestures. You can also use WidgetTester to find child widgets in the widget
 // tree, read text, and verify that the values of widget properties are correct.
 
+import 'package:hive_test/hive_test.dart';
 import 'package:story_app/authentication_check/domain/model/authentication_token.dart';
 import 'package:story_app/authentication_check/domain/use_case/get_token_from_data_store_use_case/get_token_from_data_store_use_case.dart';
 import 'package:story_app/common/di/injection.dart';
 import 'package:story_app/common/util/constants.dart';
 import 'package:story_app/common/util/extension.dart';
-import 'package:story_app/list_story/domain/model/list_story_response.dart';
-import 'package:story_app/list_story/domain/use_case/show_list_story_use_case.dart';
 import 'package:story_app/login/domain/model/login_response.dart';
 import 'package:story_app/login/domain/use_case/user_login_use_case.dart';
 
 void main() async {
+  await setUpTestHive();
   await configureDependencies();
   setupLogging();
 
@@ -52,11 +52,11 @@ void main() async {
   final userLoginUseCase = getIt<UserLoginUseCase>();
 
   final failureOrResponse =
-      await userLoginUseCase('masrobot6969@gmail.com', '123tes');
+  await userLoginUseCase('masrobot6969@gmail.com', '123tes');
 
   final a = failureOrResponse.fold(
-    (failure) => LoginResponse(error: true, message: failure.message),
-    (response) => response,
+        (failure) => LoginResponse(error: true, message: failure.message),
+        (response) => response,
   );
 
   Constants.logger.d(a.message);
@@ -95,8 +95,8 @@ void main() async {
   final failureOrResponseGetToken = await getTokenFromDataStoreUseCase();
 
   final resultGetToken = failureOrResponseGetToken.fold(
-    (failure) => const AuthenticationToken(token: Constants.blankString),
-    (response) => response,
+        (failure) => const AuthenticationToken(token: Constants.blankString),
+        (response) => response,
   );
 
   Constants.logger.d(resultGetToken.token);
@@ -119,24 +119,26 @@ void main() async {
   //
   // Constants.logger.d(resultAuth.isAuthenticated);
 
-  final showListStoryUseCase = getIt<ShowListStoryUseCase>();
-
-  final showListStoryResponse = await showListStoryUseCase();
-
-  final resultShowListStory = showListStoryResponse.fold(
-    (failure) => ListStoryResponse(
-      error: true,
-      message: failure.message,
-      listStoryResponse: [],
-    ),
-    (response) => response,
-  );
-
-  Constants.logger.d(resultShowListStory);
+  // final showListStoryUseCase = getIt<ShowListStoryUseCase>();
+  //
+  // final showListStoryResponse = await showListStoryUseCase();
+  //
+  // final resultShowListStory = showListStoryResponse.fold(
+  //   (failure) => ListStoryResponse(
+  //     error: true,
+  //     message: failure.message,
+  //     listStoryResponse: [],
+  //   ),
+  //   (response) => response,
+  // );
+  //
+  // Constants.logger.d(resultShowListStory);
 
   // final apiServices = getIt<ApiServices>();
   //
   // final getListStory = await apiServices.getListStory(resultGetToken.token);
   //
   // Constants.logger.w(getListStory.body);
+
+  tearDownTestHive();
 }
