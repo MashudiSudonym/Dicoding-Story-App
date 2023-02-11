@@ -24,23 +24,23 @@ class AdaptiveScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (kIsWeb) {
-      return webScreen ?? const Placeholder();
+      return webScreen ?? Text('$defaultTargetPlatform');
     } else {
       switch (defaultTargetPlatform) {
         case TargetPlatform.android:
-          return androidScreen ?? const Placeholder();
+          return androidScreen ?? Text('$defaultTargetPlatform');
         case TargetPlatform.windows:
-          return windowsScreen ?? const Placeholder();
+          return windowsScreen ?? Text('$defaultTargetPlatform');
         case TargetPlatform.iOS:
-          return iOSScreen ?? const Placeholder();
+          return iOSScreen ?? Text('$defaultTargetPlatform');
         case TargetPlatform.fuchsia:
-          return fuchsiaScreen ?? const Placeholder();
+          return fuchsiaScreen ?? Text('$defaultTargetPlatform');
         case TargetPlatform.linux:
-          return linuxScreen ?? const Placeholder();
+          return linuxScreen ?? Text('$defaultTargetPlatform');
         case TargetPlatform.macOS:
-          return macOSScreen ?? const Placeholder();
+          return macOSScreen ?? Text('$defaultTargetPlatform');
         default:
-          return androidScreen ?? const Placeholder();
+          return Text('$defaultTargetPlatform');
       }
     }
   }
