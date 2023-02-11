@@ -1,142 +1,28 @@
 import 'package:flutter/material.dart';
-import 'package:story_app/common/util/extension.dart';
-import 'package:story_app/common/util/field_validation_mixin.dart';
+import 'package:story_app/common/presentation/util/adaptive_screen.dart';
+import 'package:story_app/common/presentation/util/orientation_screen.dart';
+import 'package:story_app/common/presentation/util/responsive_landscape_screen.dart';
+import 'package:story_app/common/presentation/util/responsive_portrait_screen.dart';
+import 'package:story_app/login/presentation/screen/screen_size/login_expanded_screen.dart';
+import 'package:story_app/login/presentation/screen/screen_size/login_medium_screen.dart';
+import 'package:story_app/login/presentation/screen/screen_size/login_small_screen.dart';
 
-class LoginScreen extends StatefulWidget {
+class LoginScreen extends StatelessWidget {
   const LoginScreen({Key? key}) : super(key: key);
 
   @override
-  State<LoginScreen> createState() => _LoginScreenState();
-}
-
-class _LoginScreenState extends State<LoginScreen> with FieldValidationMixin {
-  late TextEditingController emailController;
-  late TextEditingController passwordController;
-
-  GlobalKey<FormState> loginKey = GlobalKey<FormState>();
-
-  bool passwordVisible = false;
-  bool validEmail = false;
-
-  @override
-  void initState() {
-    emailController = TextEditingController();
-    passwordController = TextEditingController();
-    super.initState();
-  }
-
-  @override
-  void dispose() {
-    emailController.dispose();
-    passwordController.dispose();
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: GestureDetector(
-        onTap: () => keyboardDismiss(context),
-        child: Scaffold(
-          body: ListView(
-            keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
-            shrinkWrap: true,
-            children: [
-              buildLoginScreen(),
-            ],
-          ),
+    return const AdaptiveScreen(
+      androidScreen: OrientationScreen(
+        responsiveLandscapeScreen: ResponsiveLandscapeScreen(
+          smallScreen: LoginSmallScreen(),
+          mediumScreen: LoginMediumScreen(),
+          expandedScreen: LoginExpandedScreen(),
         ),
-      ),
-    );
-  }
-
-  Widget buildLoginScreen() {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16),
-      child: Form(
-        key: loginKey,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const SizedBox(
-              height: 150,
-            ),
-            const Text('Login'),
-            const SizedBox(
-              height: 16,
-            ),
-            TextFormField(
-              controller: emailController,
-              textInputAction: TextInputAction.next,
-              decoration: const InputDecoration(
-                  border: InputBorder.none,
-                  fillColor: Color(0xffF8FAFB),
-                  filled: true,
-                  hintText: 'Email'),
-              validator: (email) {
-                return isEmailValid(email ?? '') ? null : 'Enter Valid Email';
-              },
-            ),
-            const SizedBox(
-              height: 16,
-            ),
-            TextFormField(
-              controller: passwordController,
-              textInputAction: TextInputAction.next,
-              decoration: const InputDecoration(
-                border: InputBorder.none,
-                fillColor: Color(0xffF8fAFB),
-                filled: true,
-                hintText: 'Password',
-              ),
-              validator: (password) {
-                return isPasswordValid(password ?? '')
-                    ? null
-                    : 'Password should be 8 Characters';
-              },
-            ),
-            const SizedBox(
-              height: 16,
-            ),
-            Align(
-              alignment: Alignment.centerRight,
-              child: InkWell(
-                child: Text(
-                  'Forgot Password ?',
-                  style: TextStyle(
-                    color: Colors.red.withOpacity(0.8),
-                    fontSize: 12,
-                  ),
-                ),
-              ),
-            ),
-            const SizedBox(
-              height: 16,
-            ),
-            InkWell(
-              onTap: () {
-                if (loginKey.currentState?.validate() ?? false) {
-                  // TODO: do something
-                }
-              },
-              child: Container(
-                height: 45,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(6),
-                  color: Colors.red.withOpacity(0.8),
-                ),
-                child: const Center(
-                  child: Text(
-                    'Login',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ),
-              ),
-            ),
-          ],
+        responsivePortraitScreen: ResponsivePortraitScreen(
+          smallScreen: LoginSmallScreen(),
+          mediumScreen: LoginMediumScreen(),
+          expandedScreen: LoginExpandedScreen(),
         ),
       ),
     );

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:story_app/common/di/injection.dart';
 import 'package:story_app/common/util/extension.dart';
-import 'package:story_app/dummy/dummy_screen.dart';
+import 'package:story_app/login/presentation/screen/login_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
       title: "Story App",
       theme: ThemeData(primarySwatch: Colors.deepPurple),
       home: const SafeArea(
-        child: DummyScreen(),
+        child: LoginScreen(),
       ),
     );
   }
