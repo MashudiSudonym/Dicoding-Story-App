@@ -12,17 +12,16 @@ class WordingDontHaveAccount extends StatelessWidget {
     return RichText(
       text: TextSpan(
         text: "Don't have an account ? ",
-        style: GoogleFonts.roboto(
+        style: GoogleFonts.montserrat(
           fontSize: 12.sp,
-          color: Colors.black,
-          fontWeight: FontWeight.w300,
+          color: const Color(0xff959595),
+          fontWeight: FontWeight.w400,
         ),
         children: [
           TextSpan(
-            text: "Sign Up",
-            style: GoogleFonts.roboto(
-              color: const Color(0xff4880FF),
-            ),
+            text: "Register",
+            style: GoogleFonts.montserrat(
+                color: const Color(0xff4880FF), fontWeight: FontWeight.w500),
             recognizer: TapGestureRecognizer()
               ..onTap = () {
                 Constants.logger.d('this clicked');

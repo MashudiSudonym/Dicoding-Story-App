@@ -26,9 +26,7 @@ class MyApp extends StatelessWidget {
       ),
       splitScreenMode: true,
       minTextAdapt: true,
-      child: const SafeArea(
-        child: LoginScreen(),
-      ),
+      child: const LoginScreen(),
     );
   }
 }

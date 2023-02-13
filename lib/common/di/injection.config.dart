@@ -53,12 +53,11 @@ import 'package:story_app/register/domain/repository/register_repository.dart'
 import 'package:story_app/register/domain/use_case/user_register_use_case.dart'
     as _i23;
 import 'package:story_app/register/presentation/bloc/register_bloc.dart'
-    as _i26;
+    as _i26; // ignore_for_file: unnecessary_lambdas
 
-/// ignore_for_file: unnecessary_lambdas
-/// ignore_for_file: lines_longer_than_80_chars
+// ignore_for_file: lines_longer_than_80_chars
 extension GetItInjectableX on _i1.GetIt {
-  /// initializes the registration of main-scope dependencies inside of [GetIt]
+  // initializes the registration of main-scope dependencies inside of GetIt
   Future<_i1.GetIt> init({
     String? environment,
     _i2.EnvironmentFilter? environmentFilter,
