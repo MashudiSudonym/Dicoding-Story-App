@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:story_app/common/di/injection.dart';
 import 'package:story_app/common/util/extension.dart';
@@ -17,10 +18,15 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: "Story App",
-      theme: ThemeData(primarySwatch: Colors.deepPurple),
-      home: const SafeArea(
+    return ScreenUtilInit(
+      builder: (context, child) => MaterialApp(
+        title: "Story App",
+        theme: ThemeData(primarySwatch: Colors.deepPurple),
+        home: child,
+      ),
+      splitScreenMode: true,
+      minTextAdapt: true,
+      child: const SafeArea(
         child: LoginScreen(),
       ),
     );
