@@ -21,14 +21,20 @@ class FormLogin extends StatelessWidget {
           ScaffoldMessenger.of(context)
             ..hideCurrentSnackBar()
             ..showSnackBar(
-                const SnackBar(content: Text('Authentication Failure 💥')));
+              SnackBar(
+                content: Text('Authentication Failure 💥 ${state.message}'),
+              ),
+            );
         }
 
         if (state.status.isSuccess) {
           ScaffoldMessenger.of(context)
             ..hideCurrentSnackBar()
             ..showSnackBar(
-                const SnackBar(content: Text('Authentication Success 💖💖')));
+              const SnackBar(
+                content: Text('Authentication Success 💖💖'),
+              ),
+            );
         }
       },
       child: Padding(
@@ -44,32 +50,41 @@ class FormLogin extends StatelessWidget {
             SizedBox(
               height: 64.h,
             ),
-            BlocBuilder<LoginBloc, LoginState>(builder: (context, state) {
-              return ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  padding: const EdgeInsets.all(16),
-                  backgroundColor: const Color(0xff4880FF),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(16.r),
-                  ),
-                ),
-                onPressed: () {
-                  context
-                      .read<LoginBloc>()
-                      .add(const LoginEvent.LoginSubmitted());
-                },
-                child: Text(
+            _LoginButton(),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class _LoginButton extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<LoginBloc, LoginState>(
+      builder: (context, state) {
+        return ElevatedButton(
+          style: ElevatedButton.styleFrom(
+            padding: const EdgeInsets.all(16),
+            backgroundColor: const Color(0xff4880FF),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(16.r),
+            ),
+          ),
+          onPressed: () {
+            context.read<LoginBloc>().add(const LoginEvent.LoginSubmitted());
+          },
+          child: (state.status.isInProgress)
+              ? const CircularProgressIndicator()
+              : Text(
                   'Login',
                   style: GoogleFonts.montserrat(
                     fontSize: 18.sp,
                     fontWeight: FontWeight.w500,
                   ),
                 ),
-              );
-            }),
-          ],
-        ),
-      ),
+        );
+      },
     );
   }
 }
@@ -83,6 +98,9 @@ class _PasswordTextField extends StatelessWidget {
         buildWhen: (previous, current) => previous.password != current.password,
         builder: (context, state) {
           _passwordController.text = state.password.value;
+          _passwordController.selection = TextSelection.fromPosition(
+            TextPosition(offset: _passwordController.text.length),
+          );
 
           return BlocBuilder<LoginObscureTextCubit, LoginObscureTextState>(
               builder: (contextObscureText, stateObscureText) {
@@ -97,7 +115,7 @@ class _PasswordTextField extends StatelessWidget {
                 fontWeight: FontWeight.w400,
               ),
               obscureText: stateObscureText.visible,
-              onSubmitted: (password) {
+              onChanged: (password) {
                 context
                     .read<LoginBloc>()
                     .add(LoginEvent.LoginPasswordChange(password: password));
@@ -173,6 +191,9 @@ class _EmailTextField extends StatelessWidget {
         buildWhen: (previous, current) => previous.email != current.email,
         builder: (context, state) {
           _emailController.text = state.email.value;
+          _emailController.selection = TextSelection.fromPosition(
+            TextPosition(offset: _emailController.text.length),
+          );
 
           return TextField(
             controller: _emailController,
@@ -182,7 +203,7 @@ class _EmailTextField extends StatelessWidget {
               color: const Color(0xff7A7C7A),
               fontWeight: FontWeight.w400,
             ),
-            onSubmitted: (email) {
+            onChanged: (email) {
               context
                   .read<LoginBloc>()
                   .add(LoginEvent.LoginEmailChange(email: email));

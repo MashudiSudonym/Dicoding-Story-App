@@ -474,6 +474,7 @@ mixin _$LoginState {
   FormzSubmissionStatus get status => throw _privateConstructorUsedError;
   Email get email => throw _privateConstructorUsedError;
   Password get password => throw _privateConstructorUsedError;
+  String get message => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $LoginStateCopyWith<LoginState> get copyWith =>
@@ -486,7 +487,11 @@ abstract class $LoginStateCopyWith<$Res> {
           LoginState value, $Res Function(LoginState) then) =
       _$LoginStateCopyWithImpl<$Res, LoginState>;
   @useResult
-  $Res call({FormzSubmissionStatus status, Email email, Password password});
+  $Res call(
+      {FormzSubmissionStatus status,
+      Email email,
+      Password password,
+      String message});
 }
 
 /// @nodoc
@@ -505,6 +510,7 @@ class _$LoginStateCopyWithImpl<$Res, $Val extends LoginState>
     Object? status = null,
     Object? email = null,
     Object? password = null,
+    Object? message = null,
   }) {
     return _then(_value.copyWith(
       status: null == status
@@ -519,6 +525,10 @@ class _$LoginStateCopyWithImpl<$Res, $Val extends LoginState>
           ? _value.password
           : password // ignore: cast_nullable_to_non_nullable
               as Password,
+      message: null == message
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as String,
     ) as $Val);
   }
 }
@@ -531,7 +541,11 @@ abstract class _$$_LoginStateCopyWith<$Res>
       __$$_LoginStateCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({FormzSubmissionStatus status, Email email, Password password});
+  $Res call(
+      {FormzSubmissionStatus status,
+      Email email,
+      Password password,
+      String message});
 }
 
 /// @nodoc
@@ -548,6 +562,7 @@ class __$$_LoginStateCopyWithImpl<$Res>
     Object? status = null,
     Object? email = null,
     Object? password = null,
+    Object? message = null,
   }) {
     return _then(_$_LoginState(
       status: null == status
@@ -562,6 +577,10 @@ class __$$_LoginStateCopyWithImpl<$Res>
           ? _value.password
           : password // ignore: cast_nullable_to_non_nullable
               as Password,
+      message: null == message
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -572,7 +591,8 @@ class _$_LoginState implements _LoginState {
   const _$_LoginState(
       {this.status = FormzSubmissionStatus.initial,
       this.email = const Email.pure(),
-      this.password = const Password.pure()});
+      this.password = const Password.pure(),
+      this.message = Constants.blankString});
 
   @override
   @JsonKey()
@@ -583,10 +603,13 @@ class _$_LoginState implements _LoginState {
   @override
   @JsonKey()
   final Password password;
+  @override
+  @JsonKey()
+  final String message;
 
   @override
   String toString() {
-    return 'LoginState(status: $status, email: $email, password: $password)';
+    return 'LoginState(status: $status, email: $email, password: $password, message: $message)';
   }
 
   @override
@@ -597,11 +620,13 @@ class _$_LoginState implements _LoginState {
             (identical(other.status, status) || other.status == status) &&
             (identical(other.email, email) || other.email == email) &&
             (identical(other.password, password) ||
-                other.password == password));
+                other.password == password) &&
+            (identical(other.message, message) || other.message == message));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, status, email, password);
+  int get hashCode =>
+      Object.hash(runtimeType, status, email, password, message);
 
   @JsonKey(ignore: true)
   @override
@@ -614,7 +639,8 @@ abstract class _LoginState implements LoginState {
   const factory _LoginState(
       {final FormzSubmissionStatus status,
       final Email email,
-      final Password password}) = _$_LoginState;
+      final Password password,
+      final String message}) = _$_LoginState;
 
   @override
   FormzSubmissionStatus get status;
@@ -622,6 +648,8 @@ abstract class _LoginState implements LoginState {
   Email get email;
   @override
   Password get password;
+  @override
+  String get message;
   @override
   @JsonKey(ignore: true)
   _$$_LoginStateCopyWith<_$_LoginState> get copyWith =>

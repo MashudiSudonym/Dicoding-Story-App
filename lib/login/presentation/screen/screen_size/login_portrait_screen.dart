@@ -19,7 +19,7 @@ class LoginPortraitScreen extends StatelessWidget {
           children: [
             Assets.images.trip.image(),
             SizedBox(height: 16.h),
-            FormLogin(),
+            const FormLogin(),
             SizedBox(height: 32.h),
             const Center(
               child: WordingDontHaveAccount(),

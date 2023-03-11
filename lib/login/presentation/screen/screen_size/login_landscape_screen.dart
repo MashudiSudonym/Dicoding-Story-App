@@ -27,7 +27,7 @@ class LoginLandscapeScreen extends StatelessWidget {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      FormLogin(),
+                      const FormLogin(),
                       SizedBox(height: 64.h),
                       const Center(
                         child: WordingDontHaveAccount(),
