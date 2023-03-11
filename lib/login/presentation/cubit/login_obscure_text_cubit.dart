@@ -1,0 +1,9 @@
+import 'package:bloc/bloc.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+
+part 'login_obscure_text_state.dart';
+part 'login_obscure_text_cubit.freezed.dart';
+
+class LoginObscureTextCubit extends Cubit<LoginObscureTextState> {
+  LoginObscureTextCubit() : super(const LoginObscureTextState.initial());
+}
