@@ -1,126 +1,109 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:formz/formz.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:story_app/common/util/constants.dart';
-import 'package:story_app/common/util/field_validation_mixin.dart';
+import 'package:story_app/login/presentation/bloc/email.dart';
+import 'package:story_app/login/presentation/bloc/login_bloc.dart';
+import 'package:story_app/login/presentation/bloc/password.dart';
+import 'package:story_app/login/presentation/cubit/login_obscure_text_cubit.dart';
 
-class FormLogin extends StatefulWidget {
-  const FormLogin({Key? key}) : super(key: key);
-
-  @override
-  State<FormLogin> createState() => _FormLoginState();
-}
-
-class _FormLoginState extends State<FormLogin> with FieldValidationMixin {
-  late TextEditingController _emailController;
-  late TextEditingController _passwordController;
-
-  final GlobalKey<FormState> _loginKey = GlobalKey<FormState>();
-
-  bool _passwordVisible = true;
+class FormLogin extends StatelessWidget {
+  const FormLogin({super.key});
 
   @override
-  void initState() {
-    _emailController = TextEditingController();
-    _passwordController = TextEditingController();
-    super.initState();
-  }
+  Widget build(Object context) {
+    return BlocListener<LoginBloc, LoginState>(
+      listener: (context, state) {
+        // ui state flow
+        if (state.status.isFailure) {
+          ScaffoldMessenger.of(context)
+            ..hideCurrentSnackBar()
+            ..showSnackBar(
+                const SnackBar(content: Text('Authentication Failure 💥')));
+        }
 
-  @override
-  void dispose() {
-    _emailController.dispose();
-    _passwordController.dispose();
-    super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 16.h),
-      child: Form(
-        key: _loginKey,
+        if (state.status.isSuccess) {
+          ScaffoldMessenger.of(context)
+            ..hideCurrentSnackBar()
+            ..showSnackBar(
+                const SnackBar(content: Text('Authentication Success 💖💖')));
+        }
+      },
+      child: Padding(
+        padding: EdgeInsets.symmetric(horizontal: 16.h),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            TextFormField(
-              controller: _emailController,
-              textInputAction: TextInputAction.next,
-              style: GoogleFonts.montserrat(
-                fontSize: 18.sp,
-                color: const Color(0xff7A7C7A),
-                fontWeight: FontWeight.w400,
-              ),
-              validator: (email) {
-                if (isEmailValid(email ?? '')) {
-                  return null;
-                } else {
-                  if (email == '') {
-                    return 'Email can not be blank';
-                  } else {
-                    return 'Enter Valid Email';
-                  }
-                }
-              },
-              cursorColor: const Color(0xff4880FF),
-              decoration: InputDecoration(
-                label: Text(
-                  'Email',
-                  style: GoogleFonts.montserrat(
-                    fontSize: 16.sp,
-                    fontWeight: FontWeight.w400,
-                    color: const Color(0xff7A7C7A),
-                  ),
-                ),
-                contentPadding: EdgeInsets.symmetric(horizontal: 6.w),
-                focusedBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(16.r),
-                  borderSide: const BorderSide(
-                    color: Color(0xff4880FF),
-                  ),
-                ),
-                focusedErrorBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(16.r),
-                  borderSide: const BorderSide(
-                    color: Color(0xffff486a),
-                  ),
-                ),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(16.r),
-                  borderSide: const BorderSide(
-                    color: Color(0xffBBBCBC),
-                  ),
-                ),
-                fillColor: const Color(0xffF8FAFB),
-                filled: true,
-                hintText: 'email',
-                hintStyle: GoogleFonts.montserrat(
-                  fontSize: 18.sp,
-                  color: const Color(0xffBBBCBC),
-                  fontWeight: FontWeight.w400,
-                ),
-              ),
-            ),
+            _EmailTextField(),
             SizedBox(
               height: 32.h,
             ),
-            TextFormField(
+            _PasswordTextField(),
+            SizedBox(
+              height: 64.h,
+            ),
+            BlocBuilder<LoginBloc, LoginState>(builder: (context, state) {
+              return ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  padding: const EdgeInsets.all(16),
+                  backgroundColor: const Color(0xff4880FF),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(16.r),
+                  ),
+                ),
+                onPressed: () {
+                  context
+                      .read<LoginBloc>()
+                      .add(const LoginEvent.LoginSubmitted());
+                },
+                child: Text(
+                  'Login',
+                  style: GoogleFonts.montserrat(
+                    fontSize: 18.sp,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+              );
+            }),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class _PasswordTextField extends StatelessWidget {
+  final TextEditingController _passwordController = TextEditingController();
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<LoginBloc, LoginState>(
+        buildWhen: (previous, current) => previous.password != current.password,
+        builder: (context, state) {
+          _passwordController.text = state.password.value;
+
+          return BlocBuilder<LoginObscureTextCubit, LoginObscureTextState>(
+              builder: (contextObscureText, stateObscureText) {
+            return TextField(
               cursorColor: const Color(0xff4880FF),
               controller: _passwordController,
               textInputAction: TextInputAction.next,
               keyboardType: TextInputType.visiblePassword,
-              validator: (password) {
-                return isPasswordValid(password ?? '')
-                    ? null
-                    : 'Password should be 8 characters';
-              },
               style: GoogleFonts.montserrat(
                 fontSize: 18.sp,
                 color: const Color(0xff7A7C7A),
                 fontWeight: FontWeight.w400,
               ),
-              obscureText: _passwordVisible,
+              obscureText: stateObscureText.visible,
+              onSubmitted: (password) {
+                context
+                    .read<LoginBloc>()
+                    .add(LoginEvent.LoginPasswordChange(password: password));
+              },
               decoration: InputDecoration(
+                errorText: state.password.displayError?.text(),
                 label: Text(
                   'Password',
                   style: GoogleFonts.montserrat(
@@ -157,14 +140,14 @@ class _FormLoginState extends State<FormLogin> with FieldValidationMixin {
                     icon: FaIcon(
                       color: const Color(0xffBBBCBC),
                       size: 18.sp,
-                      (_passwordVisible)
+                      (stateObscureText.visible)
                           ? FontAwesomeIcons.eye
                           : FontAwesomeIcons.eyeSlash,
                     ),
                     onPressed: () {
-                      setState(() {
-                        _passwordVisible = !_passwordVisible;
-                      });
+                      contextObscureText
+                          .read<LoginObscureTextCubit>()
+                          .toggleVisibility();
                     },
                   ),
                 ),
@@ -175,34 +158,93 @@ class _FormLoginState extends State<FormLogin> with FieldValidationMixin {
                   fontWeight: FontWeight.w400,
                 ),
               ),
+            );
+          });
+        });
+  }
+}
+
+class _EmailTextField extends StatelessWidget {
+  final TextEditingController _emailController = TextEditingController();
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<LoginBloc, LoginState>(
+        buildWhen: (previous, current) => previous.email != current.email,
+        builder: (context, state) {
+          _emailController.text = state.email.value;
+
+          return TextField(
+            controller: _emailController,
+            textInputAction: TextInputAction.next,
+            style: GoogleFonts.montserrat(
+              fontSize: 18.sp,
+              color: const Color(0xff7A7C7A),
+              fontWeight: FontWeight.w400,
             ),
-            SizedBox(
-              height: 64.h,
-            ),
-            ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                padding: const EdgeInsets.all(16),
-                backgroundColor: const Color(0xff4880FF),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(16.r),
-                ),
-              ),
-              onPressed: () {
-                if (_loginKey.currentState?.validate() ?? false) {
-                  Constants.logger.d('clicked validate');
-                }
-              },
-              child: Text(
-                'Login',
+            onSubmitted: (email) {
+              context
+                  .read<LoginBloc>()
+                  .add(LoginEvent.LoginEmailChange(email: email));
+            },
+            cursorColor: const Color(0xff4880FF),
+            decoration: InputDecoration(
+              errorText: state.email.displayError?.text(),
+              label: Text(
+                'Email',
                 style: GoogleFonts.montserrat(
-                  fontSize: 18.sp,
-                  fontWeight: FontWeight.w500,
+                  fontSize: 16.sp,
+                  fontWeight: FontWeight.w400,
+                  color: const Color(0xff7A7C7A),
                 ),
               ),
+              contentPadding: EdgeInsets.symmetric(horizontal: 6.w),
+              focusedBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(16.r),
+                borderSide: const BorderSide(
+                  color: Color(0xff4880FF),
+                ),
+              ),
+              focusedErrorBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(16.r),
+                borderSide: const BorderSide(
+                  color: Color(0xffff486a),
+                ),
+              ),
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(16.r),
+                borderSide: const BorderSide(
+                  color: Color(0xffBBBCBC),
+                ),
+              ),
+              fillColor: const Color(0xffF8FAFB),
+              filled: true,
+              hintText: 'email',
+              hintStyle: GoogleFonts.montserrat(
+                fontSize: 18.sp,
+                color: const Color(0xffBBBCBC),
+                fontWeight: FontWeight.w400,
+              ),
             ),
-          ],
-        ),
-      ),
-    );
+          );
+        });
+  }
+}
+
+extension on EmailValidationError {
+  String text() {
+    switch (this) {
+      case EmailValidationError.invalid:
+        return 'Please ensure the email entered is valid';
+    }
+  }
+}
+
+extension on PasswordValidationError {
+  String text() {
+    switch (this) {
+      case PasswordValidationError.invalid:
+        return '''Password must be at least 8 characters and contain at least one letter and number''';
+    }
   }
 }
