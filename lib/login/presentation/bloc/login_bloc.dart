@@ -23,6 +23,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
             emit(
               state.copyWith(
                 email: Email.dirty(email ?? Constants.blankString),
+                status: FormzSubmissionStatus.initial,
               ),
             );
           },

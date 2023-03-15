@@ -10,7 +10,10 @@ import 'package:story_app/login/presentation/bloc/password.dart';
 import 'package:story_app/login/presentation/cubit/login_obscure_text_cubit.dart';
 
 class FormLogin extends StatelessWidget {
-  const FormLogin({super.key});
+  final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
+
+  FormLogin({super.key});
 
   @override
   Widget build(Object context) {
@@ -42,15 +45,18 @@ class FormLogin extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            _EmailTextField(),
+            _EmailTextField(_emailController),
             SizedBox(
               height: 32.h,
             ),
-            _PasswordTextField(),
+            _PasswordTextField(_passwordController),
             SizedBox(
               height: 64.h,
             ),
-            _LoginButton(),
+            _LoginButton(
+              _emailController,
+              _passwordController,
+            ),
           ],
         ),
       ),
@@ -59,6 +65,10 @@ class FormLogin extends StatelessWidget {
 }
 
 class _LoginButton extends StatelessWidget {
+  final TextEditingController _emailController;
+  final TextEditingController _passwordController;
+  const _LoginButton(this._emailController, this._passwordController);
+
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<LoginBloc, LoginState>(
@@ -72,7 +82,16 @@ class _LoginButton extends StatelessWidget {
             ),
           ),
           onPressed: () {
-            context.read<LoginBloc>().add(const LoginEvent.LoginSubmitted());
+            context.read<LoginBloc>().add(
+                  LoginEvent.LoginEmailChange(email: _emailController.text),
+                );
+            context.read<LoginBloc>().add(
+                  LoginEvent.LoginPasswordChange(
+                      password: _passwordController.text),
+                );
+            context.read<LoginBloc>().add(
+                  const LoginEvent.LoginSubmitted(),
+                );
           },
           child: (state.status.isInProgress)
               ? const CircularProgressIndicator()
@@ -90,7 +109,8 @@ class _LoginButton extends StatelessWidget {
 }
 
 class _PasswordTextField extends StatelessWidget {
-  final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _passwordController;
+  const _PasswordTextField(this._passwordController);
 
   @override
   Widget build(BuildContext context) {
@@ -98,9 +118,6 @@ class _PasswordTextField extends StatelessWidget {
         buildWhen: (previous, current) => previous.password != current.password,
         builder: (context, state) {
           _passwordController.text = state.password.value;
-          _passwordController.selection = TextSelection.fromPosition(
-            TextPosition(offset: _passwordController.text.length),
-          );
 
           return BlocBuilder<LoginObscureTextCubit, LoginObscureTextState>(
               builder: (contextObscureText, stateObscureText) {
@@ -115,7 +132,7 @@ class _PasswordTextField extends StatelessWidget {
                 fontWeight: FontWeight.w400,
               ),
               obscureText: stateObscureText.visible,
-              onChanged: (password) {
+              onSubmitted: (password) {
                 context
                     .read<LoginBloc>()
                     .add(LoginEvent.LoginPasswordChange(password: password));
@@ -183,7 +200,8 @@ class _PasswordTextField extends StatelessWidget {
 }
 
 class _EmailTextField extends StatelessWidget {
-  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _emailController;
+  const _EmailTextField(this._emailController);
 
   @override
   Widget build(BuildContext context) {
@@ -191,9 +209,6 @@ class _EmailTextField extends StatelessWidget {
         buildWhen: (previous, current) => previous.email != current.email,
         builder: (context, state) {
           _emailController.text = state.email.value;
-          _emailController.selection = TextSelection.fromPosition(
-            TextPosition(offset: _emailController.text.length),
-          );
 
           return TextField(
             controller: _emailController,
@@ -203,7 +218,7 @@ class _EmailTextField extends StatelessWidget {
               color: const Color(0xff7A7C7A),
               fontWeight: FontWeight.w400,
             ),
-            onChanged: (email) {
+            onSubmitted: (email) {
               context
                   .read<LoginBloc>()
                   .add(LoginEvent.LoginEmailChange(email: email));

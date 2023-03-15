@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:story_app/common/di/injection.dart';
 import 'package:story_app/common/presentation/util/adaptive_screen.dart';
 import 'package:story_app/common/presentation/util/orientation_screen.dart';
@@ -9,7 +10,6 @@ import 'package:story_app/login/presentation/bloc/login_bloc.dart';
 import 'package:story_app/login/presentation/cubit/login_obscure_text_cubit.dart';
 import 'package:story_app/login/presentation/screen/screen_size/login_landscape_screen.dart';
 import 'package:story_app/login/presentation/screen/screen_size/login_portrait_screen.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -24,7 +24,7 @@ class LoginScreen extends StatelessWidget {
           ),
         ),
         BlocProvider(
-          create: (context) => LoginObscureTextCubit(),
+          create: (context) => getIt<LoginObscureTextCubit>(),
         ),
       ],
       child: const AdaptiveScreen(
